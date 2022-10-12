@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/AccountLogin/ProtectedRoute";
 import SignUp from "./components/AccountLogin/SignUp";
 import SignIn from "./components/AccountLogin/SignIn";
 import Account from "./components/AccountLogin/Account";
+import ListsOfItems from "./components/ListsOfItems/ListsOfItems";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             <Route path="/tables" element={<TablePlan />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/menu" element={<ListsOfItems />} />
           </Routes>
         </AuthContextProvider>
       </header>
