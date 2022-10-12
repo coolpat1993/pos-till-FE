@@ -27,8 +27,8 @@ function Menu() {
 
 
     return (
-        <div className="staffLoginPage">
-            {items.length < 1 ? <Link to="/Createitems">Create user</Link> : null}
+        <div className="menu">
+            {items.length < 1 ? <Link to="/items">Add items</Link> : null}
             {items.map(item => {
                 return (
                     <div key={item.id}>
