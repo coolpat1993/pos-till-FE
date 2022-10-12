@@ -1,8 +1,5 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
-import { Link, useNavigate, Route, Routes } from 'react-router-dom';
-import Account from './Account';
-import SignIn from './SignIn';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 
 const SignUp = () => {

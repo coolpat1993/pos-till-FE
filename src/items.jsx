@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { db } from "./firebase-config";
 import {
@@ -9,23 +9,22 @@ import {
     deleteDoc,
     doc,
 } from "firebase/firestore";
-import { UserContext } from "./components/users/User";
+import { UserAuth } from "./components/context/AuthContext";
 
 
 function Items() {
-    const user = useContext(UserContext);
-    let userName = user.loggedInUser.username
+    const { user } = UserAuth();
+    let userName = user.email;
 
     const [newName, setNewName] = useState("");
     const [newprice, setNewprice] = useState(0);
     const [counter, setNewCounter] = useState(0);
 
     const [drinks, setdrinks] = useState([]);
-    const drinksCollectionRef = collection(db, `${userName}/items/drinks`);
 
     const createdrink = async () => {
         setNewCounter(counter + 1);
-        await addDoc(drinksCollectionRef, {
+        await addDoc(collection(db, `${userName}/items/drinks`), {
             name: newName,
             price: Number(newprice),
             quantity: 1,
@@ -63,13 +62,13 @@ function Items() {
 
     useEffect(() => {
         const getdrinks = async () => {
-            const data = await getDocs(drinksCollectionRef);
+            const data = await getDocs(collection(db, `${userName}/items/drinks`));
             setdrinks(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
             console.log("warning for if this is running too many times");
         };
 
         getdrinks();
-    }, [counter]);
+    }, [counter, userName]);
 
     return (
         <div className="App">
@@ -90,7 +89,7 @@ function Items() {
             <button onClick={createdrink}> Create drink</button>
             {drinks.map(drink => {
                 return (
-                    <div>
+                    <div key={drink.id}>
                         {" "}
                         <h1>Name: {drink.name}</h1>
                         <h1>price: {`£${drink.price}`}</h1>

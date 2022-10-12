@@ -7,7 +7,7 @@ function LoginKeypad({ userPasscode }) {
     const [passcodeGuess, setPasscodeGuess] = useState(0);
 
     const logIn = async () => {
-        if (passcodeGuess == userPasscode) {
+        if (+passcodeGuess === +userPasscode) {
             console.log('correct password')
         } else {
             console.log('incorrect passcode')
