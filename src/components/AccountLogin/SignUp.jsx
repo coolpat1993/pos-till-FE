@@ -16,7 +16,7 @@ const SignUp = () => {
     setError('');
     try {
       await createUser(email, password);
-      navigate('/account');
+      navigate('/staffLogin');
     } catch (e) {
       setError(e.message);
       console.log(e.message);

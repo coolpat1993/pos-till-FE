@@ -55,6 +55,7 @@ function CreateUsers() {
 
     return (
         <div className="App">
+            <h2>Create new user</h2>
             <input
                 placeholder="Name..."
                 onChange={(event) => {

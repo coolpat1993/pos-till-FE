@@ -13,7 +13,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       await signIn(email, password);
-      navigate('/account');
+      navigate('/staffLogin');
     } catch (e) {
       setError(e.message);
       console.log(e.message);

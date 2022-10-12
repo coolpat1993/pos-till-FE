@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Items from "./items";
-import Users from "./components/CreateUsers";
+import CreateUsers from "./components/CreateUsers";
 import Header from "./components/Header-Nav/Header";
 import Nav from "./components/Header-Nav/Nav";
 import StaffLoginPage from "./components/StaffLogin/StaffLoginPage";
@@ -10,8 +10,8 @@ import SettingsPage from "./components/Settings/SettingsPage";
 import CheckoutPage from "./components/Checkout/CheckoutPage";
 import { AuthContextProvider } from "./components/context/AuthContext";
 import ProtectedRoute from "./components/AccountLogin/ProtectedRoute";
-import SignIn from "./components/AccountLogin/SignIn";
 import SignUp from "./components/AccountLogin/SignUp";
+import SignIn from "./components/AccountLogin/SignIn";
 import Account from "./components/AccountLogin/Account";
 
 function App() {
@@ -33,8 +33,16 @@ function App() {
               }
             />
             <Route path="/items" element={<Items />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/staffLogin" element={<StaffLoginPage />} />
+            <Route path="/CreateUsers" element={<CreateUsers />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route
+              path="/staffLogin"
+              element={
+                <ProtectedRoute>
+                  <StaffLoginPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/tables" element={<TablePlan />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />

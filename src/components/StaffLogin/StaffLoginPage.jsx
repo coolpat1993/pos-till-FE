@@ -8,6 +8,7 @@ import {
 import StaffLoginButton from "./StaffLoginButton.jsx";
 import LoginKeypad from "./LoginKeyPad";
 import { UserAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function StaffLoginPage() {
     const { user } = UserAuth();
@@ -31,6 +32,7 @@ function StaffLoginPage() {
 
     return (
         <div className="staffLoginPage">
+            {users.length < 1 ? <Link to="/CreateUsers">Create user</Link> : null}
             {users.map(users => {
                 return (
                     <div key={users.id}>
