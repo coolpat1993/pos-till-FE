@@ -11,11 +11,12 @@ import {
 } from "firebase/firestore";
 import { UserContext } from "./users/User";
 
-function Users() {
+function CreateUsers() {
     const user = useContext(UserContext);
     let userName = user.loggedInUser.username
     const [newName, setNewName] = useState("");
     const [newlevel, setNewlevel] = useState(0);
+    const [newPasscode, setNewPasscode] = useState(0);
     const [counter, setNewCounter] = useState(0);
 
     const [users, setusers] = useState([]);
@@ -24,6 +25,7 @@ function Users() {
         setNewCounter(counter + 1);
         await addDoc(usersCollectionRef, {
             name: newName,
+            staffPasscode: Number(newPasscode),
             level: Number(newlevel),
         });
     };
@@ -64,6 +66,13 @@ function Users() {
             />
             <input
                 type="number"
+                placeholder="passcode..."
+                onChange={event => {
+                    setNewPasscode(event.target.value);
+                }}
+            />
+            <input
+                type="number"
                 placeholder="level..."
                 onChange={event => {
                     setNewlevel(event.target.value);
@@ -100,4 +109,4 @@ function Users() {
     );
 }
 
-export default Users;
+export default CreateUsers;
