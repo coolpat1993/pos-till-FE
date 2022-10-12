@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import { UserContext } from "../users/User";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
+const Header = () => {
+  const { user } = UserAuth();
+  const navigate = useNavigate();
 
-function Header() {
+  return (
+    <nav className="center">
+      <h1>POS-Till</h1>
+      {console.log(user, '<<user')}
+      <h3>you are currently logged in as {user.email}</h3>
+    </nav>
+  );
+};
 
-    const user = useContext(UserContext);
-    let userName = user.loggedInUser.username
-
-    return (
-        <nav className='center'>
-            <h1>POS-Till</h1>
-            <h3>you are currently logged in as {userName}</h3>
-        </nav>
-    )
-}
-
-export default Header
+export default Header;
