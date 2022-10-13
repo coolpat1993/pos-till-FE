@@ -1,18 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase-config";
 import "../../App.css";
 import {
     collection,
     getDocs,
 } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import SingleItem from "./SingleItem"
+import SingleItemButton from "./SingleItemButton"
+import Basket from "./Basket";
+import { StaffContext } from "../StaffLogin/LoggedInStaff";
 
 function Menu() {
+    const { loggedInUser } = useContext(StaffContext);
+    let staffUsername = loggedInUser.username
     const { user } = UserAuth();
     let userName = user.email;
-
+    const [counter, setNewCounter] = useState(0)
     const [items, setitems] = useState([]);
 
     useEffect(() => {
@@ -23,21 +27,27 @@ function Menu() {
         };
 
         getitems();
-    }, [userName]);
+    }, [userName, counter]);
 
-
+    if (!staffUsername) {
+        return <Navigate to="/staffLogin" />;
+    }
     return (
         <div className="menu">
             {items.length < 1 ? <Link to="/items">Add items</Link> : null}
             {items.map(item => {
                 return (
                     <div key={item.id}>
-                        <SingleItem name={item.name}
+                        <SingleItemButton name={item.name}
                             price={item.price}
-                            id={item.id} />
+                            id={item.id}
+                            setNewCounter={setNewCounter}
+                            counter={counter} />
                     </div>
                 );
             })}
+            <Basket setNewCounter={setNewCounter}
+                counter={counter} />
         </div>
     );
 }

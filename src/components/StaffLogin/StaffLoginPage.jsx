@@ -15,6 +15,7 @@ function StaffLoginPage() {
     let userName = user.email;
     console.log(userName, 'username')
     const [passcode, setPasscode] = useState('')
+    const [selectedUser, setSelectedUser] = useState('')
 
     const [users, setusers] = useState([]);
     console.log(passcode, '< passcode saved')
@@ -38,11 +39,13 @@ function StaffLoginPage() {
                     <div key={users.id}>
                         <StaffLoginButton username={users.name}
                             staffPasscode={users.staffPasscode}
-                            setPasscode={setPasscode} />
+                            setPasscode={setPasscode}
+                            setSelectedUser={setSelectedUser} />
                     </div>
                 );
             })}
-            <LoginKeypad userPasscode={passcode} />
+            <LoginKeypad userPasscode={passcode}
+                selectedUser={selectedUser} />
         </div>
     );
 }

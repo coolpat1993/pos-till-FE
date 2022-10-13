@@ -13,7 +13,7 @@ import ProtectedRoute from "./components/AccountLogin/ProtectedRoute";
 import SignUp from "./components/AccountLogin/SignUp";
 import SignIn from "./components/AccountLogin/SignIn";
 import Account from "./components/AccountLogin/Account";
-import Menu from "./components/ListsOfItems/Menu";
+import Menu from "./components/ProductMenu/Menu";
 
 function App() {
   return (
@@ -23,7 +23,14 @@ function App() {
           <Header />
           <Nav />
           <Routes>
-            <Route path="/" element={<SignIn />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <StaffLoginPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/signup" element={<SignUp />} />
             <Route
               path="/account"
