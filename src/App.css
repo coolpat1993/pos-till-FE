@@ -40,3 +40,15 @@
     transform: rotate(360deg);
   }
 } */
+
+a:link {
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 22px;
+  background: #daecf8;
+  padding: 11px 20px 10px 10px;
+  text-decoration: none;
+}

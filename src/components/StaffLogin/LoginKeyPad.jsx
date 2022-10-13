@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../../App.css";
+import { Navigate } from "react-router-dom";
+import { StaffContext } from "./LoggedInStaff";
 
 
-function LoginKeypad({ userPasscode }) {
-    console.log(userPasscode)
+function LoginKeypad({ userPasscode, selectedUser }) {
+    const { setLoggedInUser } = useContext(StaffContext);
     const [passcodeGuess, setPasscodeGuess] = useState(0);
+    const [success, setSuccess] = useState(false);
 
-    const logIn = async () => {
+    const logIn = () => {
         if (+passcodeGuess === +userPasscode) {
-            console.log('correct password')
+            setLoggedInUser({ username: selectedUser })
+            console.log('working')
+            setSuccess(true)
         } else {
             console.log('incorrect passcode')
         }
     };
+
+    if (success) {
+        return <Navigate to="/menu" />;
+    }
 
 
     return (
@@ -31,3 +40,5 @@ function LoginKeypad({ userPasscode }) {
 }
 
 export default LoginKeypad;
+
+
