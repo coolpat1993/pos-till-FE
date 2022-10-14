@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, } from "firebase/firestore";
 import React, { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 import { db } from "../../firebase-config";
@@ -10,11 +10,12 @@ const TablePlan1 = () => {
   let userName = user.email;
   const [tempTables, setTables] = useState([])
   const [count, setCount] = useState(0)
+  const [tableName, setTableName] = useState('table1')
   console.log(tempTables, '<temp tables')
 
   useEffect(() => {
     const getdrinks = async () => {
-      const data = await getDocs(collection(db, `username/tablePlan/tables`));
+      const data = await getDocs(collection(db, `${userName}/tablePlan/tables`));
       setTables(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       console.log("warning for if this is running too many times");
     };
@@ -28,9 +29,10 @@ const TablePlan1 = () => {
     tables = tempTables
   }
 
-
-
   const [positions, setPositions] = useState({});
+
+  console.log(positions, '<<< global positions')
+
   const [hasLoaded, setHasLoaded] = useState(false);
   const nodeRef = useRef(null);
 
@@ -44,27 +46,35 @@ const TablePlan1 = () => {
   }, [tempTables]);
 
   function handleStop(e, data) {
-    let dummyPositions = { ...positions };
-    const itemId = e.target.id;
+    console.log(e)
+    let dummyPositions = {};
+    const itemId = 'currentTable';
     dummyPositions[itemId] = {};
     dummyPositions[itemId]["x"] = data.x;
     dummyPositions[itemId]["y"] = data.y;
+    console.log(dummyPositions, 'dummy pos')
     setPositions(dummyPositions);
   }
 
 
   const createTable = async () => {
     setCount(count + 1);
-    await addDoc(collection(db, `username/tablePlan/tables`), {
-      name: 'big table',
-      x: 80,
-      y: 90,
+    await addDoc(collection(db, `${userName}/tablePlan/tables`), {
+      name: tableName,
+      x: 0,
+      y: 0,
     });
   };
 
 
   return (
     <div>
+      <input
+        placeholder="Name..."
+        onChange={(event) => {
+          setTableName(event.target.value);
+        }}
+      />
       <button
         onClick={() => {
           createTable();
@@ -81,7 +91,6 @@ const TablePlan1 = () => {
                   defaultPosition={
                     { x: item.x, y: item.y }
                   }
-                  position={null}
                   grid={[25, 25]}
                   nodeRef={nodeRef}
                   onStop={handleStop}
@@ -89,7 +98,8 @@ const TablePlan1 = () => {
                   <div ref={nodeRef}>
                     <IndividualTable
                       id={item.id}
-                      theName={item.name} />
+                      theName={item.name}
+                      positions={positions} />
                   </div>
                 </Draggable>
               </div>
