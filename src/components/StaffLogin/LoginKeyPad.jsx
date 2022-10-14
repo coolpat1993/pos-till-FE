@@ -2,11 +2,11 @@ import { useContext, useState } from "react";
 import "../../App.css";
 import { Navigate } from "react-router-dom";
 import { StaffContext } from "./LoggedInStaff";
-import KeyPad from "../StaffLogin/KeyPad";
+import Keypad from "./KeyPad";
 
 function LoginKeypad({ userPasscode, selectedUser }) {
   const { setLoggedInUser } = useContext(StaffContext);
-  const [passcodeGuess, setPasscodeGuess] = useState(0);
+  const [passcodeGuess, setPasscodeGuess] = useState("");
   const [success, setSuccess] = useState(false);
 
   const logIn = () => {
@@ -25,7 +25,10 @@ function LoginKeypad({ userPasscode, selectedUser }) {
 
   return (
     <div className="App">
-      <KeyPad />
+      <Keypad
+        passcodeGuess={passcodeGuess}
+        setPasscodeGuess={setPasscodeGuess}
+      />
       <input
         onChange={(event) => {
           setPasscodeGuess(event.target.value);

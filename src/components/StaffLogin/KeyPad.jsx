@@ -1,16 +1,60 @@
-import Keyboard from "react-simple-keyboard";
-import "react-simple-keyboard/build/css/index.css";
+import { useState } from "react";
 
-const KeyPad = () => {
-  const onChange = (input) => {
-    console.log("Input changed", input);
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
+  console.log(passcodeGuess);
+  const handleEvent = (number) => {
+    if (passcodeGuess.length >= 4) {
+      return null;
+    } else {
+      setPasscodeGuess(`${passcodeGuess}${number}`);
+    }
+  };
+  const handleBackSpace = () => {
+    setPasscodeGuess(passcodeGuess.slice(0, -1));
   };
 
-  const onKeyPress = (button) => {
-    console.log("Button pressed", button);
+  const handleClear = () => {
+    setPasscodeGuess("");
   };
-
-  return <Keyboard onChange={onChange()} onKeyPress={onKeyPress()} />;
+  return (
+    <>
+      <h1>{passcodeGuess}</h1>
+      <div className="grid-container">
+        {numbers.map((number) => {
+          return (
+            <div key={number}>
+              <button
+                className="grid-items"
+                onClick={() => {
+                  handleEvent(number);
+                }}
+              >
+                {number}
+              </button>
+            </div>
+          );
+        })}
+        <br></br>
+        <button
+          className="grid-items"
+          onClick={() => {
+            handleBackSpace();
+          }}
+        >
+          Delete
+        </button>
+        <button
+          onClick={() => {
+            handleClear();
+          }}
+        >
+          Clear
+        </button>
+      </div>
+    </>
+  );
 };
 
-export default KeyPad;
+export default Keypad;

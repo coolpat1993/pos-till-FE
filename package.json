@@ -12,9 +12,7 @@
     "react-draggable": "^4.4.5",
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.1",
-    "react-simple-keyboard": "^3.4.226",
     "request": "^2.79.0",
-    "simple-keyboard": "^3.4.174",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
