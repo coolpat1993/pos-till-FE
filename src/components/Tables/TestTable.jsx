@@ -40,20 +40,6 @@ function Items() {
         await updateDoc(drinkDoc, newFields);
     };
 
-    const updateQuantity = async (id, quantity) => {
-        const drinkDoc = doc(db, `${userName}/items/drinks`, id);
-        const newFields = { quantity: quantity + 1 };
-        setNewCounter(counter + 1);
-        await updateDoc(drinkDoc, newFields);
-    };
-
-    const decreaseQuantity = async (id, quantity) => {
-        const drinkDoc = doc(db, `${userName}/items/drinks`, id);
-        const newFields = { quantity: quantity - 1 };
-        setNewCounter(counter + 1);
-        await updateDoc(drinkDoc, newFields);
-    };
-
     const deletedrink = async (id) => {
         const drinkDoc = doc(db, `${userName}/items/drinks`, id);
         setNewCounter(counter + 1);
@@ -95,7 +81,6 @@ function Items() {
 
             <button onClick={createdrink}> Create item</button>
             {drinks.map((drink) => {
-                console.log(drinks)
                 return (
                     <div key={drink.id}>
                         {" "}
