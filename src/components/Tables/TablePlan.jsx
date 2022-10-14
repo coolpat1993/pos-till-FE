@@ -1,113 +1,116 @@
-import { addDoc, collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, } from "firebase/firestore";
 import React, { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 import { db } from "../../firebase-config";
 import { UserAuth } from "../context/AuthContext";
+import IndividualTable from "./draggableButtons";
 
-const TablePlan = () => {
+const TablePlan1 = () => {
   const { user } = UserAuth();
   let userName = user.email;
-
   const [tempTables, setTables] = useState([])
+  const [count, setCount] = useState(0)
+  const [tableName, setTableName] = useState('table1')
+  console.log(tempTables, '<temp tables')
+
   useEffect(() => {
     const getdrinks = async () => {
-      const data = await getDocs(collection(db, `username/tablePlan/tables`));
+      const data = await getDocs(collection(db, `${userName}/tablePlan/tables`));
       setTables(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       console.log("warning for if this is running too many times");
     };
 
     getdrinks();
-  }, [userName]);
+  }, [userName, count]);
 
   let tables = ["table 1"];
 
   if (tempTables.length > 0) {
-    tables = (Object.keys(tempTables[0]?.positions))
-    console.log(tempTables[0]?.positions, '<<< temp positions')
+    tables = tempTables
   }
-  // console.log(Object.keys(tempTables[0]?.positions))
-
-
 
   const [positions, setPositions] = useState({});
+
+  console.log(positions, '<<< global positions')
+
   const [hasLoaded, setHasLoaded] = useState(false);
   const nodeRef = useRef(null);
 
   useEffect(() => {
     if (tempTables.length > 0) {
-      const existingDivPositions = tempTables[0]?.positions;
+      const existingDivPositions = tempTables;
       setPositions(existingDivPositions);
       setHasLoaded(true);
-      console.log(existingDivPositions, 'existing positions');
       console.log("has loaded");
     }
   }, [tempTables]);
 
   function handleStop(e, data) {
-    let dummyPositions = { ...positions };
-    const itemId = e.target.id;
+    console.log(e)
+    let dummyPositions = {};
+    const itemId = 'currentTable';
     dummyPositions[itemId] = {};
     dummyPositions[itemId]["x"] = data.x;
     dummyPositions[itemId]["y"] = data.y;
+    console.log(dummyPositions, 'dummy pos')
     setPositions(dummyPositions);
   }
 
 
-  const addTables = async () => {
-    await updateDoc(collection(db, `username/tablePlan/tables`), {
-      positions
+  const createTable = async () => {
+    setCount(count + 1);
+    await addDoc(collection(db, `${userName}/tablePlan/tables`), {
+      name: tableName,
+      x: 0,
+      y: 0,
     });
   };
 
-  const updateTables = async (id) => {
-    const drinkDoc = doc(db, `username/tablePlan/tables`, id);
-    const newFields = { positions };
-    await updateDoc(drinkDoc, newFields);
-  };
 
-  return hasLoaded ? (
+  return (
     <div>
-      <div>
-        <button
-          onClick={() => {
-            updateTables(tempTables[0].id);
-          }}
-        >
-          updatePositions
-        </button>
-      </div>
-      {tables.map((item) => {
-        return (
-          <>
-            <Draggable
-              defaultPosition={
-                positions === null
-                  ? { x: 0, y: 0 }
-                  : !positions[item]
-                    ? { x: 0, y: 0 }
-                    : { x: positions[item].x, y: positions[item].y }
-              }
-              position={null}
-              grid={[25, 25]}
-              key={item}
-              nodeRef={nodeRef}
-              onStop={handleStop}
-            >
-              <div ref={nodeRef}>
-                <div id={item}>{item}</div>
+      <input
+        placeholder="Name..."
+        onChange={(event) => {
+          setTableName(event.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          createTable();
+        }}
+      >
+        Create Table +
+      </button>
+      {hasLoaded ?
+        <div>
+          {tables.map((item) => {
+            return (
+              <div key={item.id}>
+                <Draggable
+                  defaultPosition={
+                    { x: item.x, y: item.y }
+                  }
+                  grid={[25, 25]}
+                  nodeRef={nodeRef}
+                  onStop={handleStop}
+                >
+                  <div ref={nodeRef}>
+                    <IndividualTable
+                      id={item.id}
+                      theName={item.name}
+                      positions={positions} />
+                  </div>
+                </Draggable>
               </div>
-            </Draggable>
-          </>
-        );
-      })}{" "}
-      <button id="set tables" onClick={() => {
-        addTables()
-      }}>set tables</button>
+            );
+          })}
+        </div> : null}
     </div>
-  ) : null;
+  );
 }
 
-export default TablePlan;
+export default TablePlan1;
 
 
 

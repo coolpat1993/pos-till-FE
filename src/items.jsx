@@ -95,6 +95,7 @@ function Items() {
 
             <button onClick={createdrink}> Create item</button>
             {drinks.map((drink) => {
+                console.log(drinks)
                 return (
                     <div key={drink.id}>
                         {" "}
