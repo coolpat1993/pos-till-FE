@@ -49,7 +49,7 @@ function Basket({ setNewCounter, counter }) {
         const getitems = async () => {
             const data = await getDocs(collection(db, `${userName}/currentOrders/${staffUsername}`));
             setitems(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            console.log("warning for if this is running too many times");
+
         };
 
         getitems();

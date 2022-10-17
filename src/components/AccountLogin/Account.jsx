@@ -9,9 +9,9 @@ const Account = () => {
     try {
       await logout();
       navigate('/');
-      console.log('Logged out');
+
     } catch (e) {
-      console.log(e.message);
+
     }
   };
 

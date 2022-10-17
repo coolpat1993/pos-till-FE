@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BasketTotals = ({ items }) => {
-    console.log(items)
+
 
     let sum = 0;
 

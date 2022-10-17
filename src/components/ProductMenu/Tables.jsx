@@ -14,7 +14,7 @@ const Tables = ({ setTableName, setProducts, setNewCounter, counter, setUserOrTa
         const getTables = async () => {
             const data = await getDocs(collection(db, `${userName}/tablePlan/tables`));
             setTables(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            console.log("warning for if this is running too many times");
+
         };
 
         getTables();

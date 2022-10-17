@@ -25,12 +25,12 @@ function ProductMenu() {
         const getitems = async () => {
             const data = await getDocs(collection(db, `${userName}/items/drinks`));
             setitems(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            console.log('warning for if this is running too many times');
+
         };
 
         getitems();
     }, [userName, counter]);
-    console.log(userOrTable, 'user or table')
+
     if (!staffUsername) {
         return <Navigate to="/staffLogin" />;
     }
