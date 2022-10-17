@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import "../App.css";
-import { db } from "../firebase-config";
+import { useState, useEffect } from 'react';
+import '../App.scss';
+import { db } from '../firebase-config';
 import {
   collection,
   getDocs,
@@ -8,16 +8,16 @@ import {
   updateDoc,
   deleteDoc,
   doc,
-} from "firebase/firestore";
-import { UserAuth } from "./context/AuthContext";
-import Keypad from "./StaffLogin/KeyPad";
+} from 'firebase/firestore';
+import { UserAuth } from './context/AuthContext';
+import Keypad from './StaffLogin/KeyPad';
 
 function CreateUsers() {
   const { user } = UserAuth();
   let userName = user.email;
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState('');
   const [newlevel, setNewlevel] = useState(0);
-  const [newPasscode, setNewPasscode] = useState("");
+  const [newPasscode, setNewPasscode] = useState('');
   const [counter, setNewCounter] = useState(0);
 
   const [users, setusers] = useState([]);
@@ -48,7 +48,7 @@ function CreateUsers() {
     const getusers = async () => {
       const data = await getDocs(collection(db, `${userName}/users/user`));
       setusers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log("warning for if this is running too many times");
+      console.log('warning for if this is running too many times');
     };
 
     getusers();
@@ -76,7 +76,7 @@ function CreateUsers() {
       {users.map((users) => {
         return (
           <div key={users.id}>
-            {" "}
+            {' '}
             <h1 className="text-3xl font-bold underline">Name: {users.name}</h1>
             <h1 className="text-3xl font-bold underline">
               level: {`${users.level}`}
@@ -86,7 +86,7 @@ function CreateUsers() {
                 updateusers(users.id, users.level);
               }}
             >
-              {" "}
+              {' '}
               Increase level
             </button>
             <button
@@ -94,7 +94,7 @@ function CreateUsers() {
                 deleteusers(users.id);
               }}
             >
-              {" "}
+              {' '}
               Delete users
             </button>
           </div>
