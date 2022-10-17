@@ -10,6 +10,8 @@ import {
 } from "firebase/firestore";
 import { UserAuth } from "../../components/context/AuthContext";
 import { StaffContext } from "../StaffLogin/LoggedInStaff";
+import { Link } from "react-router-dom";
+import BasketTotals from "./BasketTotals";
 
 function Basket({ setNewCounter, counter }) {
     const { loggedInUser } = useContext(StaffContext);
@@ -54,37 +56,42 @@ function Basket({ setNewCounter, counter }) {
     }, [counter, userName, staffUsername]);
 
     return (
-        <div className="App">
-            {items.map((item) => {
-                return (
-                    <div key={item.id}>
-                        <h1>Name: {item.name}</h1>
-                        <h1>price: {`£${item.price}`}</h1>
-                        <h1>quantity: {item.quantity}</h1>
-                        <button
-                            onClick={() => {
-                                decreaseQuantity(item.id, item.quantity);
-                            }}
-                        >
-                            Decrease quantity
-                        </button>
-                        <button
-                            onClick={() => {
-                                updateQuantity(item.id, item.quantity);
-                            }}
-                        >
-                            Increase quantity
-                        </button>
-                        <button
-                            onClick={() => {
-                                deleteitem(item.id);
-                            }}
-                        >
-                            Delete item
-                        </button>
-                    </div>
-                );
-            })}
+        <div>
+            <div className="ex1">
+                {items.map((item) => {
+                    return (
+                        <div key={item.id}>
+                            <h1>Name: {item.name}</h1>
+                            <h1>price: {`£${item.price}`}</h1>
+                            <h1>quantity: {item.quantity}</h1>
+                            <button
+                                onClick={() => {
+                                    decreaseQuantity(item.id, item.quantity);
+                                }}
+                            >
+                                Decrease quantity
+                            </button>
+                            <button
+                                onClick={() => {
+                                    updateQuantity(item.id, item.quantity);
+                                }}
+                            >
+                                Increase quantity
+                            </button>
+                            <button
+                                onClick={() => {
+                                    deleteitem(item.id);
+                                }}
+                            >
+                                Delete item
+                            </button>
+                        </div>
+                    );
+                })}
+
+            </div>
+            <BasketTotals items={items} />
+            <Link to="/checkout">Checkout</Link>
         </div>
     );
 }

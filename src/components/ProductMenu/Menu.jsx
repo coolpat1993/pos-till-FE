@@ -18,7 +18,6 @@ function Menu() {
     let userName = user.email;
     const [counter, setNewCounter] = useState(0)
     const [items, setitems] = useState([]);
-
     useEffect(() => {
         const getitems = async () => {
             const data = await getDocs(collection(db, `${userName}/items/drinks`));

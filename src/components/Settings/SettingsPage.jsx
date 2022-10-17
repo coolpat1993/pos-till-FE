@@ -4,9 +4,10 @@ const SettingsPage = () => {
   return (
     <div>
       <h3>Edit your venue</h3>
-      <Link to="/account">account settings</Link>
+      <Link to="/account">Account settings</Link>
       <Link to="/CreateUsers">Create user</Link>
-      <Link to="/items">items</Link>
+      <Link to="/items">Items</Link>
+      <Link to="/tablePlan">Table Plan</Link>
     </div>
   );
 };

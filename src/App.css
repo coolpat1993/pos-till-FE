@@ -46,7 +46,6 @@ a:link {
   -moz-border-radius: 7;
   border-radius: 7px;
   font-family: Arial;
-  color: #ffffff;
   font-size: 22px;
   background: #daecf8;
   padding: 11px 20px 10px 10px;
@@ -83,5 +82,12 @@ input {
   margin: auto;
   width: 70px;
   height: 70px;
+  position: absolute;
   padding: 50px;
+}
+
+div.ex1 {
+  width: 500px;
+  height: 600px;
+  overflow: scroll;
 }

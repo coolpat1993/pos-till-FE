@@ -1,26 +1,25 @@
-import { addDoc, collection, getDocs, } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, updateDoc, } from "firebase/firestore";
 import React, { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 import { db } from "../../firebase-config";
 import { UserAuth } from "../context/AuthContext";
 import IndividualTable from "./draggableButtons";
 
-const TablePlan1 = () => {
+const TablePlan = () => {
   const { user } = UserAuth();
   let userName = user.email;
   const [tempTables, setTables] = useState([])
   const [count, setCount] = useState(0)
   const [tableName, setTableName] = useState('table1')
-  console.log(tempTables, '<temp tables')
 
   useEffect(() => {
-    const getdrinks = async () => {
+    const getTables = async () => {
       const data = await getDocs(collection(db, `${userName}/tablePlan/tables`));
       setTables(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       console.log("warning for if this is running too many times");
     };
 
-    getdrinks();
+    getTables();
   }, [userName, count]);
 
   let tables = ["table 1"];
@@ -30,9 +29,6 @@ const TablePlan1 = () => {
   }
 
   const [positions, setPositions] = useState({});
-
-  console.log(positions, '<<< global positions')
-
   const [hasLoaded, setHasLoaded] = useState(false);
   const nodeRef = useRef(null);
 
@@ -43,19 +39,14 @@ const TablePlan1 = () => {
       setHasLoaded(true);
       console.log("has loaded");
     }
-  }, [tempTables]);
+  }, [tempTables, count]);
 
-  function handleStop(e, data) {
-    console.log(e)
+  const handleStop = async (e, data) => {
     let dummyPositions = {};
-    const itemId = 'currentTable';
-    dummyPositions[itemId] = {};
-    dummyPositions[itemId]["x"] = data.x;
-    dummyPositions[itemId]["y"] = data.y;
-    console.log(dummyPositions, 'dummy pos')
+    dummyPositions["x"] = data.x;
+    dummyPositions["y"] = data.y;
     setPositions(dummyPositions);
   }
-
 
   const createTable = async () => {
     setCount(count + 1);
@@ -82,7 +73,7 @@ const TablePlan1 = () => {
       >
         Create Table +
       </button>
-      {hasLoaded ?
+      {tempTables.length > 0 && hasLoaded ?
         <div>
           {tables.map((item) => {
             return (
@@ -99,7 +90,9 @@ const TablePlan1 = () => {
                     <IndividualTable
                       id={item.id}
                       theName={item.name}
-                      positions={positions} />
+                      positions={positions}
+                      setCount={setCount}
+                      count={count} />
                   </div>
                 </Draggable>
               </div>
@@ -110,7 +103,7 @@ const TablePlan1 = () => {
   );
 }
 
-export default TablePlan1;
+export default TablePlan;
 
 
 
