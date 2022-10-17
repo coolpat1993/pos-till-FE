@@ -8,7 +8,7 @@ import {
     deleteDoc,
     doc,
 } from "firebase/firestore";
-import { UserAuth } from "../../components/context/AuthContext";
+import { UserAuth } from "../context/AuthContext";
 import { StaffContext } from "../StaffLogin/LoggedInStaff";
 import { Link } from "react-router-dom";
 import BasketTotals from "./BasketTotals";

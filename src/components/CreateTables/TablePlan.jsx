@@ -1,9 +1,9 @@
-import { addDoc, collection, doc, getDocs, updateDoc, } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 import { db } from "../../firebase-config";
 import { UserAuth } from "../context/AuthContext";
-import IndividualTable from "./draggableButtons";
+import IndividualTable from "./IndividualTable";
 
 const TablePlan = () => {
   const { user } = UserAuth();

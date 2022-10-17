@@ -60,6 +60,9 @@ function Items() {
     await deleteDoc(drinkDoc);
   };
 
+
+
+
   useEffect(() => {
     const getdrinks = async () => {
       const data = await getDocs(collection(db, `${userName}/items/drinks`));
@@ -94,6 +97,7 @@ function Items() {
       />
 
       <button onClick={createdrink}> Create item</button>
+
       {drinks.map((drink) => {
         console.log(drinks);
         return (
