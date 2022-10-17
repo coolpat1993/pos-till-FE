@@ -21,7 +21,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="max-w-[700px] mx-auto my-16 p-4">
+    <div>
       <div>
         <h1>Sign in to your account</h1>
         <p>
