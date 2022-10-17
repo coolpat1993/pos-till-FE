@@ -37,7 +37,7 @@ function Menu() {
         <Row>
           {items.map((item) => {
             return (
-              <Col xs={3} className="mb-5" key={data.id}>
+              <Col xs={3} className="mb-3" key={data.id}>
                 <SingleItemButton
                   name={item.name}
                   price={item.price}

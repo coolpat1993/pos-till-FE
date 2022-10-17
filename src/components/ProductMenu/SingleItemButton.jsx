@@ -21,7 +21,7 @@ const SingleItemButton = ({ name, price, id, counter, setNewCounter }) => {
   };
 
   return (
-    <Card className="h-100 shadow-sm bg-white rounded">
+    <Card className="h-100 shadow-sm bg-black rounded">
       <button
         aria-label="change sort order"
         id={id}
