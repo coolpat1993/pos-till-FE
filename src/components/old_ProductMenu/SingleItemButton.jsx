@@ -5,20 +5,15 @@ import { useContext } from 'react';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
 import { Card, Badge, Button } from 'react-bootstrap';
 
-const SingleItemButton = ({ name, price, id, counter, setNewCounter, tableName, userOrTable }) => {
+const SingleItemButton = ({ name, price, id, counter, setNewCounter }) => {
   const { loggedInUser } = useContext(StaffContext);
   let staffUsername = loggedInUser.username;
   const { user } = UserAuth();
   let userName = user.email;
 
-  let docLink = ''
-  if (!userOrTable) { docLink = `${userName}/${tableName}/drinks` } else {
-    docLink = `${userName}/currentOrders/${staffUsername}`
-  }
-
   const addDrink = async () => {
     setNewCounter(counter + 1);
-    await addDoc(collection(db, docLink), {
+    await addDoc(collection(db, `${userName}/currentOrders/${staffUsername}`), {
       name: name,
       price: price,
       quantity: 1,
