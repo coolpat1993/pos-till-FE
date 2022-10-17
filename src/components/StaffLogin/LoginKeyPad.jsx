@@ -29,12 +29,6 @@ function LoginKeypad({ userPasscode, selectedUser }) {
         passcodeGuess={passcodeGuess}
         setPasscodeGuess={setPasscodeGuess}
       />
-      <input
-        onChange={(event) => {
-          setPasscodeGuess(event.target.value);
-        }}
-      />
-
       <button onClick={logIn}>log in</button>
     </div>
   );

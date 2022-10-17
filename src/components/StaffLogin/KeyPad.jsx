@@ -26,7 +26,7 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
           return (
             <div key={number}>
               <button
-                className="grid-items"
+                className="grid-items button"
                 onClick={() => {
                   handleEvent(number);
                 }}
@@ -36,22 +36,25 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
             </div>
           );
         })}
-        <br></br>
-        <button
-          className="grid-items"
-          onClick={() => {
-            handleBackSpace();
-          }}
-        >
-          Delete
-        </button>
-        <button
-          onClick={() => {
-            handleClear();
-          }}
-        >
-          Clear
-        </button>
+        <div>
+          <button
+            className="grid-items"
+            onClick={() => {
+              handleBackSpace();
+            }}
+          >
+            &#60;
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              handleClear();
+            }}
+          >
+            C
+          </button>
+        </div>
       </div>
     </>
   );
