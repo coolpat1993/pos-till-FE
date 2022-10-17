@@ -1,26 +1,17 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-.App{
-  background-color: rgb(218, 255, 255);
-
+.App {
+  background-image: linear-gradient(to bottom, #42c2ff, #effffd);
+  height: 100vh;
 }
 
-
-
-.header{
-  color:#070707
+.header {
+  color: #070707;
 }
-
 
 a:link {
-  -webkit-border-radius: 7;
-  -moz-border-radius: 7;
-  border-radius: 7px;
-  font-family: Arial;
-  font-size: 22px;
-  background: #daecf8;
-  padding: 11px 20px 10px 10px;
   text-decoration: none;
+  margin-right: 10px;
 }
 
 input {
