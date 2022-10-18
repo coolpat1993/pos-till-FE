@@ -40,41 +40,53 @@ function ProductMenu() {
   }
   return (
     <div className="menu" key="Menu">
-      {userOrTable ? (
-        <h4>You are currently viewing {staffUsername}'s basket</h4>
-      ) : tableName !== 'noTableSelected' ? (
-        <h4>You are currently viewing {tableName}</h4>
-      ) : (
-        <h4>Please select a table</h4>
-      )}
-      <button
-        onClick={() => {
-          setProducts(true);
-          setCheckout(false);
-        }}
-      >
-        Products
-      </button>
-      <button
-        onClick={() => {
-          setProducts(false);
-          setUserOrTable(false);
-          setTableName('noTableSelected');
-          setCheckout(false);
-        }}
-      >
-        Tables
-      </button>
-      <button
-        onClick={() => {
-          setProducts(true);
-          setUserOrTable(true);
-          setTableName('no table');
-          setCheckout(false);
-        }}
-      >
-        My basket
-      </button>
+      <Container>
+        <Row>
+          <div className="col-4">
+            <button
+              className="btn btn-light"
+              onClick={() => {
+                setProducts(true);
+                setCheckout(false);
+              }}
+            >
+              Products
+            </button>
+            <button
+              className="btn btn-light"
+              onClick={() => {
+                setProducts(false);
+                setUserOrTable(false);
+                setTableName('noTableSelected');
+                setCheckout(false);
+              }}
+            >
+              Tables
+            </button>
+            <button
+              className="btn btn-light"
+              onClick={() => {
+                setProducts(true);
+                setUserOrTable(true);
+                setTableName('no table');
+                setCheckout(false);
+              }}
+            >
+              My basket
+            </button>
+          </div>
+          <div className="col-4"></div>
+          <div className="col-4 justify-content-end">
+            {userOrTable ? (
+              <h4>You are currently viewing {staffUsername}'s basket</h4>
+            ) : tableName !== 'noTableSelected' ? (
+              <h4>You are currently viewing {tableName}</h4>
+            ) : (
+              <h4>Please select a table</h4>
+            )}
+          </div>
+        </Row>
+      </Container>
       {!checkOut ? (
         <div>
           {products ? (
