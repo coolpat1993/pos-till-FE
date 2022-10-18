@@ -1,5 +1,6 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+
 .App {
   background-image: linear-gradient(to bottom, #42c2ff, #effffd);
   height: 100vh;
@@ -7,6 +8,53 @@
 
 .header {
   color: #070707;
+}
+
+.topbar{
+  background-color: rgb(158, 244, 253);
+  margin-bottom: 3rem;
+  border: black;
+  height: 9vh;
+}
+
+.staff-link{
+  float: left;
+  color: #2946ff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar-toggler-icon {
+  background: #deb778;
+  filter: invert(100%);
+  border-radius: 50%;
+}
+
+.navbar-light .navbar-toggler {
+  color: transparent;
+  border-color: transparent;
+}
+
+.navbar-toggler span {
+  padding:7px;
+}
+
+
+.menu{
+  height: 80vh;
+  overflow-y: scroll;
+}
+.order-box {
+  background-color: rgb(254, 254, 254);
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+
+.additem-button-txt{
+  
 }
 
 a:link {
@@ -71,5 +119,3 @@ div.ex1 {
   height: 600px;
   overflow: scroll;
 }
-
-//add

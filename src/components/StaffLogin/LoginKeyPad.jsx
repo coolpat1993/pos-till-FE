@@ -12,10 +12,10 @@ function LoginKeypad({ userPasscode, selectedUser }) {
   const logIn = () => {
     if (+passcodeGuess === +userPasscode) {
       setLoggedInUser({ username: selectedUser });
-      console.log('working');
+
       setSuccess(true);
     } else {
-      console.log('incorrect passcode');
+
     }
   };
 
@@ -24,7 +24,7 @@ function LoginKeypad({ userPasscode, selectedUser }) {
   }
 
   return (
-    <div className="App">
+    <div>
       <Keypad
         passcodeGuess={passcodeGuess}
         setPasscodeGuess={setPasscodeGuess}
