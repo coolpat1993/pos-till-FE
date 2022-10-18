@@ -1,7 +1,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 .App {
-  background-image: linear-gradient(to bottom, #42c2ff, #effffd);
+  background-color: rgb(173, 240, 253);
   height: 100vh;
 }
 
@@ -11,7 +11,7 @@
 
 .topbar {
   background-color: rgb(158, 244, 253);
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   border: black;
   height: 9vh;
 }
