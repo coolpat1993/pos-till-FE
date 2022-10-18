@@ -6,7 +6,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import SingleItemButton from './SingleItemButton';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import { data } from 'autoprefixer';
 import Tables from './Tables';
 import MenuBasket from './Basket';

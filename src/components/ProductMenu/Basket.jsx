@@ -1,16 +1,18 @@
-import { useState, useEffect, useContext } from "react";
-import "../../App";
-import { db } from "../../firebase-config";
+import { useState, useEffect, useContext } from 'react';
+import '../../App';
+import { db } from '../../firebase-config';
 import {
     collection,
     getDocs,
     updateDoc,
     deleteDoc,
     doc,
-} from "firebase/firestore";
-import { UserAuth } from "../context/AuthContext";
-import { StaffContext } from "../StaffLogin/LoggedInStaff";
-import BasketTotals from "./BasketTotals";
+} from 'firebase/firestore';
+import { UserAuth } from '../../components/context/AuthContext';
+import { StaffContext } from '../StaffLogin/LoggedInStaff';
+import { Link } from 'react-router-dom';
+import BasketTotals from './BasketTotals';
+import { Card, Container, Row } from 'react-bootstrap';
 
 function MenuBasket({ setNewCounter, counter, tableName, userOrTable, setCheckout, basketTotal, setBasketTotal }) {
     const { loggedInUser } = useContext(StaffContext);
@@ -55,52 +57,58 @@ function MenuBasket({ setNewCounter, counter, tableName, userOrTable, setCheckou
 
     return (
         <div>
-            <div className="ex1">
-                {tableName !== 'noTableSelected' || userOrTable ?
-                    <div>
-                        {items.map((item) => {
-                            return (
-                                <div key={item.id}>
-                                    <h1>Name: {item.name}</h1>
-                                    <h1>price: {`£${item.price}`}</h1>
-                                    <h1>quantity: {item.quantity}</h1>
-                                    <button
-                                        onClick={() => {
-                                            decreaseQuantity(item.id, item.quantity);
-                                        }}
-                                    >
-                                        Decrease quantity
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            updateQuantity(item.id, item.quantity);
-                                        }}
-                                    >
-                                        Increase quantity
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            deleteitem(item.id);
-                                        }}
-                                    >
-                                        Delete item
-                                    </button>
+            <div>
+                {items.map((item) => {
+                    return (
+                        <Card>
+                            <Container>
+                                <div className="d-flex justify-content-between" key={item.id}>
+                                    <p className="p-2 float-start">{item.quantity}</p>
+                                    <p className="p-2 float-start">{item.name} </p>
+                                    <p className="p-2 float-start">{`£${item.price}`}</p>
+                                    <div className="p2">
+                                        <button
+                                            className="btn btn-light"
+                                            onClick={() => {
+                                                decreaseQuantity(item.id, item.quantity);
+                                            }}
+                                        >
+                                            -
+                                        </button>
+                                        <button
+                                            className="btn btn-light"
+                                            onClick={() => {
+                                                updateQuantity(item.id, item.quantity);
+                                            }}
+                                        >
+                                            +
+                                        </button>
+                                        <button
+                                            className="btn btn-light"
+                                            onClick={() => {
+                                                deleteitem(item.id);
+                                            }}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
-                            );
-                        })}
-                    </div>
-                    : null}
-
+                            </Container>
+                        </Card>
+                    );
+                })}
             </div>
-            <BasketTotals items={items} basketTotal={basketTotal} setBasketTotal={setBasketTotal} />
-            <button
-                onClick={() => {
-                    setCheckout(true)
-                }}
-            >
-                Pay
-            </button>
-        </div >
+            <div className="d-flex justify-content-end">
+                <BasketTotals items={items} basketTotal={basketTotal} setBasketTotal={setBasketTotal} />
+                <button
+                    onClick={() => {
+                        setCheckout(true)
+                    }}
+                >
+                    Pay
+                </button>
+            </div>
+        </div>
     );
 }
 
