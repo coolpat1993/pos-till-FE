@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
 import { Card, Badge, Button, Container, Row, Col } from 'react-bootstrap';
 
+
 const SingleItemButton = ({ name, price, id, counter, setNewCounter, tableName, userOrTable }) => {
   const { loggedInUser } = useContext(StaffContext);
   let staffUsername = loggedInUser.username;
@@ -27,23 +28,21 @@ const SingleItemButton = ({ name, price, id, counter, setNewCounter, tableName, 
   };
 
   return (
-    <div className="col-3 mb-2 pt-2">
-      <Card>
-        <button
-          className="btn btn-light"
-          aria-label="change sort order"
-          id={id}
-          onClick={() => {
-            addDrink();
-          }}
-        >
-          <div className="d-flex mb-2 justify-content-between">
-            <Card.Title className="font-weight-bold">{name}</Card.Title>
-          </div>
-          {price}
-        </button>
-      </Card>
-    </div>
+
+    <Card
+      className="card-button stretched-link"
+      aria-label="change sort order"
+      id={id}
+      onClick={() => {
+        addDrink();
+      }}
+    >
+      <Card.Title className="d-flex mb-2 justify-content-between">
+        {name}
+      </Card.Title>
+      £{price}
+    </Card>
+
   );
 };
 
