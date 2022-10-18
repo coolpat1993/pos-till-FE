@@ -6,16 +6,25 @@ import { useContext } from 'react';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
 import { Card, Badge, Button, Container, Row, Col } from 'react-bootstrap';
 
-
-const SingleItemButton = ({ name, price, id, counter, setNewCounter, tableName, userOrTable }) => {
+const SingleItemButton = ({
+  name,
+  price,
+  id,
+  counter,
+  setNewCounter,
+  tableName,
+  userOrTable,
+}) => {
   const { loggedInUser } = useContext(StaffContext);
   let staffUsername = loggedInUser.username;
   const { user } = UserAuth();
   let userName = user.email;
 
-  let docLink = ''
-  if (!userOrTable) { docLink = `${userName}/${tableName}/drinks` } else {
-    docLink = `${userName}/currentOrders/${staffUsername}`
+  let docLink = '';
+  if (!userOrTable) {
+    docLink = `${userName}/${tableName}/drinks`;
+  } else {
+    docLink = `${userName}/currentOrders/${staffUsername}`;
   }
 
   const addDrink = async () => {
@@ -28,21 +37,21 @@ const SingleItemButton = ({ name, price, id, counter, setNewCounter, tableName, 
   };
 
   return (
-
-    <Card
-      className="card-button stretched-link"
-      aria-label="change sort order"
-      id={id}
-      onClick={() => {
-        addDrink();
-      }}
-    >
-      <Card.Title className="d-flex mb-2 justify-content-between">
-        {name}
-      </Card.Title>
-      £{price}
-    </Card>
-
+    <div className="col-3 mb-2 pt-2">
+      <Card
+        className="card-button stretched-link"
+        aria-label="change sort order"
+        id={id}
+        onClick={() => {
+          addDrink();
+        }}
+      >
+        <Card.Title className="d-flex mb-2 justify-content-between">
+          {name}
+        </Card.Title>
+        £{price}
+      </Card>
+    </div>
   );
 };
 
