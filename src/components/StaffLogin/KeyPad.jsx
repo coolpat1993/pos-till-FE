@@ -53,7 +53,7 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
               <button
                 className="grid-items-button"
                 onClick={() => {
-                  handleEvent();
+                  handleEvent(0);
                 }}
               >
                 0
