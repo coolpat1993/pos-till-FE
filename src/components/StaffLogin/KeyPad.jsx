@@ -29,7 +29,7 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
               return (
                 <div key={number}>
                   <button
-                    className="grid-items-button "
+                    className="grid-items-button"
                     onClick={() => {
                       handleEvent(number);
                     }}
