@@ -36,7 +36,7 @@ function Items() {
   const updatedrink = async (id, price) => {
     const drinkDoc = doc(db, `${userName}/items/drinks`, id);
     const newFields = { price: price + 1 };
-    console.log(counter);
+
     setNewCounter(counter + 1);
     await updateDoc(drinkDoc, newFields);
   };
@@ -61,11 +61,14 @@ function Items() {
     await deleteDoc(drinkDoc);
   };
 
+
+
+
   useEffect(() => {
     const getdrinks = async () => {
       const data = await getDocs(collection(db, `${userName}/items/drinks`));
       setdrinks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log('warning for if this is running too many times');
+
     };
 
     getdrinks();

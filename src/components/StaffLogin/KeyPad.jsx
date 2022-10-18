@@ -3,7 +3,7 @@ import { useState } from "react";
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
 const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
-  console.log(passcodeGuess);
+
   const handleEvent = (number) => {
     if (passcodeGuess.length >= 4) {
       return null;

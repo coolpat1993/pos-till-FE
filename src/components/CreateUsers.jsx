@@ -33,7 +33,7 @@ function CreateUsers() {
   const updateusers = async (id, level) => {
     const usersDoc = doc(db, `${userName}/users/user`, id);
     const newFields = { level: level + 1 };
-    console.log(counter);
+
     setNewCounter(counter + 1);
     await updateDoc(usersDoc, newFields);
   };
@@ -48,7 +48,7 @@ function CreateUsers() {
     const getusers = async () => {
       const data = await getDocs(collection(db, `${userName}/users/user`));
       setusers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log('warning for if this is running too many times');
+
     };
 
     getusers();
