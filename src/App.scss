@@ -138,7 +138,25 @@ div.ex1 {
 }
 
 @media (min-width: 768px) {
-  .button-43 {
+  .card-button {
     padding: 1rem 2rem;
   }
 }
+
+// button {
+//   background-image: linear-gradient(#b6c5c8, #0c0c0c);
+//   border: 0;
+//   border-radius: 20px;
+//   box-shadow: rgba(0, 0, 0, 0.3) 0 5px 15px;
+//   box-sizing: border-box;
+//   color: #fff;
+//   cursor: pointer;
+//   font-family: Montserrat, sans-serif;
+//   font-size: 0.9em;
+//   margin: 5px;
+//   padding: 10px 15px;
+//   text-align: center;
+//   user-select: none;
+//   -webkit-user-select: none;
+//   touch-action: manipulation;
+// }
