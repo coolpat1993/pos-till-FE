@@ -14,7 +14,7 @@ import SignIn from "./components/AccountLogin/SignIn";
 import Account from "./components/AccountLogin/Account";
 import TablePlan from "./components/CreateTables/TablePlan";
 import Tables from "./components/ProductMenu/Tables";
-import ProductMenu from "./components/ProductMenu/ProductMenu";
+import ProductMenu from "./components/ProductMenu/Menu";
 
 function App() {
   return (

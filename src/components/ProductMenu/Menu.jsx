@@ -9,7 +9,7 @@ import { StaffContext } from '../StaffLogin/LoggedInStaff';
 import { Col, Container, Row } from 'react-bootstrap';
 import { data } from 'autoprefixer';
 import Tables from './Tables';
-import MenuBasket from './MenuBasket';
+import MenuBasket from './Basket';
 import CheckoutPage from '../Checkout/CheckoutPage';
 
 function ProductMenu() {
@@ -94,7 +94,7 @@ function ProductMenu() {
                             </Row>
                         </Container> :
                         <Tables key="table" setTableName={setTableName} setProducts={setProducts} setNewCounter={setNewCounter} counter={counter} setUserOrTable={setUserOrTable} />} </div> :
-                <CheckoutPage key="CheckoutPage" userOrTable={userOrTable} tableName={tableName} />}
+                <CheckoutPage key="CheckoutPage" userOrTable={userOrTable} tableName={tableName} basketTotal={basketTotal} setBasketTotal={setBasketTotal}/>}
             <MenuBasket setNewCounter={setNewCounter} key="MenuBasket"
                 counter={counter}
                 tableName={tableName}
