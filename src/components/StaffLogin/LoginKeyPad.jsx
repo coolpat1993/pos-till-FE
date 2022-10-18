@@ -24,7 +24,7 @@ function LoginKeypad({ userPasscode, selectedUser }) {
   }
 
   return (
-    <div className="App">
+    <div>
       <Keypad
         passcodeGuess={passcodeGuess}
         setPasscodeGuess={setPasscodeGuess}

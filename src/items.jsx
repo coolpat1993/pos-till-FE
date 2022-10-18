@@ -10,6 +10,7 @@ import {
   doc,
 } from 'firebase/firestore';
 import { UserAuth } from './components/context/AuthContext';
+import { Card, Container, Row } from 'react-bootstrap';
 
 function Items() {
   const { user } = UserAuth();
@@ -71,72 +72,92 @@ function Items() {
   }, [counter, userName]);
 
   return (
-    <div className="App">
-      <input
-        placeholder="Name..."
-        onChange={(event) => {
-          setNewName(event.target.value);
-        }}
-      />
-      <input
-        type="number"
-        placeholder="price..."
-        onChange={(event) => {
-          setNewprice(event.target.value);
-        }}
-      />
-      <input
-        type="string"
-        placeholder="item type..."
-        onChange={(event) => {
-          setNewItemType(event.target.value);
-        }}
-      />
+    <div className="container-fluid">
+      <Row>
+        <div className="col-8">
+          <Container>
+            <Row>
+              {drinks.map((drink) => {
+                console.log(drinks);
+                return (
+                  <div className="col-3 mb-2 pt-2">
+                    <Card className="new-item-cards">
+                      {' '}
+                      <p>Name: {drink.name}</p>
+                      <p>Price: {`£${drink.price}`}</p>
+                      <p>Type: {drink.itemType}</p>
+                      <p>Quantity: {drink.quantity}</p>
+                      {/* <button
+                              onClick={() => {
+                                updatedrink(
+                                  drink.id,
+                                  drink.price,
+                                  drink.quantity
+                                );
+                              }}
+                            >
+                              {' '}
+                              Increase price
+                            </button> */}
+                      <button
+                        className="additem-button-txt btn btn-light"
+                        onClick={() => {
+                          updateQuantity(drink.id, drink.quantity);
+                        }}
+                      >
+                        {' '}
+                        Increase quantity
+                      </button>
+                      <button
+                        className="additem-button-txt btn btn-light"
+                        onClick={() => {
+                          decreaseQuantity(drink.id, drink.quantity);
+                        }}
+                      >
+                        {' '}
+                        Decrease quantity
+                      </button>
+                      <button
+                        className="additem-button-txt btn btn-light"
+                        onClick={() => {
+                          deletedrink(drink.id);
+                        }}
+                      >
+                        {' '}
+                        Delete item
+                      </button>
+                    </Card>
+                  </div>
+                );
+              })}
+            </Row>
+          </Container>
+        </div>
+        <div className="col-4">
+          <input
+            placeholder="Name..."
+            onChange={(event) => {
+              setNewName(event.target.value);
+            }}
+          />
+          <input
+            type="number"
+            placeholder="price..."
+            onChange={(event) => {
+              setNewprice(event.target.value);
+            }}
+          />
+          <input
+            type="string"
+            placeholder="item type..."
+            onChange={(event) => {
+              setNewItemType(event.target.value);
+            }}
+          />
 
-      <button onClick={createdrink}> Create item</button>
-      {drinks.map((drink) => {
-        console.log(drinks);
-        return (
-          <div key={drink.id}>
-            {' '}
-            <h1>Name: {drink.name}</h1>
-            <h1>price: {`£${drink.price}`}</h1>
-            <h1>type: {drink.itemType}</h1>
-            <button
-              onClick={() => {
-                updatedrink(drink.id, drink.price, drink.quantity);
-              }}
-            >
-              {' '}
-              Increase price
-            </button>
-            <button
-              onClick={() => {
-                decreaseQuantity(drink.id, drink.quantity);
-              }}
-            >
-              {' '}
-              Decrease quantity
-            </button>
-            <button
-              onClick={() => {
-                updateQuantity(drink.id, drink.quantity);
-              }}
-            >
-              {' '}
-              Increase quantity
-            </button>
-            <button
-              onClick={() => {
-                deletedrink(drink.id);
-              }}
-            >
-              {' '}
-              Delete item
-            </button>
-          </div>
-        );
-      })}
+          <button onClick={createdrink}> Create item</button>
+        </div>
+      </Row>
     </div>
   );
 }

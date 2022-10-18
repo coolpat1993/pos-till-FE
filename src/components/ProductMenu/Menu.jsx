@@ -7,8 +7,10 @@ import { UserAuth } from '../context/AuthContext';
 import SingleItemButton from './SingleItemButton';
 import Basket from './Basket';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import { data } from 'autoprefixer';
+import BasketTotals from './BasketTotals';
+import { items } from './Basket';
 
 function Menu() {
   const { loggedInUser } = useContext(StaffContext);
@@ -31,26 +33,36 @@ function Menu() {
     return <Navigate to="/staffLogin" />;
   }
   return (
-    <div className="menu">
+    <div>
       {items.length < 1 ? <Link to="/items">Add items</Link> : null}
       <Container>
-        <Row>
-          {items.map((item) => {
-            return (
-              <Col xs={3} className="mb-3" key={data.id}>
-                <SingleItemButton
-                  name={item.name}
-                  price={item.price}
-                  id={item.id}
-                  setNewCounter={setNewCounter}
-                  counter={counter}
-                />
-              </Col>
-            );
-          })}
-        </Row>
+        <div className="container-fluid">
+          <Row>
+            <div className="col-8 menu">
+              <Container>
+                <Row>
+                  {items.map((item) => {
+                    return (
+                      <SingleItemButton
+                        name={item.name}
+                        price={item.price}
+                        id={item.id}
+                        setNewCounter={setNewCounter}
+                        counter={counter}
+                      />
+                    );
+                  })}
+                </Row>
+              </Container>
+            </div>
+            <div className="order-box col-4">
+              <Container>
+                <Basket setNewCounter={setNewCounter} counter={counter} />
+              </Container>
+            </div>
+          </Row>
+        </div>
       </Container>
-      <Basket setNewCounter={setNewCounter} counter={counter} />
     </div>
   );
 }
