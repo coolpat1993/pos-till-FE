@@ -1,22 +1,65 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+
 .App {
-  background-color: rgb(218, 255, 255);
+  background-image: linear-gradient(to bottom, #42c2ff, #effffd);
+  height: 100vh;
 }
 
 .header {
   color: #070707;
 }
 
-a:link {
-  -webkit-border-radius: 7;
-  -moz-border-radius: 7;
-  border-radius: 7px;
-  font-family: Arial;
-  font-size: 22px;
-  background: #daecf8;
-  padding: 11px 20px 10px 10px;
+.topbar{
+  background-color: rgb(158, 244, 253);
+  margin-bottom: 3rem;
+  border: black;
+  height: 9vh;
+}
+
+.staff-link{
+  float: left;
+  color: #2946ff;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar-toggler-icon {
+  background: #deb778;
+  filter: invert(100%);
+  border-radius: 50%;
+}
+
+.navbar-light .navbar-toggler {
+  color: transparent;
+  border-color: transparent;
+}
+
+.navbar-toggler span {
+  padding:7px;
+}
+
+
+.menu{
+  height: 80vh;
+  overflow-y: scroll;
+}
+.order-box {
+  background-color: rgb(254, 254, 254);
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+
+.additem-button-txt{
+  
+}
+
+a:link {
+  text-decoration: none;
+  margin-right: 10px;
 }
 
 input {
@@ -34,15 +77,33 @@ input {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #2196f3;
+  // background-color: #2196f3;
   padding: 10px;
+  transform: absolute(-50%, -50%);
 }
-.grid-item {
+.grid-items-button {
+  display: grid;
+  background-color: #008cba; /* Green */
+
+  // border: 2px solid blue2px solid rgba(43, 43, 231, 0.488);
+  color: white;
+  // padding: 16px 32px;
+  grid-template-columns: 30px 30px 30px;
+  height: 100px;
+  grid-template-rows: auto;
+  justify-items: center;
+
+  // text-decoration: none;
+  // display: inline-block;
+  // font-size: smaller;
+}
+.grid-items {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 30px;
   text-align: center;
+  justify-items: center;
 }
 .draggableTable {
   background-color: lightgrey;

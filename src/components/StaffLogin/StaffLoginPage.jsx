@@ -10,18 +10,18 @@ import { Link } from 'react-router-dom';
 function StaffLoginPage() {
   const { user } = UserAuth();
   let userName = user.email;
-  console.log(userName, 'username');
+
   const [passcode, setPasscode] = useState('');
   const [selectedUser, setSelectedUser] = useState('');
 
   const [users, setusers] = useState([]);
-  console.log(passcode, '< passcode saved');
+
 
   useEffect(() => {
     const getusers = async () => {
       const data = await getDocs(collection(db, `${userName}/users/user`));
       setusers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log('warning for if this is running too many times');
+
     };
 
     getusers();

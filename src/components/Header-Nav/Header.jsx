@@ -1,4 +1,8 @@
+
 import React, { useContext } from 'react';
+import { NavDropdown } from 'react-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
@@ -7,21 +11,39 @@ const Header = () => {
   const { loggedInUser } = useContext(StaffContext);
   const { setLoggedInUser } = useContext(StaffContext);
 
-  let staffUsername = loggedInUser.username
+  let staffUsername = loggedInUser.username;
 
   const staffLogIn = () => {
-    setLoggedInUser('')
-  }
+    setLoggedInUser('');
+  };
 
   return (
-    <nav className="center">
-      <h1>POS-Till</h1>
-      {user ? <h2>you are currently logged in as {user?.email}</h2> : null}
-      <h3>staff logged in {staffUsername}</h3>
-      <Link to="/settings">Settings</Link>
-      <Link to="/staffLogin" onClick={() => {
-        staffLogIn()
-      }}>staff log</Link>
+    <nav className="topbar navbar navbar-expand-lg navbar-light">
+      <div className="container-fluid">
+        <h1 className="navbar-brand">POS</h1>
+        {user ? (
+          <span className="navbar-text">Logged in as {user?.email}</span>
+        ) : null}
+        <span className="navbar-text">Employee: {staffUsername}</span>
+
+        <Link
+          id="dropdown-basic-button"
+          to="/staffLogin"
+          onClick={() => {
+            staffLogIn();
+          }}
+        >
+          Staff Login
+        </Link>
+
+        <NavDropdown id="dropdown-basic-button" title="Menu">
+          <Dropdown.Item href="/">Items</Dropdown.Item>
+          <Dropdown.Item href="/account">Account settings</Dropdown.Item>
+          <Dropdown.Item href="/CreateUsers">Create user</Dropdown.Item>
+          <Dropdown.Item href="/items">Add items</Dropdown.Item>
+          <Dropdown.Item href="/tablePlan">Table Plan</Dropdown.Item>
+        </NavDropdown>
+      </div>
     </nav>
   );
 };
