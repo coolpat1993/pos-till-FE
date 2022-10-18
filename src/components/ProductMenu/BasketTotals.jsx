@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const BasketTotals = ({ items }) => {
+const BasketTotals = ({ items, setBasketTotal, basketTotal }) => {
 
 
     let sum = 0;
@@ -8,6 +8,10 @@ const BasketTotals = ({ items }) => {
     for (let i = 0; i < items.length; i++) {
         sum += items[i].price * items[i].quantity;
     }
+
+    useEffect(() => {
+        setBasketTotal(sum)
+    }, [sum]);
 
     return (
         <nav className="center">

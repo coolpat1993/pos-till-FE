@@ -10,18 +10,14 @@ import {
 } from "firebase/firestore";
 import { UserAuth } from "../context/AuthContext";
 import { StaffContext } from "../StaffLogin/LoggedInStaff";
-import { Link } from "react-router-dom";
 import BasketTotals from "./BasketTotals";
 
-function MenuBasket({ setNewCounter, counter, tableName, userOrTable }) {
+function MenuBasket({ setNewCounter, counter, tableName, userOrTable, setCheckout, basketTotal, setBasketTotal }) {
     const { loggedInUser } = useContext(StaffContext);
     let staffUsername = loggedInUser.username
-
     const { user } = UserAuth();
     let userName = user.email;
     const [items, setitems] = useState([]);
-
-
     let docLink = ''
     if (!userOrTable) { docLink = `${userName}/${tableName}/drinks` } else {
         docLink = `${userName}/currentOrders/${staffUsername}`
@@ -96,8 +92,14 @@ function MenuBasket({ setNewCounter, counter, tableName, userOrTable }) {
                     : null}
 
             </div>
-            <BasketTotals items={items} />
-            <Link to="/checkout">Checkout</Link>
+            <BasketTotals items={items} basketTotal={basketTotal} setBasketTotal={setBasketTotal} />
+            <button
+                onClick={() => {
+                    setCheckout(true)
+                }}
+            >
+                Pay
+            </button>
         </div >
     );
 }
