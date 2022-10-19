@@ -39,7 +39,7 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
 
   if (amountPaid >= basketTotal) {
     ClearDrinkWindow()
-    setPopUpOpen(Math.abs(Math.round((basketTotal - amountPaid) * 100) / 100))
+    setPopUpOpen(Math.abs(Math.round((basketTotal - amountPaid) * 100) / 100).toFixed(2))
     navigate('/staffLogin');
   }
 
