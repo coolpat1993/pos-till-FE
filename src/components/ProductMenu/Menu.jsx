@@ -1,16 +1,16 @@
-import { useState, useEffect, useContext } from "react";
-import { db } from "../../firebase-config";
-import "../../App.scss";
-import { collection, getDocs } from "firebase/firestore";
-import { Link, Navigate } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
-import SingleItemButton from "./SingleItemButton";
-import { StaffContext } from "../StaffLogin/LoggedInStaff";
-import { Card, Col, Container, Row } from "react-bootstrap";
-import { data } from "autoprefixer";
-import Tables from "./Tables";
-import MenuBasket from "./Basket";
-import CheckoutPage from "../Checkout/CheckoutPage";
+import { useState, useEffect, useContext } from 'react';
+import { db } from '../../firebase-config';
+import '../../App.scss';
+import { collection, getDocs } from 'firebase/firestore';
+import { Link, Navigate } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
+import SingleItemButton from './SingleItemButton';
+import { StaffContext } from '../StaffLogin/LoggedInStaff';
+import { Card, Col, Container, Row } from 'react-bootstrap';
+import { data } from 'autoprefixer';
+import Tables from './Tables';
+import MenuBasket from './Basket';
+import CheckoutPage from '../Checkout/CheckoutPage';
 
 function ProductMenu() {
   const { loggedInUser } = useContext(StaffContext);
@@ -19,7 +19,7 @@ function ProductMenu() {
   let userName = user.email;
   const [counter, setNewCounter] = useState(0);
   const [items, setitems] = useState([]);
-  const [tableName, setTableName] = useState("noTableSelected");
+  const [tableName, setTableName] = useState('noTableSelected');
   const [userOrTable, setUserOrTable] = useState(true);
   const [basketTotal, setBasketTotal] = useState('');
   const [currMenu, setCurrMenu] = useState('products');
@@ -78,7 +78,7 @@ function ProductMenu() {
           <div className="col-4">
             {userOrTable ? (
               <h4>You are currently viewing {staffUsername}'s basket</h4>
-            ) : tableName !== "noTableSelected" ? (
+            ) : tableName !== 'noTableSelected' ? (
               <h4>You are currently viewing {tableName}</h4>
             ) : (
               <h4>Please select a table</h4>
@@ -132,17 +132,19 @@ function ProductMenu() {
             </div>
           ) : null}
           <div className="order-box col-4">
-            <Container>
-              <MenuBasket
-                setNewCounter={setNewCounter}
-                key="MenuBasket"
-                counter={counter}
-                tableName={tableName}
-                userOrTable={userOrTable}
-                basketTotal={basketTotal}
-                setBasketTotal={setBasketTotal}
-                setCurrMenu={setCurrMenu}
-              />
+            <Container fluid={true}>
+              <div class="row align-items-end">
+                <MenuBasket
+                  setNewCounter={setNewCounter}
+                  key="MenuBasket"
+                  counter={counter}
+                  tableName={tableName}
+                  userOrTable={userOrTable}
+                  basketTotal={basketTotal}
+                  setBasketTotal={setBasketTotal}
+                  setCurrMenu={setCurrMenu}
+                />
+              </div>
             </Container>
           </div>
         </Row>

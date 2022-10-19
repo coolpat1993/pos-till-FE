@@ -46,9 +46,14 @@
 }
 .order-box {
   background-color: rgb(254, 254, 254);
-  max-height: 80vh;
   overflow-y: scroll;
 }
+
+.bottom-order{
+  position : absolute;
+  bottom   : 0;
+}
+
 
 .additem-button-txt {
 }
