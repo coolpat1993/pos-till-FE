@@ -28,7 +28,9 @@ function MenuBasket({
   const { user } = UserAuth();
   let userName = user.email;
   const [items, setitems] = useState([]);
-  let docLink = '';
+
+  let docLink = "";
+
   if (!userOrTable) {
     docLink = `${userName}/${tableName}/drinks`;
   } else {
@@ -71,13 +73,17 @@ function MenuBasket({
           return (
             <Card>
               <Container>
-                <div className="d-flex justify-content-end" key={item.id}>
+
+                <div className="d-flex justify-content-between" key={item.id}>
+
                   <p className="p-2 float-start">{item.quantity}</p>
                   <p className="p-2 float-start">{item.name} </p>
                   <p className="p-2 float-start">{`£${item.price}`}</p>
                   <div className="p2">
                     <button
-                      className="btn btn-light"
+
+                      className="quantity-button"
+
                       onClick={() => {
                         decreaseQuantity(item.id, item.quantity);
                       }}
@@ -85,7 +91,9 @@ function MenuBasket({
                       -
                     </button>
                     <button
-                      className="btn btn-light"
+
+                      className="quantity-button"
+
                       onClick={() => {
                         updateQuantity(item.id, item.quantity);
                       }}
@@ -93,7 +101,9 @@ function MenuBasket({
                       +
                     </button>
                     <button
-                      className="btn btn-light"
+
+                      className="quantity-button"
+
                       onClick={() => {
                         deleteitem(item.id);
                       }}
@@ -107,6 +117,9 @@ function MenuBasket({
           );
         })}
       </div>
+
+      <div className="d-flex justify-content-end">
+
       <div className="bottom-order">
         <Container>
           <Row>

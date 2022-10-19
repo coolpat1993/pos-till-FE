@@ -1,11 +1,10 @@
-
-import React, { useContext } from 'react';
-import { NavDropdown } from 'react-bootstrap';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import { Link } from 'react-router-dom';
-import { UserAuth } from '../context/AuthContext';
-import { StaffContext } from '../StaffLogin/LoggedInStaff';
+import React, { useContext } from "react";
+import { NavDropdown } from "react-bootstrap";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import { Link } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
+import { StaffContext } from "../StaffLogin/LoggedInStaff";
 const Header = () => {
   const { user } = UserAuth();
   const { loggedInUser } = useContext(StaffContext);
@@ -14,7 +13,7 @@ const Header = () => {
   let staffUsername = loggedInUser.username;
 
   const staffLogIn = () => {
-    setLoggedInUser('');
+    setLoggedInUser("");
   };
 
   return (
@@ -27,6 +26,7 @@ const Header = () => {
         <span className="navbar-text">Employee: {staffUsername}</span>
 
         <Link
+          className="staff-login-nav"
           id="dropdown-basic-button"
           to="/staffLogin"
           onClick={() => {
