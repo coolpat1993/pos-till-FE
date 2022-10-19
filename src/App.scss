@@ -41,7 +41,7 @@
 }
 
 .menu {
-  height: 80vh;
+    height: 80vh;
   overflow-y: scroll;
 }
 .order-box {
@@ -55,6 +55,7 @@
 .bottom-order{
   position : absolute;
   bottom   : 0;
+  margin-bottom: 2vh;
 }
 
 
@@ -81,25 +82,28 @@ input {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 10px;
-  transform: absolute(-50%, -50%);
+  // margin-top: 5%;
+  // margin-bottom: 5%;
+  // transform: absolute(-50%, -50%);
+  height: 40vh;
+
 }
 .grid-items-button {
-  display: grid;
+  // display: grid;
   background-color: #008cba; /* Green */
-
   // border: 2px solid blue2px solid rgba(43, 43, 231, 0.488);
   color: white;
   // padding: 16px 32px;
-  grid-template-columns: 30px 30px 30px;
-  height: 100px;
-  grid-template-rows: auto;
+  // grid-template-columns: auto auto auto;
+  // grid-template-rows: auto;
   justify-items: center;
-
+  height: 100%;
+  width: 100%;
   // text-decoration: none;
   // display: inline-block;
   // font-size: smaller;
 }
+
 .grid-items {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
@@ -206,7 +210,7 @@ button {
   background-color: transparentize($color: white, $amount: 0.4);
   border-radius: 10px;
   overflow: scroll;
-  height: 600px;
+  height: 70vh;
   margin-right: 10px;
   border: solid #1e96c8 2px;
 }
@@ -214,6 +218,7 @@ button {
 .menuBars {
   display: flex;
   margin: auto;
+  height: 70vh;
   
 .popUp {
   position: fixed; /* Stay in place */
@@ -235,4 +240,18 @@ button {
   padding: 20px;
   border: 1px solid #888;
   width: 20%;
+}
+}
+
+.pass-box{
+  background-color: rgb(240, 244, 245);
+  height: 5vh;  
+  font-size: 16px;
+  font-size: 2.5vw;
+  text-align: center;
+}
+
+.keypad-div{
+  background-color: white;
+
 }
