@@ -16,7 +16,7 @@
   height: 9vh;
 }
 
-.topbar-img{
+.topbar-img {
   max-height: 6vh;
 }
 
@@ -45,8 +45,9 @@
 }
 
 .menu {
+  margin-left: 1vh;
+  margin-right: 1vh;
   height: 80vh;
-  overflow-y: scroll;
 }
 .order-box {
   background-color: rgb(254, 254, 254);
@@ -259,7 +260,7 @@ button {
 }
 
 .staff-login-nav:hover {
-  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
+  filter: brightness(150%);
 }
 
 .products {
@@ -277,28 +278,27 @@ button {
   height: 70vh;
 }
 
-  .popUp {
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 200px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  }
+.popUp {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
-  .popUpContent {
-    text-align: center;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 20%;
-  }
-
+.popUpContent {
+  text-align: center;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+}
 
 .pass-box {
   background-color: rgb(240, 244, 245);
@@ -313,7 +313,7 @@ button {
   background-color: white;
 }
 
-.loading{
+.loading {
   margin-top: 20vh;
   text-align: center;
 }
