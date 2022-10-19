@@ -5,9 +5,9 @@ import { collection, getDocs } from 'firebase/firestore';
 import StaffLoginButton from './StaffLoginButton.jsx';
 import LoginKeypad from './LoginKeyPad';
 import { UserAuth } from '../context/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { PopUpContext } from '../ChangePopUp/changePopUp';
-import { Container, Row } from 'react-bootstrap';
+import { Card, Container, Row } from 'react-bootstrap';
 
 function StaffLoginPage() {
   const { popUpOpen } = useContext(PopUpContext);
@@ -15,7 +15,7 @@ function StaffLoginPage() {
   console.log(popUpOpen);
   const { user } = UserAuth();
   let userName = user.email;
-
+  const [isLoading, setIsLoading] = useState(true);
   const [passcode, setPasscode] = useState('');
   const [selectedUser, setSelectedUser] = useState('');
 
@@ -25,10 +25,14 @@ function StaffLoginPage() {
     setPopUpOpen(0);
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getusers = async () => {
+      setIsLoading(true);
       const data = await getDocs(collection(db, `${userName}/users/user`));
       setusers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setIsLoading(false);
     };
 
     getusers();
@@ -40,8 +44,20 @@ function StaffLoginPage() {
         <Row>
           <div className="menuBars">
             <div className="col-7 products">
-              {users.length < 1 ? (
-                <Link to="/CreateUsers">Create user</Link>
+              {isLoading ? <h2 className="loading">Loading...</h2> : null}
+              {users.length < 1 && !isLoading ? (
+                <div className="col-3 mb-2 pt-2">
+                  <Card
+                    className="card-button stretched-link"
+                    onClick={() => {
+                      navigate('/CreateUsers');
+                    }}
+                  >
+                    <Card.Title className="d-flex mb-2 justify-content-between">
+                      Create User
+                    </Card.Title>
+                  </Card>
+                </div>
               ) : null}
               <Container>
                 <Row>

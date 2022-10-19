@@ -1,31 +1,32 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import React, { useState, useRef, useEffect } from "react";
-import Draggable from "react-draggable";
-import { db } from "../../firebase-config";
-import { UserAuth } from "../context/AuthContext";
-import IndividualTable from "./IndividualTable";
+import { addDoc, collection, getDocs } from 'firebase/firestore';
+import React, { useState, useRef, useEffect } from 'react';
+import Draggable from 'react-draggable';
+import { db } from '../../firebase-config';
+import { UserAuth } from '../context/AuthContext';
+import IndividualTable from './IndividualTable';
 
 const TablePlan = () => {
   const { user } = UserAuth();
   let userName = user.email;
-  const [tempTables, setTables] = useState([])
-  const [count, setCount] = useState(0)
-  const [tableName, setTableName] = useState('table21')
+  const [tempTables, setTables] = useState([]);
+  const [count, setCount] = useState(0);
+  const [tableName, setTableName] = useState('table21');
 
   useEffect(() => {
     const getTables = async () => {
-      const data = await getDocs(collection(db, `${userName}/tablePlan/tables`));
+      const data = await getDocs(
+        collection(db, `${userName}/tablePlan/tables`)
+      );
       setTables(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-
     };
 
     getTables();
   }, [userName, count]);
 
-  let tables = ["table 1"];
+  let tables = ['table 1'];
 
   if (tempTables.length > 0) {
-    tables = tempTables
+    tables = tempTables;
   }
 
   const [positions, setPositions] = useState({});
@@ -37,16 +38,15 @@ const TablePlan = () => {
       const existingDivPositions = tempTables;
       setPositions(existingDivPositions);
       setHasLoaded(true);
-
     }
   }, [tempTables, count]);
 
   const handleStop = async (e, data) => {
     let dummyPositions = {};
-    dummyPositions["x"] = data.x;
-    dummyPositions["y"] = data.y;
+    dummyPositions['x'] = data.x;
+    dummyPositions['y'] = data.y;
     setPositions(dummyPositions);
-  }
+  };
 
   const createTable = async () => {
     setCount(count + 1);
@@ -56,7 +56,6 @@ const TablePlan = () => {
       y: 0,
     });
   };
-
 
   return (
     <div>
@@ -73,19 +72,16 @@ const TablePlan = () => {
       >
         Create Table +
       </button>
-      {tempTables.length > 0 && hasLoaded ?
+      {tempTables.length > 0 && hasLoaded ? (
         <div className="dragContainer">
           {tables.map((item) => {
             return (
               <Draggable
-                defaultPosition={
-                  { x: item.x, y: item.y }
-                }
+                defaultPosition={{ x: item.x, y: item.y }}
                 grid={[25, 25]}
                 nodeRef={nodeRef}
                 onStop={handleStop}
                 bounds={{ top: 30, left: 30, right: 800, bottom: 540 }}
-
               >
                 <div ref={nodeRef}>
                   <IndividualTable
@@ -93,17 +89,16 @@ const TablePlan = () => {
                     theName={item.name}
                     positions={positions}
                     setCount={setCount}
-                    count={count} />
+                    count={count}
+                  />
                 </div>
               </Draggable>
             );
           })}
-        </div> : null}
+        </div>
+      ) : null}
     </div>
   );
-}
+};
 
 export default TablePlan;
-
-
-
