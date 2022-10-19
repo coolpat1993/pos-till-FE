@@ -36,42 +36,34 @@ function StaffLoginPage() {
 
   return (
     <div className="staffLoginPage">
-      <Container>
-        <Row>
-          <div className="col-8">
-            {users.length < 1 ? (
-              <Link to="/CreateUsers">Create user</Link>
-            ) : null}
-            {users.map((users) => {
-              return (
-                <div key={users.id}>
-                  <StaffLoginButton
-                    username={users.name}
-                    staffPasscode={users.staffPasscode}
-                    setPasscode={setPasscode}
-                    setSelectedUser={setSelectedUser}
-                  />
-                </div>
-              );
-            })}
+      {users.length < 1 ? <Link to="/CreateUsers">Create user</Link> : null}
+      {users.map((users) => {
+        return (
+          <div key={users.id}>
+            <StaffLoginButton
+              username={users.name}
+              staffPasscode={users.staffPasscode}
+              setPasscode={setPasscode}
+              setSelectedUser={setSelectedUser}
+            />
           </div>
-          <div className="col-4">
-            {popUpOpen !== 0 ? (
-              <div>
-                <h2>your change is £{popUpOpen}</h2>
-                <button
-                  onClick={() => {
-                    closePopUp();
-                  }}
-                >
-                  close pop up
-                </button>
-              </div>
-            ) : null}
-            <LoginKeypad userPasscode={passcode} selectedUser={selectedUser} />
+        );
+      })}
+      {popUpOpen !== 0 ? (
+        <div className="popUp">
+          <div className="popUpContent">
+            <h2>your change is £{popUpOpen}</h2>
+            <button
+              onClick={() => {
+                closePopUp();
+              }}
+            >
+              close pop up
+            </button>
           </div>
-        </Row>
-      </Container>
+        </div>
+      ) : null}
+      <LoginKeypad userPasscode={passcode} selectedUser={selectedUser} />
     </div>
   );
 }

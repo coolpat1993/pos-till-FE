@@ -1,4 +1,4 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
+// @import "../node_modules/bootstrap/scss/bootstrap";
 
 .App {
   background-color: rgb(173, 240, 253);
@@ -47,6 +47,9 @@
 .order-box {
   background-color: rgb(254, 254, 254);
   overflow-y: scroll;
+  border-radius: 10px;
+  border: solid #0003b0 2px;
+  margin-right: 20px;
 }
 
 .bottom-order{
@@ -106,12 +109,20 @@ input {
   justify-items: center;
 }
 .draggableTable {
-  background-color: lightgrey;
+  background-color: rgb(101, 87, 255);
+  color: white;
+  text-align: center;
   margin: auto;
-  width: 70px;
-  height: 70px;
+  width: 180px;
+  height: 130px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   position: absolute;
-  padding: 50px;
+}
+.dragContainer {
+  height: 700px;
+  width: 1000px;
+  background-color: rgb(0, 87, 128);
+  position: absolute;
 }
 
 div.ex1 {
@@ -189,4 +200,39 @@ button {
   color: black;
   background-color: rgba(188, 188, 188, 0.99);
   border-color: black;
+}
+
+.products {
+  background-color: transparentize($color: white, $amount: 0.4);
+  border-radius: 10px;
+  overflow: scroll;
+  height: 600px;
+  margin-right: 10px;
+  border: solid #1e96c8 2px;
+}
+
+.menuBars {
+  display: flex;
+  margin: auto;
+  
+.popUp {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.popUpContent {
+  text-align: center;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
 }

@@ -99,41 +99,41 @@ function ProductMenu() {
               />
             </div>
           ) : null}
-          {currMenu === 'products' ? (
-            <div className="col-8 menu">
+          <div className="menuBars">
+            {currMenu === 'products' ? (
+              <div className="col-8 products">
+                <Container>
+                  <Row>
+                    {items.map((item) => {
+                      return (
+                        <SingleItemButton
+                          tableName={tableName}
+                          name={item.name}
+                          price={item.price}
+                          id={item.id}
+                          setNewCounter={setNewCounter}
+                          counter={counter}
+                          userOrTable={userOrTable}
+                        />
+                      );
+                    })}
+                  </Row>
+                </Container>
+              </div>
+            ) : null}
+            {currMenu === 'tables' ? (
+              <div className="col-8 menu">
+                <Tables
+                  key="table"
+                  setTableName={setTableName}
+                  setNewCounter={setNewCounter}
+                  counter={counter}
+                  setUserOrTable={setUserOrTable}
+                />
+              </div>
+            ) : null}
+            <div className="order-box col-4">
               <Container>
-                <Row>
-                  {items.map((item) => {
-                    return (
-                      <SingleItemButton
-                        tableName={tableName}
-                        name={item.name}
-                        price={item.price}
-                        id={item.id}
-                        setNewCounter={setNewCounter}
-                        counter={counter}
-                        userOrTable={userOrTable}
-                      />
-                    );
-                  })}
-                </Row>
-              </Container>
-            </div>
-          ) : null}
-          {currMenu === 'tables' ? (
-            <div className="col-8 menu">
-              <Tables
-                key="table"
-                setTableName={setTableName}
-                setNewCounter={setNewCounter}
-                counter={counter}
-                setUserOrTable={setUserOrTable}
-              />
-            </div>
-          ) : null}
-          <div className="order-box col-4">
-            <Container fluid={true}>
-              <div class="row align-items-end">
                 <MenuBasket
                   setNewCounter={setNewCounter}
                   key="MenuBasket"
@@ -144,8 +144,8 @@ function ProductMenu() {
                   setBasketTotal={setBasketTotal}
                   setCurrMenu={setCurrMenu}
                 />
-              </div>
-            </Container>
+              </Container>
+            </div>
           </div>
         </Row>
       </Container>
