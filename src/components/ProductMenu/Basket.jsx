@@ -107,19 +107,27 @@ function MenuBasket({
           );
         })}
       </div>
-      <div className="d-flex justify-content-end">
-        <BasketTotals
-          items={items}
-          basketTotal={basketTotal}
-          setBasketTotal={setBasketTotal}
-        />
-        <button className="pay-button"
-          onClick={() => {
-            setCheckout(true);
-          }}
-        >
-          Pay
-        </button>
+      <div className="container-fluid">
+        <Row>
+          <div className="col-4">
+            <BasketTotals
+              items={items}
+              basketTotal={basketTotal}
+              setBasketTotal={setBasketTotal}
+            />
+          </div>
+          <div className="col-6"></div>
+          <div className="col-2">
+          <button
+            className="pay-button"
+            onClick={() => {
+              setCheckout(true);
+            }}
+          >
+            Pay
+          </button>
+          </div>
+        </Row>
       </div>
     </div>
   );
