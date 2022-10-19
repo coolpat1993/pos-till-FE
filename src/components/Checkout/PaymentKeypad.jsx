@@ -34,7 +34,7 @@ const PaymentKeypad = ({ totalAmount, setTotalAmount, tempTotal, setTempTotal })
         <>
             <Container>
                 <div className="">
-                    <h1 className="ml-10">£{totalAmount}</h1>
+                    <h1 className="price-box col-4">£{totalAmount}</h1>
                     <div className="grid-container col-4">
                         {numbers.map((number) => {
                             return (

@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { NavDropdown } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
 import Logo from '../../images/logo.png';
+import Login from '../../images/login.png'
 
 const Header = () => {
   const { user } = UserAuth();
@@ -35,12 +35,10 @@ const Header = () => {
           onClick={() => {
             staffLogIn();
           }}
-        >
-          Staff Login
+        ><img className="topbar-img" src={Login}></img>
         </Link>
 
         <NavDropdown id="dropdown-basic-button" title="Menu">
-          <Dropdown.Item href="/">Items</Dropdown.Item>
           <Dropdown.Item href="/account">Account settings</Dropdown.Item>
           <Dropdown.Item href="/CreateUsers">Create user</Dropdown.Item>
           <Dropdown.Item href="/items">Add items</Dropdown.Item>

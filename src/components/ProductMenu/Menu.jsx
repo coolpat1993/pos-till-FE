@@ -38,7 +38,7 @@ function ProductMenu() {
     return <Navigate to="/staffLogin" />;
   }
   return (
-    <div className="menu" key="Menu">
+    <div className="menu" key="menu">
       <Container fluid={true}>
         <Row>
           <div className="col-4">
