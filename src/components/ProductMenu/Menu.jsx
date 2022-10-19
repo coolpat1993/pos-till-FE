@@ -103,7 +103,9 @@ function ProductMenu() {
             {currMenu === 'products' ? (
               <div className="col-8 products">
                 <Container>
-                  {items.length < 1 ? <Link to="/items">Add Items</Link> :
+                  {items.length < 1 ? (
+                    <Link to="/items">Add Items</Link>
+                  ) : (
                     <Row>
                       {items.map((item) => {
                         return (
@@ -119,12 +121,12 @@ function ProductMenu() {
                         );
                       })}
                     </Row>
-                  }
+                  )}
                 </Container>
               </div>
             ) : null}
             {currMenu === 'tables' ? (
-              <div className="col-8 menu">
+              <div className="col-8">
                 <Tables
                   key="table"
                   setTableName={setTableName}
