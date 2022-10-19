@@ -2,6 +2,7 @@ import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase-config";
+import { PopUpContext } from "../ChangePopUp/changePopUp";
 import { UserAuth } from "../context/AuthContext";
 import { StaffContext } from "../StaffLogin/LoggedInStaff";
 import PaymentKeypad from "./PaymentKeypad";
@@ -13,6 +14,8 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
   const { user } = UserAuth();
   let userName = user.email;
   const navigate = useNavigate();
+  const { setPopUpOpen } = useContext(PopUpContext);
+
 
   const [tempTotal, setTempTotal] = useState(0.00)
   const [totalAmount, setTotalAmount] = useState('0.00')
@@ -36,6 +39,7 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
 
   if (amountPaid >= basketTotal) {
     ClearDrinkWindow()
+    setPopUpOpen(Math.abs(Math.round((basketTotal - amountPaid) * 100) / 100))
     navigate('/staffLogin');
   }
 
