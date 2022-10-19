@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react';
-import '../../App.scss';
-import { Navigate } from 'react-router-dom';
-import { StaffContext } from './LoggedInStaff';
-import Keypad from './KeyPad';
+import { useContext, useState } from "react";
+import "../../App.scss";
+import { Navigate } from "react-router-dom";
+import { StaffContext } from "./LoggedInStaff";
+import Keypad from "./KeyPad";
 
 function LoginKeypad({ userPasscode, selectedUser }) {
   const { setLoggedInUser } = useContext(StaffContext);
-  const [passcodeGuess, setPasscodeGuess] = useState('');
+  const [passcodeGuess, setPasscodeGuess] = useState("");
   const [success, setSuccess] = useState(false);
 
   const logIn = () => {
@@ -15,7 +15,6 @@ function LoginKeypad({ userPasscode, selectedUser }) {
 
       setSuccess(true);
     } else {
-
     }
   };
 
@@ -29,7 +28,9 @@ function LoginKeypad({ userPasscode, selectedUser }) {
         passcodeGuess={passcodeGuess}
         setPasscodeGuess={setPasscodeGuess}
       />
-      <button onClick={logIn}>log in</button>
+      <button className="log-in-button" onClick={logIn}>
+        log in
+      </button>
     </div>
   );
 }

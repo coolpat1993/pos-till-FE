@@ -79,19 +79,29 @@ input {
 .grid-items-button {
   display: grid;
   background-color: #008cba; /* Green */
-
-  // border: 2px solid blue2px solid rgba(43, 43, 231, 0.488);
   color: white;
-  // padding: 16px 32px;
   grid-template-columns: 30px 30px 30px;
   height: 100px;
   grid-template-rows: auto;
   justify-items: center;
+}
+
+.grid-items-button:hover {
+  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+  transition: 0.3s;
+} 
+
+.grid-items-button:active {
+  background-image: linear-gradient(-180deg,  #44b6e7 0%, #0d4e69 100%);
+  transition: 0.3s;
+} 
+  // border: 2px solid blue2px solid rgba(43, 43, 231, 0.488);
+  // padding: 16px 32px;
+ 
 
   // text-decoration: none;
   // display: inline-block;
   // font-size: smaller;
-}
 .grid-items {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
@@ -133,15 +143,16 @@ div.ex1 {
   touch-action: manipulation;
 }
 
-.card-button {
-  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
+.card-button:hover {
+  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+  transition: 0.3s;
 }
 
-@media (min-width: 768px) {
-  .card-button {
-    padding: 1rem 2rem;
-  }
+.card-button:active {
+  background-image: linear-gradient(-180deg,  #44b6e7 0%, #0d4e69 100%);
+  transition: 0.3s
 }
+
 
 button {
   background-color: linear-gradient(#d2d9db, #b9b9bf);
@@ -163,12 +174,18 @@ button {
 
 .btn-btn-light {
   border-radius: 10px;
+  margin: 1%;
 }
 
 .btn-btn-light:hover {
   color: black;
   background-color: rgba(188, 188, 188, 0.99);
   border-color: black;
+  transition: 0.3s;
+}
+
+.btn-btn-light:active {
+  background-color: black;
 }
 
 .pay-button {
@@ -185,3 +202,63 @@ button {
   background-color: rgba(188, 188, 188, 0.99);
   border-color: black;
 }
+
+.quantity-button {
+  margin: 2px;
+  border-radius: 10px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.quantity-button:hover {
+  color: black;
+  background-color: rgba(188, 188, 188, 0.99);
+  border-color: black;
+  transition: 0.3s;
+}
+
+.quantity-button:active {
+  background-color:black;
+}
+
+.staff-name {
+  border-radius: 10px;
+}
+
+.staff-name:active {
+  background-color: #1e96c8;
+}
+
+.staff-name:focus {
+  background-color: #1e96c8;
+}
+
+.log-in-button {
+  border-radius: 10px;
+}
+
+.log-in-button:active {
+  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+  transition: 0.3s;
+}
+
+.staff-login-nav:hover {
+  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
