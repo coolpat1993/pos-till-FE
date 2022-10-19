@@ -5,7 +5,7 @@ import { db } from "../../firebase-config";
 import { UserAuth } from "../context/AuthContext";
 import TableButton from "../Tables/TableButton";
 
-const Tables = ({ setTableName, setProducts, setNewCounter, counter, setUserOrTable }) => {
+const Tables = ({ setTableName, setNewCounter, counter, setUserOrTable }) => {
     const { user } = UserAuth();
     let userName = user.email;
     const [tempTables, setTables] = useState([])
@@ -46,7 +46,6 @@ const Tables = ({ setTableName, setProducts, setNewCounter, counter, setUserOrTa
                                     <div>
                                         <TableButton tableName={table.name}
                                             setTableName={setTableName}
-                                            setProducts={setProducts}
                                             setNewCounter={setNewCounter}
                                             counter={counter}
                                             setUserOrTable={setUserOrTable} />

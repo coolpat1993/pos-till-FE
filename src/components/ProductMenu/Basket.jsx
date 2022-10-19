@@ -10,11 +10,10 @@ import {
 } from 'firebase/firestore';
 import { UserAuth } from '../../components/context/AuthContext';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
-import { Link } from 'react-router-dom';
 import BasketTotals from './BasketTotals';
-import { Card, Container, Row } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 
-function MenuBasket({ setNewCounter, counter, tableName, userOrTable, setCheckout, basketTotal, setBasketTotal }) {
+function MenuBasket({ setNewCounter, counter, tableName, userOrTable, setCurrMenu, basketTotal, setBasketTotal, }) {
     const { loggedInUser } = useContext(StaffContext);
     let staffUsername = loggedInUser.username
     const { user } = UserAuth();
@@ -53,7 +52,7 @@ function MenuBasket({ setNewCounter, counter, tableName, userOrTable, setCheckou
         };
 
         getitems();
-    }, [counter, userName, staffUsername, userOrTable]);
+    }, [counter, userName, staffUsername, docLink]);
 
     return (
         <div>
@@ -102,7 +101,8 @@ function MenuBasket({ setNewCounter, counter, tableName, userOrTable, setCheckou
                 <BasketTotals items={items} basketTotal={basketTotal} setBasketTotal={setBasketTotal} />
                 <button
                     onClick={() => {
-                        setCheckout(true)
+
+                        setCurrMenu('checkOut')
                     }}
                 >
                     Pay
