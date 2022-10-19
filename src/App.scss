@@ -46,12 +46,17 @@
 }
 .order-box {
   background-color: rgb(254, 254, 254);
-  max-height: 80vh;
   overflow-y: scroll;
   border-radius: 10px;
   border: solid #0003b0 2px;
   margin-right: 20px;
 }
+
+.bottom-order{
+  position : absolute;
+  bottom   : 0;
+}
+
 
 .additem-button-txt {
 }

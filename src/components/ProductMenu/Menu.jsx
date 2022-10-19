@@ -1,16 +1,16 @@
-import { useState, useEffect, useContext } from "react";
-import { db } from "../../firebase-config";
-import "../../App.scss";
-import { collection, getDocs } from "firebase/firestore";
-import { Link, Navigate } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
-import SingleItemButton from "./SingleItemButton";
-import { StaffContext } from "../StaffLogin/LoggedInStaff";
-import { Card, Col, Container, Row } from "react-bootstrap";
-import { data } from "autoprefixer";
-import Tables from "./Tables";
-import MenuBasket from "./Basket";
-import CheckoutPage from "../Checkout/CheckoutPage";
+import { useState, useEffect, useContext } from 'react';
+import { db } from '../../firebase-config';
+import '../../App.scss';
+import { collection, getDocs } from 'firebase/firestore';
+import { Link, Navigate } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
+import SingleItemButton from './SingleItemButton';
+import { StaffContext } from '../StaffLogin/LoggedInStaff';
+import { Card, Col, Container, Row } from 'react-bootstrap';
+import { data } from 'autoprefixer';
+import Tables from './Tables';
+import MenuBasket from './Basket';
+import CheckoutPage from '../Checkout/CheckoutPage';
 
 function ProductMenu() {
   const { loggedInUser } = useContext(StaffContext);
@@ -19,10 +19,10 @@ function ProductMenu() {
   let userName = user.email;
   const [counter, setNewCounter] = useState(0);
   const [items, setitems] = useState([]);
-  const [tableName, setTableName] = useState("noTableSelected");
+  const [tableName, setTableName] = useState('noTableSelected');
   const [userOrTable, setUserOrTable] = useState(true);
-  const [basketTotal, setBasketTotal] = useState("");
-  const [currMenu, setCurrMenu] = useState("products");
+  const [basketTotal, setBasketTotal] = useState('');
+  const [currMenu, setCurrMenu] = useState('products');
   console.log(basketTotal);
 
   useEffect(() => {
@@ -45,8 +45,8 @@ function ProductMenu() {
             <button
               className="btn-btn-light"
               onClick={() => {
-                setCurrMenu("products");
-                if (tableName === "noTableSelected") {
+                setCurrMenu('products');
+                if (tableName === 'noTableSelected') {
                   setUserOrTable(true);
                 }
               }}
@@ -57,8 +57,8 @@ function ProductMenu() {
               className="btn-btn-light"
               onClick={() => {
                 setUserOrTable(false);
-                setTableName("noTableSelected");
-                setCurrMenu("tables");
+                setTableName('noTableSelected');
+                setCurrMenu('tables');
               }}
             >
               Tables
@@ -67,8 +67,8 @@ function ProductMenu() {
               className="btn-btn-light"
               onClick={() => {
                 setUserOrTable(true);
-                setTableName("no table");
-                setCurrMenu("products");
+                setTableName('no table');
+                setCurrMenu('products');
               }}
             >
               My basket
@@ -78,7 +78,7 @@ function ProductMenu() {
           <div className="col-4">
             {userOrTable ? (
               <h4>You are currently viewing {staffUsername}'s basket</h4>
-            ) : tableName !== "noTableSelected" ? (
+            ) : tableName !== 'noTableSelected' ? (
               <h4>You are currently viewing {tableName}</h4>
             ) : (
               <h4>Please select a table</h4>
@@ -88,7 +88,7 @@ function ProductMenu() {
       </Container>
       <Container fluid={true}>
         <Row>
-          {currMenu === "checkOut" ? (
+          {currMenu === 'checkOut' ? (
             <div className="col-8 menu">
               <CheckoutPage
                 key="CheckoutPage"
@@ -100,7 +100,7 @@ function ProductMenu() {
             </div>
           ) : null}
           <div className="menuBars">
-            {currMenu === "products" ? (
+            {currMenu === 'products' ? (
               <div className="col-8 products">
                 <Container>
                   <Row>
@@ -121,7 +121,7 @@ function ProductMenu() {
                 </Container>
               </div>
             ) : null}
-            {currMenu === "tables" ? (
+            {currMenu === 'tables' ? (
               <div className="col-8 menu">
                 <Tables
                   key="table"
