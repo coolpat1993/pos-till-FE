@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { db } from '../../firebase-config';
 import '../../App.scss';
 import { collection, getDocs } from 'firebase/firestore';
@@ -6,8 +6,13 @@ import StaffLoginButton from './StaffLoginButton.jsx';
 import LoginKeypad from './LoginKeyPad';
 import { UserAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import { PopUpContext } from '../ChangePopUp/changePopUp';
 
 function StaffLoginPage() {
+
+  const { popUpOpen } = useContext(PopUpContext);
+  const { setPopUpOpen } = useContext(PopUpContext);
+  console.log(popUpOpen)
   const { user } = UserAuth();
   let userName = user.email;
 
@@ -16,6 +21,9 @@ function StaffLoginPage() {
 
   const [users, setusers] = useState([]);
 
+  const closePopUp = async () => {
+    setPopUpOpen(0)
+  };
 
   useEffect(() => {
     const getusers = async () => {
@@ -42,6 +50,13 @@ function StaffLoginPage() {
           </div>
         );
       })}
+      {popUpOpen !== 0 ? <div><h2>your change is £{popUpOpen}</h2><button
+        onClick={() => {
+          closePopUp()
+        }}
+      >
+        close pop up
+      </button></div> : null}
       <LoginKeypad userPasscode={passcode} selectedUser={selectedUser} />
     </div>
   );
