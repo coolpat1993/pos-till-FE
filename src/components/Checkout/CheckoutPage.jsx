@@ -15,32 +15,44 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
   const navigate = useNavigate();
 
   const [items, setItems] = useState([])
+  const [tempTotal, setTempTotal] = useState(0.00)
   const [totalAmount, setTotalAmount] = useState('0.00')
+  const [amountPaid, setAmountPaid] = useState(0)
+  const [totalToPay, setTotalToPay] = useState(basketTotal)
+
 
   let docLink = ''
   if (!userOrTable) { docLink = `${userName}/${tableName}/drinks` } else {
     docLink = `${userName}/currentOrders/${staffUsername}`
   }
 
-  let trueTotal = basketTotal.toFixed(2)
+  let trueTotal = totalToPay.toFixed(2)
   const ClearDrinkWindow = async () => {
     console.log('clearDrinkwindow')
     const data = await getDocs(collection(db, docLink));
     setItems(data.docs.map((docu) => (deleteDoc(doc(db, docLink, docu.id)))));
   };
 
+  if (amountPaid >= basketTotal) {
+    ClearDrinkWindow()
+    navigate('/staffLogin');
+  }
+
+  const calcAmountPaid = async () => {
+    setAmountPaid(amountPaid + parseFloat(totalAmount))
+    setTotalToPay(totalToPay - parseFloat(totalAmount))
+    setTotalAmount('0.00')
+    setTempTotal(0.00)
+  };
+
   return (
     <div>
       <h3>Checkout</h3>
       <h2>total to pay: £{trueTotal}</h2>
-      {console.log(parseInt(trueTotal) < parseInt(totalAmount))}
-      <PaymentKeypad setTotalAmount={setTotalAmount} totalAmount={totalAmount} />
+      <PaymentKeypad setTotalAmount={setTotalAmount} totalAmount={totalAmount} tempTotal={tempTotal} setTempTotal={setTempTotal} />
       <button
         onClick={() => {
-          if (parseInt(trueTotal) < parseInt(totalAmount)) {
-            ClearDrinkWindow()
-            navigate('/staffLogin');
-          }
+          calcAmountPaid()
         }}
       >
         Pay

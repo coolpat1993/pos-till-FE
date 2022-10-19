@@ -4,9 +4,8 @@ import { Container } from "react-bootstrap";
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const PaymentKeypad = ({ totalAmount, setTotalAmount }) => {
+const PaymentKeypad = ({ totalAmount, setTotalAmount, tempTotal, setTempTotal }) => {
 
-    const [tempTotal, setTempTotal] = useState(0.00)
 
 
 
@@ -14,6 +13,7 @@ const PaymentKeypad = ({ totalAmount, setTotalAmount }) => {
         if (tempTotal > 0) {
             setTotalAmount((Number(tempTotal) / 100).toFixed(2))
         }
+
 
     }, [tempTotal]);
 
