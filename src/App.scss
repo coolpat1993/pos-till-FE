@@ -143,20 +143,45 @@ div.ex1 {
   }
 }
 
-// button {
-//   background-image: linear-gradient(#b6c5c8, #0c0c0c);
-//   border: 0;
-//   border-radius: 20px;
-//   box-shadow: rgba(0, 0, 0, 0.3) 0 5px 15px;
-//   box-sizing: border-box;
-//   color: #fff;
-//   cursor: pointer;
-//   font-family: Montserrat, sans-serif;
-//   font-size: 0.9em;
-//   margin: 5px;
-//   padding: 10px 15px;
-//   text-align: center;
-//   user-select: none;
-//   -webkit-user-select: none;
-//   touch-action: manipulation;
-// }
+button {
+  background-color: linear-gradient(#d2d9db, #b9b9bf);
+  border: 0;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 3px 7px;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  font-family: Montserrat, sans-serif;
+  font-size: 0.9em;
+  margin: 10px;
+  padding: 10px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-btn-light {
+  border-radius: 10px;
+}
+
+.btn-btn-light:hover {
+  color: black;
+  background-color: rgba(188, 188, 188, 0.99);
+  border-color: black;
+}
+
+.pay-button {
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  margin-left: 190px;
+  margin-top: 3px;
+}
+
+.pay-button:hover {
+  color: black;
+  background-color: rgba(188, 188, 188, 0.99);
+  border-color: black;
+}
