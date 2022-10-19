@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
-import { NavDropdown } from "react-bootstrap";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import { Link } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
-import { StaffContext } from "../StaffLogin/LoggedInStaff";
+import React, { useContext } from 'react';
+import { NavDropdown } from 'react-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import { Link } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
+import { StaffContext } from '../StaffLogin/LoggedInStaff';
+import Logo from '../../images/logo.png';
+
 const Header = () => {
   const { user } = UserAuth();
   const { loggedInUser } = useContext(StaffContext);
@@ -13,12 +15,13 @@ const Header = () => {
   let staffUsername = loggedInUser.username;
 
   const staffLogIn = () => {
-    setLoggedInUser("");
+    setLoggedInUser('');
   };
 
   return (
     <nav className="topbar navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
+        <img className="topbar-img" src={Logo}></img>
         <h1 className="navbar-brand">POS</h1>
         {user ? (
           <span className="navbar-text">Logged in as {user?.email}</span>
