@@ -1,4 +1,4 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
+// @import "../node_modules/bootstrap/scss/bootstrap";
 
 .App {
   background-color: rgb(173, 240, 253);
@@ -48,6 +48,9 @@
   background-color: rgb(254, 254, 254);
   max-height: 80vh;
   overflow-y: scroll;
+  border-radius: 10px;
+  border: solid #0003b0 2px;
+  margin-right: 20px;
 }
 
 .additem-button-txt {
@@ -194,6 +197,19 @@ button {
   border-color: black;
 }
 
+.products {
+  background-color: transparentize($color: white, $amount: 0.4);
+  border-radius: 10px;
+  overflow: scroll;
+  height: 600px;
+  margin-right: 10px;
+  border: solid #1e96c8 2px;
+}
+
+.menuBars {
+  display: flex;
+  margin: auto;
+  
 .popUp {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -207,7 +223,6 @@ button {
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
 .popUpContent {
   text-align: center;
   background-color: #fefefe;
