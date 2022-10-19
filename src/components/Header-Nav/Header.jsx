@@ -22,7 +22,7 @@ const Header = () => {
     <nav className="topbar navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
         <img className="topbar-img" src={Logo}></img>
-        <h1 className="navbar-brand">POS</h1>
+
         {user ? (
           <span className="navbar-text">Logged in as {user?.email}</span>
         ) : null}
