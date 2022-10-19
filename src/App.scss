@@ -94,9 +94,8 @@ input {
 
 .grid-items-button {
   background-color: #008cba; /* Green */
-
   color: white;
-
+  box-shadow: rgba(0, 0, 0, 0.3) 5 3px 3px;
   justify-items: center;
   height: 100%;
   width: 100%;
@@ -302,11 +301,21 @@ button {
 
 .pass-box {
   background-color: rgb(240, 244, 245);
-  height: 5vh;
+  height: 10vh;
   font-size: 16px;
   font-size: 2.5vw;
   text-align: center;
   -webkit-text-security: circle;
+}
+
+.price-box {
+  background-color: rgb(249, 252, 252);
+  height: 10vh;
+  color: rgb(57, 57, 57);
+  font-size: 16px;
+  font-size: 2.5vw;
+  text-align: center;
+  border: solid rgb(238, 238, 238) 2px;
 }
 
 .keypad-div {
