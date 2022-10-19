@@ -36,34 +36,44 @@ function StaffLoginPage() {
 
   return (
     <div className="staffLoginPage">
-      {users.length < 1 ? <Link to="/CreateUsers">Create user</Link> : null}
-      {users.map((users) => {
-        return (
-          <div key={users.id}>
-            <StaffLoginButton
-              username={users.name}
-              staffPasscode={users.staffPasscode}
-              setPasscode={setPasscode}
-              setSelectedUser={setSelectedUser}
-            />
+      <Container>
+        <Row>
+          <div className="col-8">
+            {users.length < 1 ? (
+              <Link to="/CreateUsers">Create user</Link>
+            ) : null}
+            {users.map((users) => {
+              return (
+                <div key={users.id}>
+                  <StaffLoginButton
+                    username={users.name}
+                    staffPasscode={users.staffPasscode}
+                    setPasscode={setPasscode}
+                    setSelectedUser={setSelectedUser}
+                  />
+                </div>
+              );
+            })}
           </div>
-        );
-      })}
-      {popUpOpen !== 0 ? (
-        <div className="popUp">
-          <div className="popUpContent">
-            <h2>your change is £{popUpOpen}</h2>
-            <button
-              onClick={() => {
-                closePopUp();
-              }}
-            >
-              close pop up
-            </button>
+          {popUpOpen !== 0 ? (
+            <div className="popUp">
+              <div className="popUpContent">
+                <h2>your change is £{popUpOpen}</h2>
+                <button
+                  onClick={() => {
+                    closePopUp();
+                  }}
+                >
+                  close pop up
+                </button>
+              </div>
+            </div>
+          ) : null}
+          <div className="col-4">
+            <LoginKeypad userPasscode={passcode} selectedUser={selectedUser} />
           </div>
-        </div>
-      ) : null}
-      <LoginKeypad userPasscode={passcode} selectedUser={selectedUser} />
+        </Row>
+      </Container>
     </div>
   );
 }

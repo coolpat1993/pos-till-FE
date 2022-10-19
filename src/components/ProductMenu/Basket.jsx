@@ -107,7 +107,7 @@ function MenuBasket({
           );
         })}
       </div>
-      <div className="">
+      <div className="bottom-order">
         <Container>
           <Row>
             <BasketTotals
