@@ -22,7 +22,6 @@ function ProductMenu() {
   const [userOrTable, setUserOrTable] = useState(true);
   const [basketTotal, setBasketTotal] = useState('');
   const [currMenu, setCurrMenu] = useState('products')
-  console.log(basketTotal);
 
   useEffect(() => {
     const getitems = async () => {
@@ -48,6 +47,9 @@ function ProductMenu() {
       <button
         onClick={() => {
           setCurrMenu('products')
+          if (tableName === 'noTableSelected') {
+            setUserOrTable(true)
+          }
         }}
       >
         Products
