@@ -52,8 +52,8 @@ const TablePlan = () => {
     setCount(count + 1);
     await addDoc(collection(db, `${userName}/tablePlan/tables`), {
       name: tableName,
-      x: 50,
-      y: 50,
+      x: 0,
+      y: 0,
     });
   };
 

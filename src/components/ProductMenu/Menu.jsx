@@ -103,21 +103,23 @@ function ProductMenu() {
             {currMenu === 'products' ? (
               <div className="col-8 products">
                 <Container>
-                  <Row>
-                    {items.map((item) => {
-                      return (
-                        <SingleItemButton
-                          tableName={tableName}
-                          name={item.name}
-                          price={item.price}
-                          id={item.id}
-                          setNewCounter={setNewCounter}
-                          counter={counter}
-                          userOrTable={userOrTable}
-                        />
-                      );
-                    })}
-                  </Row>
+                  {items.length < 1 ? <Link to="/items">Add Items</Link> :
+                    <Row>
+                      {items.map((item) => {
+                        return (
+                          <SingleItemButton
+                            tableName={tableName}
+                            name={item.name}
+                            price={item.price}
+                            id={item.id}
+                            setNewCounter={setNewCounter}
+                            counter={counter}
+                            userOrTable={userOrTable}
+                          />
+                        );
+                      })}
+                    </Row>
+                  }
                 </Container>
               </div>
             ) : null}
