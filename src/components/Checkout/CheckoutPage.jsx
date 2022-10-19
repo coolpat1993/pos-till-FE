@@ -14,7 +14,6 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
   let userName = user.email;
   const navigate = useNavigate();
 
-  const [items, setItems] = useState([])
   const [tempTotal, setTempTotal] = useState(0.00)
   const [totalAmount, setTotalAmount] = useState('0.00')
   const [amountPaid, setAmountPaid] = useState(0)
@@ -30,8 +29,10 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
   const ClearDrinkWindow = async () => {
     console.log('clearDrinkwindow')
     const data = await getDocs(collection(db, docLink));
-    setItems(data.docs.map((docu) => (deleteDoc(doc(db, docLink, docu.id)))));
+    data.docs.map((docu) => (deleteDoc(doc(db, docLink, docu.id))));
   };
+
+  console.log(Math.round((basketTotal - amountPaid) * 100) / 100, 'change')
 
   if (amountPaid >= basketTotal) {
     ClearDrinkWindow()
