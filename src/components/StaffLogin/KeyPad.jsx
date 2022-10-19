@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { Container, Row } from 'react-bootstrap';
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -21,7 +19,6 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
   return (
     <>
       <div className="pass-box"> {passcodeGuess}</div>
-
       <div className="grid-container">
         {numbers.map((number) => {
           return (

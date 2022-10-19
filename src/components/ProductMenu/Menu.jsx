@@ -88,18 +88,18 @@ function ProductMenu() {
       </Container>
       <Container fluid={true}>
         <Row>
-          {currMenu === 'checkOut' ? (
-            <div className="col-8 menu">
-              <CheckoutPage
-                key="CheckoutPage"
-                userOrTable={userOrTable}
-                tableName={tableName}
-                basketTotal={basketTotal}
-                setBasketTotal={setBasketTotal}
-              />
-            </div>
-          ) : null}
           <div className="menuBars">
+            {currMenu === 'checkOut' ? (
+              <div className="col-8 menu">
+                <CheckoutPage
+                  key="CheckoutPage"
+                  userOrTable={userOrTable}
+                  tableName={tableName}
+                  basketTotal={basketTotal}
+                  setBasketTotal={setBasketTotal}
+                />
+              </div>
+            ) : null}
             {currMenu === 'products' ? (
               <div className="col-8 products">
                 <Container>

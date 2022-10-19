@@ -139,6 +139,7 @@ function MenuBasket({
         </Container>
       </div>
     </div>
+    </div>
   );
 }
 

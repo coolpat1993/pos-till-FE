@@ -41,7 +41,7 @@
 }
 
 .menu {
-    height: 80vh;
+  height: 80vh;
   overflow-y: scroll;
 }
 .order-box {
@@ -52,12 +52,11 @@
   margin-right: 20px;
 }
 
-.bottom-order{
-  position : absolute;
-  bottom   : 0;
+.bottom-order {
+  position: absolute;
+  bottom: 0;
   margin-bottom: 2vh;
 }
-
 
 .additem-button-txt {
 }
@@ -86,30 +85,27 @@ input {
   // margin-bottom: 5%;
   // transform: absolute(-50%, -50%);
   height: 40vh;
-
 }
 
-
 .grid-items-button {
-  // display: grid;
   background-color: #008cba; /* Green */
+
   color: white;
-  grid-template-columns: 30px 30px 30px;
-  height: 100px;
-  grid-template-rows: auto;
+
   justify-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .grid-items-button:hover {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
   transition: 0.3s;
-} 
+}
 
 .grid-items-button:active {
-  background-image: linear-gradient(-180deg,  #44b6e7 0%, #0d4e69 100%);
+  background-image: linear-gradient(-180deg, #44b6e7 0%, #0d4e69 100%);
   transition: 0.3s;
-} 
-
+}
 
 .grid-items {
   background-color: rgba(255, 255, 255, 0.8);
@@ -161,15 +157,14 @@ div.ex1 {
 }
 
 .card-button:hover {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
   transition: 0.3s;
 }
 
 .card-button:active {
-  background-image: linear-gradient(-180deg,  #44b6e7 0%, #0d4e69 100%);
-  transition: 0.3s
+  background-image: linear-gradient(-180deg, #44b6e7 0%, #0d4e69 100%);
+  transition: 0.3s;
 }
-
 
 button {
   background-color: linear-gradient(#d2d9db, #b9b9bf);
@@ -235,7 +230,7 @@ button {
 }
 
 .quantity-button:active {
-  background-color:black;
+  background-color: black;
 }
 
 .staff-name {
@@ -255,14 +250,13 @@ button {
 }
 
 .log-in-button:active {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
   transition: 0.3s;
 }
 
 .staff-login-nav:hover {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
 }
-
 
 .products {
   background-color: transparentize($color: white, $amount: 0.4);
@@ -277,39 +271,39 @@ button {
   display: flex;
   margin: auto;
   height: 70vh;
-  
-.popUp {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 200px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.popUpContent {
-  text-align: center;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 20%;
-}
-}
+  .popUp {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 200px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
 
-.pass-box{
+  .popUpContent {
+    text-align: center;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+  }
+
+
+.pass-box {
   background-color: rgb(240, 244, 245);
-  height: 5vh;  
+  height: 5vh;
   font-size: 16px;
   font-size: 2.5vw;
   text-align: center;
 }
 
-.keypad-div{
+.keypad-div {
   background-color: white;
-
 }
