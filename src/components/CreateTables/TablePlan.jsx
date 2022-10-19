@@ -10,7 +10,7 @@ const TablePlan = () => {
   let userName = user.email;
   const [tempTables, setTables] = useState([])
   const [count, setCount] = useState(0)
-  const [tableName, setTableName] = useState('table1')
+  const [tableName, setTableName] = useState('table21')
 
   useEffect(() => {
     const getTables = async () => {
@@ -52,8 +52,8 @@ const TablePlan = () => {
     setCount(count + 1);
     await addDoc(collection(db, `${userName}/tablePlan/tables`), {
       name: tableName,
-      x: 0,
-      y: 0,
+      x: 50,
+      y: 50,
     });
   };
 
@@ -74,28 +74,28 @@ const TablePlan = () => {
         Create Table +
       </button>
       {tempTables.length > 0 && hasLoaded ?
-        <div>
+        <div className="dragContainer">
           {tables.map((item) => {
             return (
-              <div key={item.id}>
-                <Draggable
-                  defaultPosition={
-                    { x: item.x, y: item.y }
-                  }
-                  grid={[25, 25]}
-                  nodeRef={nodeRef}
-                  onStop={handleStop}
-                >
-                  <div ref={nodeRef}>
-                    <IndividualTable
-                      id={item.id}
-                      theName={item.name}
-                      positions={positions}
-                      setCount={setCount}
-                      count={count} />
-                  </div>
-                </Draggable>
-              </div>
+              <Draggable
+                defaultPosition={
+                  { x: item.x, y: item.y }
+                }
+                grid={[25, 25]}
+                nodeRef={nodeRef}
+                onStop={handleStop}
+                bounds={{ top: 30, left: 30, right: 800, bottom: 540 }}
+
+              >
+                <div ref={nodeRef}>
+                  <IndividualTable
+                    id={item.id}
+                    theName={item.name}
+                    positions={positions}
+                    setCount={setCount}
+                    count={count} />
+                </div>
+              </Draggable>
             );
           })}
         </div> : null}
