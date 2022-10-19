@@ -50,13 +50,18 @@ function StaffLoginPage() {
           </div>
         );
       })}
-      {popUpOpen !== 0 ? <div><h2>your change is £{popUpOpen}</h2><button
-        onClick={() => {
-          closePopUp()
-        }}
-      >
-        close pop up
-      </button></div> : null}
+      {popUpOpen !== 0 ? <div className='popUp'>
+        <div className="popUpContent">
+          <h2>your change is £{popUpOpen}</h2>
+          <button
+            onClick={() => {
+              closePopUp()
+            }}
+          >
+            close pop up
+          </button>
+        </div>
+      </div> : null}
       <LoginKeypad userPasscode={passcode} selectedUser={selectedUser} />
     </div>
   );
