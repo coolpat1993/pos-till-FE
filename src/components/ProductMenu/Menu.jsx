@@ -38,47 +38,41 @@ function ProductMenu() {
   }
   return (
     <div className="menu" key="Menu">
-      <Container fluid={true}>
-        <Row>
-          <div className="col-4">
-            <button
-              onClick={() => {
-                setCurrMenu('products');
-              }}
-            >
-              Products
-            </button>
-            <button
-              onClick={() => {
-                setUserOrTable(false);
-                setTableName('noTableSelected');
-                setCurrMenu('tables');
-              }}
-            >
-              Tables
-            </button>
-            <button
-              onClick={() => {
-                setUserOrTable(true);
-                setTableName('no table');
-                setCurrMenu('products');
-              }}
-            >
-              My basket
-            </button>
-          </div>
-          <div className="col-4"></div>
-          <div className="col-4">
-            {userOrTable ? (
-              <h4>You are currently viewing {staffUsername}'s basket</h4>
-            ) : tableName !== 'noTableSelected' ? (
-              <h4>You are currently viewing {tableName}</h4>
-            ) : (
-              <h4>Please select a table</h4>
-            )}
-          </div>
-        </Row>
-      </Container>
+      {userOrTable ? (
+        <h4>You are currently viewing {staffUsername}'s basket</h4>
+      ) : tableName !== 'noTableSelected' ? (
+        <h4>You are currently viewing {tableName}</h4>
+      ) : (
+        <h4>Please select a table</h4>
+      )}
+      <button
+        onClick={() => {
+          setCurrMenu('products');
+          if (tableName === 'noTableSelected') {
+            setUserOrTable(true);
+          }
+        }}
+      >
+        Products
+      </button>
+      <button
+        onClick={() => {
+          setUserOrTable(false);
+          setTableName('noTableSelected');
+          setCurrMenu('tables');
+        }}
+      >
+        Tables
+      </button>
+      <button
+        onClick={() => {
+          setUserOrTable(true);
+          setTableName('no table');
+          setCurrMenu('products');
+        }}
+      >
+        My basket
+      </button>
       <Container fluid={true}>
         <Row>
           {currMenu === 'checkOut' ? (
