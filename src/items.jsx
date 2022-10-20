@@ -87,8 +87,6 @@ function Items() {
                         Price: {`£${drink.price}`}
                         <br></br>
                         Type: {drink.itemType}
-                        <br></br>
-                        Quantity: {drink.quantity}
                       </p>
                       <button
                         className="btn btn-light m-1"
@@ -108,12 +106,17 @@ function Items() {
         </div>
         <div className="col-4">
           <input
+            type="text"
+            id="form12"
+            className="form-control"
             placeholder="Name..."
             onChange={(event) => {
               setNewName(event.target.value);
             }}
           />
           <input
+            id="form12"
+            className="form-control"
             type="number"
             placeholder="price..."
             onChange={(event) => {
@@ -121,6 +124,8 @@ function Items() {
             }}
           />
           <input
+            id="form12"
+            className="form-control"
             type="string"
             placeholder="item type..."
             onChange={(event) => {
@@ -128,7 +133,10 @@ function Items() {
             }}
           />
 
-          <button onClick={createdrink}> Create item</button>
+          <button onClick={createdrink} className="btn btn-light m-1">
+            {' '}
+            Create item
+          </button>
         </div>
       </Row>
     </div>
