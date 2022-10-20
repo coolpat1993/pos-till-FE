@@ -64,6 +64,7 @@ function StaffLoginPage() {
                   {users.map((users) => {
                     return (
                       <StaffLoginButton
+                        key={users.id}
                         username={users.name}
                         staffPasscode={users.staffPasscode}
                         setPasscode={setPasscode}

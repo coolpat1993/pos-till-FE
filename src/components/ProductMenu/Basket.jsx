@@ -71,10 +71,10 @@ function MenuBasket({
       <div>
         {items.map((item) => {
           return (
-            <Card>
+            <Card key={item.id}>
               <Container>
 
-                <div className="d-flex justify-content-between" key={item.id}>
+                <div className="d-flex justify-content-between" >
 
                   <p className="p-2 float-start">{item.quantity}</p>
                   <p className="p-2 float-start">{item.name} </p>
@@ -120,25 +120,25 @@ function MenuBasket({
 
       <div className="d-flex justify-content-end">
 
-      <div className="bottom-order">
-        <Container>
-          <Row>
-            <BasketTotals
-              items={items}
-              basketTotal={basketTotal}
-              setBasketTotal={setBasketTotal}
-            />
-            <button
-              onClick={() => {
-                setCurrMenu('checkOut');
-              }}
-            >
-              Pay
-            </button>
-          </Row>
-        </Container>
+        <div className="bottom-order">
+          <Container>
+            <Row>
+              <BasketTotals
+                items={items}
+                basketTotal={basketTotal}
+                setBasketTotal={setBasketTotal}
+              />
+              <button
+                onClick={() => {
+                  setCurrMenu('checkOut');
+                }}
+              >
+                Pay
+              </button>
+            </Row>
+          </Container>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
