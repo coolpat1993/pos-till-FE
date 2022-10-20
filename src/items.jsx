@@ -5,7 +5,6 @@ import {
   collection,
   getDocs,
   addDoc,
-  updateDoc,
   deleteDoc,
   doc,
 } from 'firebase/firestore';
@@ -33,27 +32,7 @@ function Items() {
     });
   };
 
-  const updatedrink = async (id, price) => {
-    const drinkDoc = doc(db, `${userName}/items/drinks`, id);
-    const newFields = { price: price + 1 };
 
-    setNewCounter(counter + 1);
-    await updateDoc(drinkDoc, newFields);
-  };
-
-  const updateQuantity = async (id, quantity) => {
-    const drinkDoc = doc(db, `${userName}/items/drinks`, id);
-    const newFields = { quantity: quantity + 1 };
-    setNewCounter(counter + 1);
-    await updateDoc(drinkDoc, newFields);
-  };
-
-  const decreaseQuantity = async (id, quantity) => {
-    const drinkDoc = doc(db, `${userName}/items/drinks`, id);
-    const newFields = { quantity: quantity - 1 };
-    setNewCounter(counter + 1);
-    await updateDoc(drinkDoc, newFields);
-  };
 
   const deletedrink = async (id) => {
     const drinkDoc = doc(db, `${userName}/items/drinks`, id);
