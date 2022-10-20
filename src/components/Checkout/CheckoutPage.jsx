@@ -50,9 +50,11 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
   };
 
   return (
-    <div>
+    <div className="menu">
       <Container>
-        <div className="price-box col-4">total to pay: £{trueTotal}</div>
+        <div className="total-box col-4">
+          <h4>Total to pay: £{trueTotal}</h4>
+        </div>
       </Container>
       <br></br>
       <PaymentKeypad
@@ -63,7 +65,7 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
       />
       <Container>
         <button
-          className="col-4"
+          className="col-4 btn btn-light"
           onClick={() => {
             calcAmountPaid();
           }}

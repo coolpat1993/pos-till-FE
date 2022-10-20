@@ -29,7 +29,7 @@ function MenuBasket({
   let userName = user.email;
   const [items, setitems] = useState([]);
 
-  let docLink = "";
+  let docLink = '';
 
   if (!userOrTable) {
     docLink = `${userName}/${tableName}/drinks`;
@@ -73,17 +73,13 @@ function MenuBasket({
           return (
             <Card>
               <Container>
-
                 <div className="d-flex justify-content-between" key={item.id}>
-
                   <p className="p-2 float-start">{item.quantity}</p>
                   <p className="p-2 float-start">{item.name} </p>
                   <p className="p-2 float-start">{`£${item.price}`}</p>
                   <div className="p2">
                     <button
-
                       className="quantity-button"
-
                       onClick={() => {
                         decreaseQuantity(item.id, item.quantity);
                       }}
@@ -91,9 +87,7 @@ function MenuBasket({
                       -
                     </button>
                     <button
-
                       className="quantity-button"
-
                       onClick={() => {
                         updateQuantity(item.id, item.quantity);
                       }}
@@ -101,9 +95,7 @@ function MenuBasket({
                       +
                     </button>
                     <button
-
                       className="quantity-button"
-
                       onClick={() => {
                         deleteitem(item.id);
                       }}
@@ -119,26 +111,26 @@ function MenuBasket({
       </div>
 
       <div className="d-flex justify-content-end">
-
-      <div className="bottom-order">
-        <Container>
-          <Row>
-            <BasketTotals
-              items={items}
-              basketTotal={basketTotal}
-              setBasketTotal={setBasketTotal}
-            />
-            <button
-              onClick={() => {
-                setCurrMenu('checkOut');
-              }}
-            >
-              Pay
-            </button>
-          </Row>
-        </Container>
+        <div className="bottom-order">
+          <Container>
+            <Row>
+              <BasketTotals
+                items={items}
+                basketTotal={basketTotal}
+                setBasketTotal={setBasketTotal}
+              />
+              <button
+                className="btn btn-light"
+                onClick={() => {
+                  setCurrMenu('checkOut');
+                }}
+              >
+                Pay
+              </button>
+            </Row>
+          </Container>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
