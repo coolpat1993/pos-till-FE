@@ -109,6 +109,7 @@ function ProductMenu() {
                       {items.map((item) => {
                         return (
                           <SingleItemButton
+                            key={item.id}
                             tableName={tableName}
                             name={item.name}
                             price={item.price}
