@@ -71,9 +71,11 @@ function MenuBasket({
       <div>
         {items.map((item) => {
           return (
-            <Card>
+            <Card key={item.id}>
               <Container>
+
                 <div className="d-flex justify-content-between" key={item.id}>
+
                   <p className="p-2 float-start">{item.quantity}</p>
                   <p className="p-2 float-start">{item.name} </p>
                   <p className="p-2 float-start">{`£${item.price}`}</p>
@@ -111,6 +113,8 @@ function MenuBasket({
       </div>
 
       <div className="d-flex justify-content-end">
+
+
         <div className="bottom-order">
           <Container>
             <Row>
