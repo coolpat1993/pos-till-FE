@@ -55,16 +55,26 @@ function CreateUsers() {
   }, [counter, userName]);
 
   return (
-    <div className="App">
-      <h2>Create new user</h2>
-      <input
-        placeholder="Name..."
-        onChange={(event) => {
-          setNewName(event.target.value);
-        }}
-      />
+    <div className="">
+      <div className="container-fluid">
+        <div className="col-4 m-1">
+          <h2 className="r-2">Create new user</h2>
+          <input
+            type="text"
+            id="form12"
+            className="form-control"
+            placeholder="Name..."
+            onChange={(event) => {
+              setNewName(event.target.value);
+            }}
+          />
+          <button className="m-1" onClick={createusers}>
+            {' '}
+            Create users
+          </button>
+        </div>
+      </div>
 
-      <button onClick={createusers}> Create users</button>
       <div className="menu">
         <Container fluid={true}>
           <Row>

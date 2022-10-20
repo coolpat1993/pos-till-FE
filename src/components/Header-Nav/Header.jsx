@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
 import Logo from '../../images/logo.png';
-import Login from '../../images/login.png'
+import Login from '../../images/login.png';
 
 const Header = () => {
   const { user } = UserAuth();
@@ -35,7 +35,8 @@ const Header = () => {
           onClick={() => {
             staffLogIn();
           }}
-        ><img className="topbar-img" src={Login}></img>
+        >
+          <img className="topbar-img" src={Login}></img>
         </Link>
 
         <NavDropdown id="dropdown-basic-button" title="Menu">
