@@ -29,7 +29,7 @@ function MenuBasket({
   let userName = user.email;
   const [items, setitems] = useState([]);
 
-  let docLink = "";
+  let docLink = '';
 
   if (!userOrTable) {
     docLink = `${userName}/${tableName}/drinks`;
@@ -74,16 +74,14 @@ function MenuBasket({
             <Card key={item.id}>
               <Container>
 
-                <div className="d-flex justify-content-between" >
+                <div className="d-flex justify-content-between" key={item.id}>
 
                   <p className="p-2 float-start">{item.quantity}</p>
                   <p className="p-2 float-start">{item.name} </p>
                   <p className="p-2 float-start">{`£${item.price}`}</p>
                   <div className="p2">
                     <button
-
                       className="quantity-button"
-
                       onClick={() => {
                         decreaseQuantity(item.id, item.quantity);
                       }}
@@ -91,9 +89,7 @@ function MenuBasket({
                       -
                     </button>
                     <button
-
                       className="quantity-button"
-
                       onClick={() => {
                         updateQuantity(item.id, item.quantity);
                       }}
@@ -101,9 +97,7 @@ function MenuBasket({
                       +
                     </button>
                     <button
-
                       className="quantity-button"
-
                       onClick={() => {
                         deleteitem(item.id);
                       }}
@@ -120,6 +114,7 @@ function MenuBasket({
 
       <div className="d-flex justify-content-end">
 
+
         <div className="bottom-order">
           <Container>
             <Row>
@@ -129,6 +124,7 @@ function MenuBasket({
                 setBasketTotal={setBasketTotal}
               />
               <button
+                className="btn btn-light"
                 onClick={() => {
                   setCurrMenu('checkOut');
                 }}

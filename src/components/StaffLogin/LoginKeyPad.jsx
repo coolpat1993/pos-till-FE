@@ -1,4 +1,3 @@
-
 import { useContext, useState } from 'react';
 import '../../App.scss';
 import { Navigate } from 'react-router-dom';
@@ -6,10 +5,9 @@ import { StaffContext } from './LoggedInStaff';
 import Keypad from './KeyPad';
 import { Col, Container, Row } from 'react-bootstrap';
 
-
 function LoginKeypad({ userPasscode, selectedUser }) {
   const { setLoggedInUser } = useContext(StaffContext);
-  const [passcodeGuess, setPasscodeGuess] = useState("");
+  const [passcodeGuess, setPasscodeGuess] = useState('');
   const [success, setSuccess] = useState(false);
 
   const logIn = () => {
@@ -26,7 +24,6 @@ function LoginKeypad({ userPasscode, selectedUser }) {
   }
 
   return (
-
     <div className="container-fluid">
       <Row>
         <Col>
@@ -36,7 +33,7 @@ function LoginKeypad({ userPasscode, selectedUser }) {
           />
           <Container>
             <Row>
-              <button className="col-12" onClick={logIn}>
+              <button className="col-12 btn btn-light" onClick={logIn}>
                 log in
               </button>
             </Row>

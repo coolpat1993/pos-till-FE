@@ -5,14 +5,13 @@ import { collection, getDocs } from 'firebase/firestore';
 import StaffLoginButton from './StaffLoginButton.jsx';
 import LoginKeypad from './LoginKeyPad';
 import { UserAuth } from '../context/AuthContext';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { PopUpContext } from '../ChangePopUp/changePopUp';
 import { Card, Container, Row } from 'react-bootstrap';
 
 function StaffLoginPage() {
   const { popUpOpen } = useContext(PopUpContext);
   const { setPopUpOpen } = useContext(PopUpContext);
-  console.log(popUpOpen);
   const { user } = UserAuth();
   let userName = user.email;
   const [isLoading, setIsLoading] = useState(true);

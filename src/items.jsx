@@ -32,8 +32,6 @@ function Items() {
     });
   };
 
-
-
   const deletedrink = async (id) => {
     const drinkDoc = doc(db, `${userName}/items/drinks`, id);
     setNewCounter(counter + 1);
@@ -50,74 +48,75 @@ function Items() {
   }, [counter, userName]);
 
   return (
-    <div className="container-fluid">
-      <Row>
-        <div className="col-8">
-          <Container>
-            <Row>
-              {drinks.map((drink) => {
-                console.log(drinks);
-                return (
-                  <div className="col-3 mb-2 pt-2">
-                    <Card className="user-item">
-                      {' '}
-                      <Card.Title className="m-1">{drink.name}</Card.Title>
-                      <p className="m-1">
-                        Price: {`£${drink.price}`}
-                        <br></br>
-                        Type: {drink.itemType}
-                      </p>
-                      <button
-                        className="btn btn-light m-1"
-                        onClick={() => {
-                          deletedrink(drink.id);
-                        }}
-                      >
+    <div className="menu">
+      <div className="container-fluid">
+        <Row>
+          <div className="col-8 products">
+            <Container>
+              <Row>
+                {drinks.map((drink) => {
+                  return (
+                    <div className="col-3 mb-2 pt-2">
+                      <Card className="user-item">
                         {' '}
-                        Delete item
-                      </button>
-                    </Card>
-                  </div>
-                );
-              })}
-            </Row>
-          </Container>
-        </div>
-        <div className="col-4">
-          <input
-            type="text"
-            id="form12"
-            className="form-control"
-            placeholder="Name..."
-            onChange={(event) => {
-              setNewName(event.target.value);
-            }}
-          />
-          <input
-            id="form12"
-            className="form-control"
-            type="number"
-            placeholder="price..."
-            onChange={(event) => {
-              setNewprice(event.target.value);
-            }}
-          />
-          <input
-            id="form12"
-            className="form-control"
-            type="string"
-            placeholder="item type..."
-            onChange={(event) => {
-              setNewItemType(event.target.value);
-            }}
-          />
+                        <Card.Title className="m-1">{drink.name}</Card.Title>
+                        <p className="m-1">
+                          Price: {`£${drink.price}`}
+                          <br></br>
+                          Type: {drink.itemType}
+                        </p>
+                        <button
+                          className="btn btn-light m-1"
+                          onClick={() => {
+                            deletedrink(drink.id);
+                          }}
+                        >
+                          {' '}
+                          Delete item
+                        </button>
+                      </Card>
+                    </div>
+                  );
+                })}
+              </Row>
+            </Container>
+          </div>
+          <div className="col-3">
+            <input
+              type="text"
+              id="form12"
+              className="form-control"
+              placeholder="Name..."
+              onChange={(event) => {
+                setNewName(event.target.value);
+              }}
+            />
+            <input
+              id="form12"
+              className="form-control"
+              type="number"
+              placeholder="price..."
+              onChange={(event) => {
+                setNewprice(event.target.value);
+              }}
+            />
+            <input
+              id="form12"
+              className="form-control"
+              type="string"
+              placeholder="item type..."
+              onChange={(event) => {
+                setNewItemType(event.target.value);
+              }}
+            />
 
-          <button onClick={createdrink} className="btn btn-light m-1">
-            {' '}
-            Create item
-          </button>
-        </div>
-      </Row>
+            <button onClick={createdrink} className="btn btn-light m-1">
+              {' '}
+              Create item
+            </button>
+          </div>
+        </Row>
+      </div>
     </div>
   );
 }

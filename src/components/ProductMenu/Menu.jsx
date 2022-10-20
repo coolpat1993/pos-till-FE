@@ -22,7 +22,6 @@ function ProductMenu() {
   const [userOrTable, setUserOrTable] = useState(true);
   const [basketTotal, setBasketTotal] = useState('');
   const [currMenu, setCurrMenu] = useState('products');
-  console.log(basketTotal);
 
   useEffect(() => {
     const getitems = async () => {
@@ -126,7 +125,7 @@ function ProductMenu() {
               </div>
             ) : null}
             {currMenu === 'tables' ? (
-              <div className="col-8">
+              <div className="col-8 products">
                 <Tables
                   key="table"
                   setTableName={setTableName}
@@ -140,7 +139,7 @@ function ProductMenu() {
               <Container>
                 <MenuBasket
                   setNewCounter={setNewCounter}
-                  key="MenuBasket"
+                  key="menubasket"
                   counter={counter}
                   tableName={tableName}
                   userOrTable={userOrTable}
