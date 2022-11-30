@@ -19,13 +19,12 @@ const SignUp = () => {
       navigate('/staffLogin');
     } catch (e) {
       setError(e.message);
-
     }
   };
 
   return (
-    <div className="max-w-[700px] mx-auto my-16 p-4">
-      <div>
+    <div className="col-4">
+      <div className="m-3">
         <h1>Sign up</h1>
         {password !== confirmedPass && <p>Passwords do not match</p>}
         <p>
@@ -33,27 +32,38 @@ const SignUp = () => {
         </p>
       </div>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="m-3">
           <label>Email Address</label>
-          <input onChange={(e) => setEmail(e.target.value)} type="email" />
+          <input
+            className="order-box"
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+          />
         </div>
-        <div>
+        <div className="m-3">
           <label>Password</label>
           <input
+            className="order-box"
             onChange={(e) => setPassword(e.target.value)}
             type="password"
           />
         </div>
-        <div>
+        <div className="m-3">
           <label>Confirm password</label>
           <input
+            className="order-box"
             onChange={(e) => setConfirmedPass(e.target.value)}
             type="password"
           />
         </div>
-        <button disabled={password !== confirmedPass || password.length === 0}>
-          Sign Up
-        </button>
+        <div className="m-3">
+          <button
+            className="btn btn-light"
+            disabled={password !== confirmedPass || password.length === 0}
+          >
+            Sign Up
+          </button>
+        </div>
       </form>
     </div>
   );

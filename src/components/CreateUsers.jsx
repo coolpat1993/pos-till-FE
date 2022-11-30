@@ -56,24 +56,14 @@ function CreateUsers() {
 
   return (
     <div className="">
-      <div className="container-fluid">
-        <div className="col-4 m-1">
-          <h2 className="r-2">Create new user</h2>
-          <input
-            type="text"
-            id="form12"
-            className="form-control"
-            placeholder="Name..."
-            onChange={(event) => {
-              setNewName(event.target.value);
-            }}
-          />
-          <button className="m-1" onClick={createusers}>
-            {' '}
-            Create users
-          </button>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <div className="col-8"> </div>
+          <div className="col-4">
+            <h2 className="m-3">Enter password below</h2>
+          </div>
+        </Row>
+      </Container>
 
       <div className="menu">
         <Container fluid={true}>
@@ -129,6 +119,21 @@ function CreateUsers() {
                   setNewlevel(event.target.value);
                 }}
               />
+
+              <h2 className="">Create new user</h2>
+              <input
+                type="text"
+                id="form12"
+                className="form-control"
+                placeholder="Name..."
+                onChange={(event) => {
+                  setNewName(event.target.value);
+                }}
+              />
+              <button className="m-1" onClick={createusers}>
+                {' '}
+                Create users
+              </button>
             </div>
           </Row>
         </Container>

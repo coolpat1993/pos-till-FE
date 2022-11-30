@@ -16,31 +16,35 @@ const SignIn = () => {
       navigate('/staffLogin');
     } catch (e) {
       setError(e.message);
-
     }
   };
 
   return (
-    <div className="max-w-[700px] mx-auto my-16 p-4">
-      <div>
+    <div className="col-4">
+      <div className="m-3">
         <h1>Sign in to your account</h1>
         <p>
-          Don't have an account yet?<Link to="/signup">Sign up</Link>
+          Don't have an account yet? <Link to="/signup"> Sign up</Link>
         </p>
       </div>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="m-3">
           <label>Email Address</label>
-          <input onChange={(e) => setEmail(e.target.value)} type="email" />
+          <input
+            className=" order-box"
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+          />
         </div>
-        <div>
+        <div className="m-3">
           <label>Password</label>
           <input
+            className="vw-25 order-box "
             onChange={(e) => setPassword(e.target.value)}
             type="password"
           />
         </div>
-        <button>Sign in</button>
+        <button className="m-3 btn btn-light">Sign in</button>
       </form>
     </div>
   );
