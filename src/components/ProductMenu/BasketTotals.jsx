@@ -12,9 +12,9 @@ const BasketTotals = ({ items, setBasketTotal, basketTotal }) => {
   }, [sum]);
 
   return (
-    <nav className="center">
-      <h4>£{sum.toFixed(2)}</h4>
-    </nav>
+    <div>
+      <p className="heading-2 u-margin-top-small">£{sum.toFixed(2)}</p>
+    </div>
   );
 };
 

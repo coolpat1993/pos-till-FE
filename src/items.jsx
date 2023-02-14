@@ -9,7 +9,6 @@ import {
   doc,
 } from 'firebase/firestore';
 import { UserAuth } from './components/context/AuthContext';
-import { Card, Container, Row } from 'react-bootstrap';
 
 function Items() {
   const { user } = UserAuth();
@@ -48,74 +47,68 @@ function Items() {
   }, [counter, userName]);
 
   return (
-    <div className="menu">
-      <div className="container-fluid">
-        <Row>
-          <div className="col-8 products">
-            <Container>
-              <Row>
-                {drinks.map((drink) => {
-                  return (
-                    <div className="col-3 mb-2 pt-2">
-                      <Card className="user-item">
-                        {' '}
-                        <Card.Title className="m-1">{drink.name}</Card.Title>
-                        <p className="m-1">
-                          Price: {`£${drink.price}`}
-                          <br></br>
-                          Type: {drink.itemType}
-                        </p>
-                        <button
-                          className="btn btn-light m-1"
-                          onClick={() => {
-                            deletedrink(drink.id);
-                          }}
-                        >
-                          {' '}
-                          Delete item
-                        </button>
-                      </Card>
-                    </div>
-                  );
-                })}
-              </Row>
-            </Container>
-          </div>
-          <div className="col-3">
-            <input
-              type="text"
-              id="form12"
-              className="form-control"
-              placeholder="Name..."
-              onChange={(event) => {
-                setNewName(event.target.value);
-              }}
-            />
-            <input
-              id="form12"
-              className="form-control"
-              type="number"
-              placeholder="price..."
-              onChange={(event) => {
-                setNewprice(event.target.value);
-              }}
-            />
-            <input
-              id="form12"
-              className="form-control"
-              type="string"
-              placeholder="item type..."
-              onChange={(event) => {
-                setNewItemType(event.target.value);
-              }}
-            />
+    <div class="items">
+      <div class="items__products">
+        {drinks.map((drink) => {
+          return (
+            <div className="items__products_card">
+              {drink.name}
+              <p>
+                Price: {`£${drink.price}`}
+                <br></br>
+                Type: {drink.itemType}
+              </p>
+              <button
+                className="items__products_card--button button"
+                onClick={() => {
+                  deletedrink(drink.id);
+                }}
+              >
+                {' '}
+                Delete
+              </button>
+            </div>
+          );
+        })}
+      </div>
+      <div class="items__adder">
+        <div className="items__adder_box">
+          <input
+            type="text"
+            id="form12"
+            className="items__adder_box--input"
+            placeholder="Name..."
+            onChange={(event) => {
+              setNewName(event.target.value);
+            }}
+          />
+          <input
+            id="form12"
+            className="items__adder_box--input"
+            type="number"
+            placeholder="price..."
+            onChange={(event) => {
+              setNewprice(event.target.value);
+            }}
+          />
+          <input
+            id="form12"
+            className="items__adder_box--input"
+            type="string"
+            placeholder="item type..."
+            onChange={(event) => {
+              setNewItemType(event.target.value);
+            }}
+          />
 
-            <button onClick={createdrink} className="btn btn-light m-1">
-              {' '}
-              Create item
-            </button>
-          </div>
-        </Row>
+          <button
+            onClick={createdrink}
+            className="items__adder_box--button button"
+          >
+            {' '}
+            Create item
+          </button>
+        </div>
       </div>
     </div>
   );

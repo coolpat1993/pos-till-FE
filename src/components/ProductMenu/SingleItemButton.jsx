@@ -4,7 +4,6 @@ import { collection, addDoc } from 'firebase/firestore';
 import { UserAuth } from '../context/AuthContext';
 import { useContext } from 'react';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
-import { Card, Badge, Button, Container, Row, Col } from 'react-bootstrap';
 
 const SingleItemButton = ({
   name,
@@ -37,21 +36,16 @@ const SingleItemButton = ({
   };
 
   return (
-    <div className="col-3 mb-2 pt-2">
-      <Card
-        className="card-button stretched-link"
-        aria-label="change sort order"
-        id={id}
-        onClick={() => {
-          addDrink();
-        }}
-      >
-        <Card.Title className="d-flex mb-2 justify-content-between">
-          {name}
-        </Card.Title>
-        £{price}
-      </Card>
-    </div>
+    <button
+      className="menu__items_flex--button button-2"
+      id={id}
+      onClick={() => {
+        addDrink();
+      }}
+    >
+      <p> {name}</p>
+      <p>£{price.toFixed(2)}</p>
+    </button>
   );
 };
 

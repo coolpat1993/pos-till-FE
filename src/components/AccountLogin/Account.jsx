@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 const Account = () => {
@@ -14,15 +13,17 @@ const Account = () => {
   };
 
   return (
-    <Container fluid={true}>
-      <div className="popUpContent w-25 text-center">
-        <h1>Account</h1>
-        <p>User Email: {user && user.email}</p>
-        <button className="btn btn-light m-3" onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
-    </Container>
+    <div className="account">
+      <h2 className="heading-2">Account</h2>
+      <p>
+        User Email:
+        <br />
+        {user && user.email}
+      </p>
+      <button className="button" onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
   );
 };
 

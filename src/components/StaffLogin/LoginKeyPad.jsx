@@ -3,7 +3,6 @@ import '../../App.scss';
 import { Navigate } from 'react-router-dom';
 import { StaffContext } from './LoggedInStaff';
 import Keypad from './KeyPad';
-import { Col, Container, Row } from 'react-bootstrap';
 
 function LoginKeypad({ userPasscode, selectedUser }) {
   const { setLoggedInUser } = useContext(StaffContext);
@@ -24,23 +23,16 @@ function LoginKeypad({ userPasscode, selectedUser }) {
   }
 
   return (
-    <div className="container-fluid">
-      <Row>
-        <Col>
-          <Keypad
-            passcodeGuess={passcodeGuess}
-            setPasscodeGuess={setPasscodeGuess}
-          />
-          <Container>
-            <Row>
-              <button className="col-12 btn btn-light" onClick={logIn}>
-                log in
-              </button>
-            </Row>
-          </Container>
-        </Col>
-      </Row>
-    </div>
+    <>
+      <Keypad
+        passcodeGuess={passcodeGuess}
+        setPasscodeGuess={setPasscodeGuess}
+      />
+
+      <button className="stafflogin__keypad--button" onClick={logIn}>
+        Log in
+      </button>
+    </>
   );
 }
 

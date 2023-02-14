@@ -1,5 +1,3 @@
-import { Card } from 'react-bootstrap';
-
 const StaffLoginButton = ({
   username,
   staffPasscode,
@@ -7,21 +5,27 @@ const StaffLoginButton = ({
   setSelectedUser,
 }) => {
   return (
-    <div className="col-3 mb-2 pt-2">
-      <Card
-        className="card-button stretched-link"
-        aria-label="change sort order"
-        id={username}
-        onClick={() => {
-          setPasscode(staffPasscode);
-          setSelectedUser(username);
-        }}
-      >
-        <Card.Title className="d-flex mb-2 justify-content-between">
-          {username}
-        </Card.Title>
-      </Card>
-    </div>
+    // <Card
+    //   className=""
+    //   aria-label="change sort order"
+    //   id={username}
+    //   onClick={() => {
+    //     setPasscode(staffPasscode);
+    //     setSelectedUser(username);
+    //   }}
+    // >
+    //   <Card.Title className="">{username}</Card.Title>
+    // </Card>
+
+    <button
+      className="stafflogin__staff--button button"
+      onClick={() => {
+        setPasscode(staffPasscode);
+        setSelectedUser(username);
+      }}
+    >
+      {username}
+    </button>
   );
 };
 

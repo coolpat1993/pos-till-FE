@@ -11,7 +11,6 @@ import {
 } from 'firebase/firestore';
 import { UserAuth } from './context/AuthContext';
 import Keypad from './StaffLogin/KeyPad';
-import { Card, Container, Row } from 'react-bootstrap';
 
 function CreateUsers() {
   const { user } = UserAuth();
@@ -55,88 +54,70 @@ function CreateUsers() {
   }, [counter, userName]);
 
   return (
-    <div className="">
-      <Container>
-        <Row>
-          <div className="col-8"> </div>
-          <div className="col-4">
-            <h2 className="m-3">Enter password below</h2>
-          </div>
-        </Row>
-      </Container>
+    <div className="createuser">
+      <div className="createuser__staff">
+        <div className="createuser__staff--flex">
+          {users.map((users) => {
+            return (
+              <div key={users.name}>
+                <p>Name: {users.name}</p>
+                <p> level: {`${users.level}`}</p>
 
-      <div className="menu">
-        <Container fluid={true}>
-          <Row>
-            <div className="col-7 products">
-              <Container>
-                <Row>
-                  {users.map((users) => {
-                    return (
-                      <div className="col-3 mb-2 pt-2" key={users.id}>
-                        <Card className="user-item">
-                          {' '}
-                          <Card.Title className="m-1">
-                            Name: {users.name}
-                          </Card.Title>
-                          <Card.Body className="p-1">
-                            level: {`${users.level}`}
-                          </Card.Body>
-                          <button
-                            className="btn btn-light m-1"
-                            onClick={() => {
-                              updateusers(users.id, users.level);
-                            }}
-                          >
-                            {' '}
-                            Increase level
-                          </button>
-                          <button
-                            className="btn btn-light m-1"
-                            onClick={() => {
-                              deleteusers(users.id);
-                            }}
-                          >
-                            {' '}
-                            Delete users
-                          </button>
-                        </Card>
-                      </div>
-                    );
-                  })}
-                </Row>
-              </Container>
-            </div>
-            <div className="col-4">
-              <Keypad
-                passcodeGuess={newPasscode}
-                setPasscodeGuess={setNewPasscode}
-              />
-              <input
-                type="number"
-                placeholder="level..."
-                onChange={(event) => {
-                  setNewlevel(event.target.value);
-                }}
-              />
+                <button
+                  className="btn btn-light m-1"
+                  onClick={() => {
+                    updateusers(users.id, users.level);
+                  }}
+                >
+                  {' '}
+                  Increase level
+                </button>
+                <button
+                  className="btn btn-light m-1"
+                  onClick={() => {
+                    deleteusers(users.id);
+                  }}
+                >
+                  Delete users
+                </button>
+              </div>
+            );
+          })}
+        </div>
 
-              <h2 className="">Create new user</h2>
-              <input
-                type="text"
-                id="form12"
-                className="form-control"
-                placeholder="Name..."
-                onChange={(event) => {
-                  setNewName(event.target.value);
-                }}
-              />
-              <button className="m-1" onClick={createusers}>
-                {' '}
-                Create users
-              </button>
-            </div>
-          </Row>
-        </Container>
+        <div className="createuser__staff--button"></div>
+      </div>
+
+      <div className="createuser__keypad">
+        <div className="createuser__keypad--numbers">
+          <Keypad
+            passcodeGuess={newPasscode}
+            setPasscodeGuess={setNewPasscode}
+          />
+        </div>
+
+        <input
+          type="number"
+          placeholder="level..."
+          onChange={(event) => {
+            setNewlevel(event.target.value);
+          }}
+        />
+
+        <p className="">Create new user</p>
+        <input
+          type="text"
+          id="form12"
+          className="form-control"
+          placeholder="Name..."
+          onChange={(event) => {
+            setNewName(event.target.value);
+          }}
+        />
+        <button className="" onClick={createusers}>
+          {' '}
+          Create users
+        </button>
       </div>
     </div>
   );

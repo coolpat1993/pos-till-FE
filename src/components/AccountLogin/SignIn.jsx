@@ -20,32 +20,30 @@ const SignIn = () => {
   };
 
   return (
-    <div className="col-4">
-      <div className="m-3">
-        <h1>Sign in to your account</h1>
-        <p>
-          Don't have an account yet? <Link to="/signup"> Sign up</Link>
-        </p>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="m-3">
+    <div className="signin">
+      <div>
+        <div className="signin__text">
+          <h2 className="heading-2">Sign in to your account</h2>
+          <p className="signin__text--p">
+            Don't have an account yet? <Link to="/signup"> Sign up</Link>
+          </p>
+        </div>
+        <form className="signin__form" onSubmit={handleSubmit}>
           <label>Email Address</label>
           <input
-            className=" order-box"
+            className="signin__form--box"
             onChange={(e) => setEmail(e.target.value)}
             type="email"
           />
-        </div>
-        <div className="m-3">
           <label>Password</label>
           <input
-            className="vw-25 order-box "
+            className="signin__form--box"
             onChange={(e) => setPassword(e.target.value)}
             type="password"
           />
-        </div>
-        <button className="m-3 btn btn-light">Sign in</button>
-      </form>
+          <button className="button">Sign in</button>
+        </form>
+      </div>
     </div>
   );
 };
