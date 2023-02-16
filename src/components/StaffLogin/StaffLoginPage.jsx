@@ -7,7 +7,6 @@ import LoginKeypad from './LoginKeyPad';
 import { UserAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { PopUpContext } from '../ChangePopUp/changePopUp';
-import { Card } from 'react-bootstrap';
 
 function StaffLoginPage() {
   const { popUpOpen } = useContext(PopUpContext);
@@ -58,20 +57,20 @@ function StaffLoginPage() {
         <LoginKeypad userPasscode={passcode} selectedUser={selectedUser} />
       </div>
       <div className="stafflogin__staff">
-        {isLoading ? <h2 className="">Loading...</h2> : null}
-        {users.length < 1 && !isLoading ? (
-          <div className="">
-            <Card
-              className=""
-              onClick={() => {
-                navigate('/CreateUsers');
-              }}
-            >
-              <Card.Title className="">Create User</Card.Title>
-            </Card>
-          </div>
-        ) : null}
         <div className="stafflogin__staff_flex">
+          {isLoading ? <h3 className="">Loading...</h3> : null}
+          {users.length < 1 && !isLoading ? (
+            <div className="">
+              <button
+                className="button u-margin-top-medium"
+                onClick={() => {
+                  navigate('/CreateUsers');
+                }}
+              >
+                Create User
+              </button>
+            </div>
+          ) : null}
           {users.map((users) => {
             return (
               <StaffLoginButton
@@ -80,6 +79,7 @@ function StaffLoginPage() {
                 staffPasscode={users.staffPasscode}
                 setPasscode={setPasscode}
                 setSelectedUser={setSelectedUser}
+                selectedUser={selectedUser}
               />
             );
           })}

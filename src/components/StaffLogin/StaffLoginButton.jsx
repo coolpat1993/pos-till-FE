@@ -3,22 +3,15 @@ const StaffLoginButton = ({
   staffPasscode,
   setPasscode,
   setSelectedUser,
+  selectedUser,
 }) => {
   return (
-    // <Card
-    //   className=""
-    //   aria-label="change sort order"
-    //   id={username}
-    //   onClick={() => {
-    //     setPasscode(staffPasscode);
-    //     setSelectedUser(username);
-    //   }}
-    // >
-    //   <Card.Title className="">{username}</Card.Title>
-    // </Card>
-
     <button
-      className="stafflogin__staff--button button"
+      className={
+        selectedUser === username
+          ? 'stafflogin__staff--button-focus button'
+          : 'stafflogin__staff--button button'
+      }
       onClick={() => {
         setPasscode(staffPasscode);
         setSelectedUser(username);

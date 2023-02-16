@@ -18,7 +18,6 @@ function Items() {
   const [newprice, setNewprice] = useState(0);
   const [newItemType, setNewItemType] = useState('');
   const [counter, setNewCounter] = useState(0);
-
   const [drinks, setdrinks] = useState([]);
 
   const createdrink = async () => {
@@ -47,8 +46,8 @@ function Items() {
   }, [counter, userName]);
 
   return (
-    <div class="items">
-      <div class="items__products">
+    <div className="items">
+      <div className="items__products">
         {drinks.map((drink) => {
           return (
             <div className="items__products_card">
@@ -71,7 +70,7 @@ function Items() {
           );
         })}
       </div>
-      <div class="items__adder">
+      <div className="items__adder">
         <div className="items__adder_box">
           <input
             type="text"

@@ -50,29 +50,27 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
   };
 
   return (
-    <div className="">
-      <Container>
-        <div className="">
-          <h4>Total to pay: £{trueTotal}</h4>
-        </div>
-      </Container>
-      <br></br>
-      <PaymentKeypad
-        setTotalAmount={setTotalAmount}
-        totalAmount={totalAmount}
-        tempTotal={tempTotal}
-        setTempTotal={setTempTotal}
-      />
-      <Container>
+    <div className="checkout__numpad">
+      <div className="">
+        <h4>Total to pay: £{trueTotal}</h4>
+      </div>
+      <div className="checkout__numpad_keypad">
+        <PaymentKeypad
+          setTotalAmount={setTotalAmount}
+          totalAmount={totalAmount}
+          tempTotal={tempTotal}
+          setTempTotal={setTempTotal}
+        />
+
         <button
-          className=""
+          className="checkout__numpad--pay button"
           onClick={() => {
             calcAmountPaid();
           }}
         >
           Pay
         </button>
-      </Container>
+      </div>
     </div>
   );
 };

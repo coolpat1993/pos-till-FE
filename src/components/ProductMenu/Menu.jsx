@@ -36,7 +36,7 @@ function ProductMenu() {
   }
   return (
     <div className="menu">
-      <div class="menu__navigation">
+      <div className="menu__navigation">
         <button
           className={
             currMenu === 'products'
@@ -90,7 +90,7 @@ function ProductMenu() {
           <p>Please select a table</p>
         )}
       </div>
-      <div class="menu__items">
+      <div className="menu__items">
         <div className="menu__items_flex">
           {currMenu === 'checkOut' ? (
             <CheckoutPage
@@ -134,7 +134,7 @@ function ProductMenu() {
           ) : null}
         </div>
       </div>
-      <div class="menu__basket">
+      <div className="menu__basket">
         <MenuBasket
           setNewCounter={setNewCounter}
           key="menubasket"

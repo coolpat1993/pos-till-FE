@@ -42,6 +42,11 @@ const SignIn = () => {
             type="password"
           />
           <button className="button">Sign in</button>
+          <p className="signin__text u-margin-top-small">
+            Use these login details to test <br />
+            Email: ncdemo@demo.com <br />
+            Password: password
+          </p>
         </form>
       </div>
     </div>

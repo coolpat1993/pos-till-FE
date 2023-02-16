@@ -56,29 +56,34 @@ function CreateUsers() {
   return (
     <div className="createuser">
       <div className="createuser__staff">
-        <div className="createuser__staff--flex">
+        <div className="createuser__staff_flex">
           {users.map((users) => {
             return (
-              <div key={users.name}>
-                <p>Name: {users.name}</p>
-                <p> level: {`${users.level}`}</p>
+              <div className="createuser__staff_flex_item" key={users.name}>
+                <p className="createuser__staff_flex_item--text">
+                  {users.name}
+                </p>
+                {/* <p className="createuser__staff_flex_item--text">
+                  {' '}
+                  level: {`${users.level}`}
+                </p> */}
 
-                <button
-                  className="btn btn-light m-1"
+                {/* <button
+                  className="button-2 createuser__staff_flex_item--button"
                   onClick={() => {
                     updateusers(users.id, users.level);
                   }}
                 >
                   {' '}
                   Increase level
-                </button>
+                </button> */}
                 <button
-                  className="btn btn-light m-1"
+                  className="button-2 createuser__staff_flex_item--button"
                   onClick={() => {
                     deleteusers(users.id);
                   }}
                 >
-                  Delete users
+                  Delete user
                 </button>
               </div>
             );
@@ -89,32 +94,32 @@ function CreateUsers() {
       </div>
 
       <div className="createuser__keypad">
-        <div className="createuser__keypad--numbers">
-          <Keypad
-            passcodeGuess={newPasscode}
-            setPasscodeGuess={setNewPasscode}
-          />
-        </div>
-
-        <input
+        <Keypad passcodeGuess={newPasscode} setPasscodeGuess={setNewPasscode} />
+      </div>
+      <div className="createuser__add">
+        {/* <input
+          className="createuser__add--input"
           type="number"
           placeholder="level..."
           onChange={(event) => {
             setNewlevel(event.target.value);
           }}
-        />
+        /> */}
 
-        <p className="">Create new user</p>
+        <p className="createuser__add--text">Create new user</p>
         <input
           type="text"
           id="form12"
-          className="form-control"
+          className="createuser__add--input"
           placeholder="Name..."
           onChange={(event) => {
             setNewName(event.target.value);
           }}
         />
-        <button className="" onClick={createusers}>
+        <button
+          className="button-2 createuser__add--button"
+          onClick={createusers}
+        >
           {' '}
           Create users
         </button>
