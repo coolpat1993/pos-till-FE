@@ -1,6 +1,4 @@
-import React, { useContext } from 'react';
-import { NavDropdown } from 'react-bootstrap';
-import Dropdown from 'react-bootstrap/Dropdown';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
@@ -11,6 +9,11 @@ const Header = () => {
   const { user } = UserAuth();
   const { loggedInUser } = useContext(StaffContext);
   const { setLoggedInUser } = useContext(StaffContext);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   let staffUsername = loggedInUser.username;
 
@@ -47,20 +50,30 @@ const Header = () => {
         ) : null}
       </div>
       <div className="header__item header__item--4">
-        <NavDropdown id="dropdown-basic-button" title="Menu">
-          <Dropdown.Item className="header__dropdown" href="/account">
-            Account settings
-          </Dropdown.Item>
-          <Dropdown.Item className="header__dropdown" href="/CreateUsers">
-            Create user
-          </Dropdown.Item>
-          <Dropdown.Item className="header__dropdown" href="/items">
-            Add items
-          </Dropdown.Item>
-          <Dropdown.Item className="header__dropdown" href="/tablePlan">
-            Table Plan
-          </Dropdown.Item>
-        </NavDropdown>
+        <div className="header__dropdown">
+          <button
+            className="button header__dropdown--dropbtn "
+            onClick={toggleMenu}
+          >
+            Menu
+          </button>
+          {menuOpen && (
+            <div className="header__dropdown-content">
+              <Link className="header__dropdown--link" to="/account">
+                Account settings
+              </Link>
+              <Link className="header__dropdown--link" to="/CreateUsers">
+                Create user
+              </Link>
+              <Link className="header__dropdown--link" to="/items">
+                Add items
+              </Link>
+              <Link className="header__dropdown--link" to="/tablePlan">
+                Table Plan
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

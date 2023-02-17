@@ -47,8 +47,15 @@ const SignIn = () => {
             Email: ncdemo@demo.com <br />
             Password: password
           </p>
+          {error === 'Firebase: Error (auth/user-not-found).' && (
+            <p className="u-margin-top-small">Email address not found</p>
+          )}
+          {error === 'Firebase: Error (auth/wrong-password).' && (
+            <p>Incorrect password</p>
+          )}
         </form>
       </div>
+      {console.log(error)}
     </div>
   );
 };

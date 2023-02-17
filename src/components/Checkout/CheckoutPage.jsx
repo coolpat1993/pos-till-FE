@@ -1,6 +1,5 @@
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { useContext, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase-config';
 import { PopUpContext } from '../ChangePopUp/changePopUp';
@@ -52,7 +51,7 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
   return (
     <div className="checkout__numpad">
       <div className="">
-        <h4>Total to pay: £{trueTotal}</h4>
+        <p className="checkout__numpad--text">Total to pay: £{trueTotal}</p>
       </div>
       <div className="checkout__numpad_keypad">
         <PaymentKeypad

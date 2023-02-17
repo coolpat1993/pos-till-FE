@@ -55,17 +55,23 @@ const SignUp = () => {
             />
 
             <button
-              className="btn btn-light"
+              className="button"
               disabled={password !== confirmedPass || password.length === 0}
             >
               Sign Up
             </button>
+            {error === 'Firebase: Error (auth/email-already-in-use).' ? (
+              <p className="u-margin-top-small">
+                Email address already in use.
+              </p>
+            ) : null}
           </form>
         </div>
       </div>
       {password !== confirmedPass && (
         <p className="signin__error">Passwords do not match</p>
       )}
+      {console.log(error)}
     </div>
   );
 };

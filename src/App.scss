@@ -1,6 +1,36 @@
-// @import "../node_modules/bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+// MEDIA QUERY MANAGER
+/*
+0-600px:        Phone
+600-900px:      Tablet portrait
+900-1200px:     Tablet landscape
+1200-1800px:    Normal styles
+1800px+:        Big desktop
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+    $breakpoint argument choices:
+    - phone
+    - tab-port
+    - tab-land
+    - big-desktop
+
+
+ORDER: Base + typograpy > general layout > page layout > components
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+      @media only screen and (max-width: 37.5em) { @content }; //600px
+  }
+  @if $breakpoint == tab-port {
+      @media only screen and (max-width: 56.25em) { @content }; //900px
+  }
+  @if $breakpoint == tab-land {
+      @media only screen and (max-width: 75em) { @content }; //1200px
+  }
+  @if $breakpoint == big-desktop {
+      @media only screen and (min-width: 112.5em) { @content }; //1800px
+  }
+}
 
 
 
@@ -13,12 +43,25 @@
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
   line-height: 1.7; 
   height: 100%; 
   -ms-overflow-style: none; 
   scrollbar-width: none; 
+  font-size: 100%;
+
+  @include respond(tab-land) { // width < 900
+      font-size: 80%; //1rem = 9px, 9/26 = 56.25%
+  }
+
+  @include respond(tab-port) { // width < 600
+      font-size: 75%;  //1rem = px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) {
+      font-size: 110%;  //1rem = 12, 12/16 = 75%
+  }
 }
 
 // COLOR VARIABLES
@@ -66,8 +109,7 @@ $bp-small: 37.5em;    // 600px;
 .heading-2 {
   font-size: 2.5rem;
   line-height: 1;
-
-  
+  font-weight: 500;
 }
 
 .heading-3 {
@@ -141,9 +183,19 @@ $bp-small: 37.5em;    // 600px;
   height: 4.5rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+  @include respond(phone){
+    grid-template-columns: repeat(3, 1fr);
+    height: 3rem;
+  }
+
   &__logo {
     width: 10rem;
     height: 4rem;
+
+    @include respond(phone){
+      width: 6.5rem;
+      height: 3rem;
+    }
   }
 
   &__text {
@@ -156,7 +208,57 @@ $bp-small: 37.5em;    // 600px;
 
   &__dropdown {
     font-size: 1rem;
+    position: relative;
+    display: inline-block;
+
+    &--dropbtn {
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1.2rem;
+
+      @include respond(phone){
+        padding: .4rem;
+        border-radius: 4px;
+        margin-right: -1.5rem;
+        font-weight: 500;
+      }
+      }
+
+    &-content {
+    display: block;
+    position: absolute;
+    transform: translate(-50%, 1%);
+    line-height: 2.2;
+    z-index: 1;
+    background-color: #fff;
+    padding: .2rem;
+    border-radius: 10px;
+    }
+
+
+    &--link {
+      color: black;
+      text-decoration: none;
+      display: block;
+      width: 9rem;
+      font-weight: 500;
+      margin-left: 5px;
+
+      @include respond(phone){
+        font-weight: 400;
+      }
+
+  
+    &:hover {
+      background-color: $color-grey-light-1;
+      }
+    }
   }
+ 
 
   &__item {
     max-height: 4.5rem;
@@ -165,14 +267,26 @@ $bp-small: 37.5em;    // 600px;
     align-items: center;
     &--1 {
       grid-column: 1;
+      @include respond(phone){
+        grid-column: 1;
+        display: flex;
+        justify-content: start;
+      }
     }
 
     &--2 {
       grid-column: 3;
+      
+      @include respond(phone){
+        display: none;
+      }
     }
 
     &--3 {
       grid-column: 6;
+      @include respond(phone){
+        grid-column: 2;
+      }
     }
 
     &--4 {
@@ -180,9 +294,14 @@ $bp-small: 37.5em;    // 600px;
       grid-column: 8;
       justify-content: flex-end;
       margin-right: 2rem;
+      @include respond(phone){
+        grid-column: 3;
+      }
     }
   }
 }
+
+
 
 // SIGN IN / SIGN UP
 .signin {
@@ -193,13 +312,17 @@ $bp-small: 37.5em;    // 600px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -65%);
+  
+  @include respond(phone) {
+    top: 55%;
+  }
 
   &__text {
     text-align: center;
 
     &--p {
-      margin-top: 2rem;
+      margin-top: 1rem;
       margin-bottom: 2rem;
     }
   }
@@ -215,7 +338,8 @@ $bp-small: 37.5em;    // 600px;
       width: 80%;
       margin-bottom: 10px;
       font-family: inherit;
-      padding: 0.25em 0.5em;
+      padding: 0.5rem 0.5rem;
+      font-size: 1rem;
       background-color: #fff;
       border: 2px solid $color-primary;
       border-radius: 4px;
@@ -238,13 +362,15 @@ $bp-small: 37.5em;    // 600px;
 // ACCOUNT PAGE
 .account {
   position: absolute;
-  top: 35%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 1rem;
+
 }
 
 
@@ -257,7 +383,7 @@ $bp-small: 37.5em;    // 600px;
     grid-template-rows: 0.5fr 1fr 0.9fr 0.9fr 0.6fr 0.9fr 0.3fr;
     gap: 0px 0px;
     margin: 0.5rem 2rem;
-    height: 85vh;
+    height: 90vh;
     grid-auto-flow: row;
     grid-template-areas:
     ". . . . . . ."
@@ -267,6 +393,27 @@ $bp-small: 37.5em;    // 600px;
     "staff staff staff staff . keypad keypad"
     "staff staff staff staff .  . . ";
 
+
+    @include respond(tab-port){
+      grid-template-columns: 1fr 1fr  0.3fr 1fr 1fr;
+      grid-template-areas:
+    ". . . . ."
+    "staff staff  . keypad keypad"
+    "staff staff  . keypad keypad"
+    "staff staff  . keypad keypad"
+    "staff staff . keypad keypad"
+    "staff staff  . add add";
+    }
+
+    @include respond(phone){
+      grid-template-columns: 1fr;
+      grid-template-rows: 35% 65% ;
+      margin: 0.5rem .5rem 1rem .5rem;
+      gap: 1rem;
+      grid-template-areas:
+    "staff"
+    "keypad"
+    }
 
     &__keypad { 
       grid-area: keypad; 
@@ -340,12 +487,12 @@ $bp-small: 37.5em;    // 600px;
 
 // CREATE USER
 .createuser {  
-  display: grid;
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 0.3fr 1fr 1fr;
     grid-template-rows: 0.5fr 1fr 0.9fr 0.9fr 0.6fr 0.9fr 0.3fr;
     gap: 0px 0px;
     margin: 0.5rem 2rem;
-    height: 85vh;
+    height: 90vh;
     grid-auto-flow: row;
     grid-template-areas:
     ". . . . . . ."
@@ -354,6 +501,29 @@ $bp-small: 37.5em;    // 600px;
     "staff staff staff staff . keypad keypad"
     "staff staff staff staff . keypad keypad"
     "staff staff staff staff . add add";
+
+
+    @include respond(tab-port){
+      grid-template-columns: 1fr 1fr  0.3fr 1fr 1fr;
+      grid-template-areas:
+    ". . . . ."
+    "staff staff  . keypad keypad"
+    "staff staff  . keypad keypad"
+    "staff staff  . keypad keypad"
+    "staff staff . keypad keypad"
+    "staff staff  . add add";
+    }
+
+    @include respond(phone){
+      grid-template-columns: 1fr;
+      grid-template-rows: 30% 50% 20%;
+      margin: 0.5rem .5rem 1rem .5rem;
+      gap: 1rem;
+      grid-template-areas:
+    "staff"
+    "keypad"
+    "add";
+    }
 
 
     &__keypad { 
@@ -542,7 +712,7 @@ $bp-small: 37.5em;    // 600px;
     grid-template-rows: 0.5fr 1fr 0.9fr 0.9fr 0.6fr 0.9fr 0.3fr;
     gap: 0px 0px;
     margin: 0.5rem 2rem;
-    height: 85vh;
+    height: 90vh;
     grid-auto-flow: row;
     grid-template-areas:
       "navigation navigation navigation navigation . viewing viewing"
@@ -552,6 +722,34 @@ $bp-small: 37.5em;    // 600px;
       "items items items items . basket basket"
       "items items items items . basket basket"
       ;
+
+    @include respond(tab-port){
+      grid-template-columns: 1fr 1fr 0.2fr 1fr 1fr;
+      margin: .5rem 1rem;
+      grid-template-areas:
+      "navigation navigation navigation viewing viewing"
+      "items items  . basket basket"
+      "items items  . basket basket"
+      "items items  . basket basket"
+      "items items  . basket basket"
+      "items items  . basket basket"
+      ;
+    }
+
+    @include respond(phone){
+      display: grid; 
+      grid-auto-columns: 1fr; 
+      grid-auto-rows: 1fr; 
+      height: 150vh;
+      grid-template-columns: 1fr;
+      grid-template-rows: 5% 45% 5% 45%;
+      gap: 0px 0px; 
+      grid-template-areas:
+      "navigation"
+      "items"
+      "viewing"
+      "basket";
+    }
 
   &__items::-webkit-scrollbar {
         display: none;
@@ -578,7 +776,18 @@ $bp-small: 37.5em;    // 600px;
       gap: 1.5rem;
       margin: 1.5rem;
       justify-content: center;
-        align-items: flex-start;
+      align-items: flex-start;
+
+      @include respond(tab-port){
+        margin: 1rem .5rem 0 .5rem;
+      }
+
+
+      @include respond(phone){
+        gap: .5rem;
+        margin: .5rem;
+        justify-content: space-evenly;
+      }
      
 
       &--button {
@@ -587,7 +796,15 @@ $bp-small: 37.5em;    // 600px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-top: 1rem;
+        line-height: 1.7;
+        padding: .5rem 0 .5rem 0;
+
+        @include respond(tab-port){
+          width: 7rem;
+          font-size: 0.8rem;
+          
+        }
+
       }
     }
 
@@ -614,11 +831,24 @@ $bp-small: 37.5em;    // 600px;
         display: flex;
         flex-direction: column;
         text-align: center;
+        border-top: 1px solid #3a4149;
+
         
+        &--text{
+          font-size: 2.5rem;
+          font-weight: 500;
+          
+          @include respond(tab-port){
+            font-size: 2rem;
+          }
+
+        }
         
         &--button {      
           width: 95%;
-          margin: .2rem auto;
+          margin: .5rem auto;
+          margin-bottom: .2rem;
+          margin-top: 0;
         }
       }
     }
@@ -640,7 +870,7 @@ $bp-small: 37.5em;    // 600px;
           display: grid; 
           grid-auto-columns: 1fr; 
           grid-auto-rows: 1fr; 
-          grid-template-columns: 1fr 2.5fr 1fr 5rem; 
+          grid-template-columns: 1fr 2.5fr 1fr 4rem; 
           grid-template-rows: 1fr; 
           height: 4rem;
           margin: .3rem;
@@ -651,6 +881,9 @@ $bp-small: 37.5em;    // 600px;
           grid-template-areas: 
           "name . quantity price"; 
         
+          @include respond(tab-port){
+            grid-template-columns: 1fr 2.5fr 1fr 3rem;
+          }
 
         &--text {
           grid-area: name;
@@ -683,6 +916,7 @@ $bp-small: 37.5em;    // 600px;
           gap: .5rem;
           justify-content: flex-end;
           align-items: center;
+
        }
 
       }
@@ -695,15 +929,37 @@ $bp-small: 37.5em;    // 600px;
     display: flex; 
     align-items: center;
     gap: 1rem 1rem;
+    margin: .3rem 0 .5rem 0;
+    
+    @include respond(tab-port){
+      gap: 0.5rem
+    }
+
+    
     
     
     
     &-button {
-      
+      @include respond(tab-port){
+        font-size: 0.8rem;
+        padding: 1rem;
+        margin: 0 0 0 0;
+      }
+
+      @include respond(phone){
+        padding: .6rem 1rem .6rem 1rem;
+      }
 
       &--focus {
         background: $color-primary-light;
         color: white;
+        @include respond(tab-port){
+          font-size: 0.8rem;
+          padding: 1rem;
+        }
+        @include respond(phone){
+          padding: .6rem 1rem .6rem 1rem;
+        }
       }
     }
 
@@ -716,7 +972,7 @@ $bp-small: 37.5em;    // 600px;
     align-items: center;
     font-size: 1.5rem;
     max-height: 10vh;
-    font-weight: 500;
+    font-weight: 400;
   }
   
 }
@@ -730,13 +986,31 @@ $bp-small: 37.5em;    // 600px;
   align-items: center;
   justify-content: center;
 
+  @include respond(phone){
+    margin-top: 6rem;
+  }
+
+  &--text {
+    font-size: 2rem;
+    font-weight: 500;
+
+    @include respond(tab-port){
+      font-size: 1.5rem;
+    }
+  }
+
   &_keypad {
-    width: 20rem;
+   width: 50%;
+    display: flex;
+    flex-direction: column;
+    @include respond(tab-port){
+      width: 100%;
+    }
   }
 
   &--pay {
-    width: 95%;
-    margin: 0 .5rem 0 .5rem;
+    margin:  0 .5rem 0 .5rem;
+    
     border-radius: 10px;
   }
 }
@@ -749,7 +1023,7 @@ $bp-small: 37.5em;    // 600px;
     grid-template-rows: 0.5fr 1fr 0.9fr 0.9fr 0.6fr 0.9fr 0.3fr;
     gap: 0px 0px;
     margin: 0.5rem 2rem;
-    height: 85vh;
+    height: 90vh;
     grid-auto-flow: row;
     grid-template-areas:
     ". . . . . . ."
@@ -759,7 +1033,29 @@ $bp-small: 37.5em;    // 600px;
     "products products products products . . ."
     "products products products products .  . . ";
 
-   
+    @include respond(tab-port){
+      grid-template-columns: 1fr 1fr 1fr 0.1fr .5fr 1fr;
+      grid-template-areas:
+    ". . . . . ."
+    "products products products . adder adder"
+    "products products products . adder adder"
+    "products products products . . ."
+    "products products products . . ."
+    "products products products . . .";
+    }
+
+    @include respond(phone){
+      grid-template-columns: 1fr;
+      grid-template-rows: 70% 30%;
+      margin: 1rem .5rem 1rem .5rem;
+      gap: 1rem;
+      grid-template-areas:
+    "products"
+    "adder";
+    }
+
+
+
     &__products::-webkit-scrollbar {
       display: none;
     }
@@ -861,20 +1157,29 @@ $bp-small: 37.5em;    // 600px;
     align-items: center; 
     height: 80%;
     width: 80%;
-    border-radius: 3px;
+    border-radius: 15px;
     background-color: #fff;
     box-shadow: 0 2rem 4rem rgba(black, 0.2); 
     transform: translate(-50%, -50%) scale(0.5);
     transition: all .4s;
     justify-content: center;
     gap: 5rem;
-    font-size: 5rem;
-    
+    font-size: 3.5rem;
+
+    @include respond(tab-port){
+      width: 170%;
+      height: 60%;
+      font-size: 3rem;
+    }
     
     &--button {
-      font-size: 4rem;
+      font-size: 2.5rem;
       padding: 2rem;
       border-radius: 1rem;
+
+      @include respond(tab-port){
+        font-size: 2rem;
+      }
     }
 
 

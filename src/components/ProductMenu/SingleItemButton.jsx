@@ -1,5 +1,4 @@
 import { db } from '../../firebase-config';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { collection, addDoc } from 'firebase/firestore';
 import { UserAuth } from '../context/AuthContext';
 import { useContext } from 'react';

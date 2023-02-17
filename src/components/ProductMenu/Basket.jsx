@@ -83,7 +83,7 @@ function MenuBasket({
                 >
                   -
                 </button>
-                <p className="u-margin-top-small">{item.quantity}</p>
+                <p>{item.quantity}</p>
                 <button
                   className="button-2"
                   onClick={() => {

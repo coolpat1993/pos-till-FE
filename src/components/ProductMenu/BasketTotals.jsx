@@ -13,7 +13,7 @@ const BasketTotals = ({ items, setBasketTotal, basketTotal }) => {
 
   return (
     <div>
-      <p className="heading-2 u-margin-top-small">£{sum.toFixed(2)}</p>
+      <p className="menu__basket_content_pay--text">£{sum.toFixed(2)}</p>
     </div>
   );
 };
