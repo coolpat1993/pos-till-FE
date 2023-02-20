@@ -1,6 +1,4 @@
-import React, { useContext } from 'react';
-import { NavDropdown } from 'react-bootstrap';
-import Dropdown from 'react-bootstrap/Dropdown';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
@@ -11,6 +9,11 @@ const Header = () => {
   const { user } = UserAuth();
   const { loggedInUser } = useContext(StaffContext);
   const { setLoggedInUser } = useContext(StaffContext);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   let staffUsername = loggedInUser.username;
 
@@ -19,32 +22,58 @@ const Header = () => {
   };
 
   return (
-    <nav className="topbar navbar navbar-expand-lg navbar-light">
-      <div className="container-fluid">
-        <img className="topbar-img" src={Logo}></img>
-
-        {user ? (
-          <span className="navbar-text">Logged in as {user?.email}</span>
+    <nav className="header">
+      <div className="header__item header__item--1">
+        <img className="header__logo" alt="header logo" src={Logo}></img>
+      </div>
+      <div className="header__item header__item--2">
+        {console.log(loggedInUser, '<< user')}
+        {loggedInUser ? (
+          <span className="header__text">Employee: {staffUsername}</span>
         ) : null}
-        <span className="navbar-text">Employee: {staffUsername}</span>
-
-        <Link
-          className="staff-login-nav"
-          id="dropdown-basic-button"
-          to="/staffLogin"
-          onClick={() => {
-            staffLogIn();
-          }}
-        >
-          <img className="topbar-img" src={Login}></img>
-        </Link>
-
-        <NavDropdown id="dropdown-basic-button" title="Menu">
-          <Dropdown.Item href="/account">Account settings</Dropdown.Item>
-          <Dropdown.Item href="/CreateUsers">Create user</Dropdown.Item>
-          <Dropdown.Item href="/items">Add items</Dropdown.Item>
-          <Dropdown.Item href="/tablePlan">Table Plan</Dropdown.Item>
-        </NavDropdown>
+      </div>
+      <div className="header__item header__item--3">
+        {user ? (
+          <Link
+            id="dropdown-basic-button"
+            to="/staffLogin"
+            onClick={() => {
+              staffLogIn();
+            }}
+          >
+            <img
+              className="header__staff-img"
+              alt="Staff login"
+              src={Login}
+            ></img>
+          </Link>
+        ) : null}
+      </div>
+      <div className="header__item header__item--4">
+        <div className="header__dropdown">
+          <button
+            className="button header__dropdown--dropbtn "
+            onClick={toggleMenu}
+          >
+            Menu
+          </button>
+          {menuOpen && (
+            <div className="header__dropdown-content">
+              <Link className="header__dropdown--link" to="/account">
+                Account settings
+              </Link>
+              <Link className="header__dropdown--link" to="/CreateUsers">
+                Create user
+              </Link>
+              <Link className="header__dropdown--link" to="/items">
+                Add items
+              </Link>
+              <Link className="header__dropdown--link" to="/tablePlan">
+                Table Plan
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

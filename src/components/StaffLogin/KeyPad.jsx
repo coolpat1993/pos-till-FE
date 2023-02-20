@@ -1,6 +1,6 @@
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
+const Keypad = ({ passcodeGuess, setPasscodeGuess, badPass }) => {
   const handleEvent = (number) => {
     if (passcodeGuess.length >= 4) {
       return null;
@@ -17,13 +17,21 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
   };
   return (
     <>
-      <div className="pass-box">{passcodeGuess}</div>
-      <div className="grid-container">
+      <div className="passcode">
+        {(passcodeGuess === '') & (badPass === false) ? (
+          <p>Enter passcode below</p>
+        ) : badPass === true ? (
+          <p>Wrong passcode</p>
+        ) : (
+          <p>{passcodeGuess}</p>
+        )}
+      </div>
+      <div className="numpad">
         {numbers.map((number) => {
           return (
             <div key={number}>
               <button
-                className="grid-items-button"
+                className="numpad__button"
                 onClick={() => {
                   handleEvent(number);
                 }}
@@ -35,7 +43,7 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
         })}
         <div>
           <button
-            className="grid-items-button"
+            className="numpad__button"
             onClick={() => {
               handleBackSpace();
             }}
@@ -45,7 +53,7 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
         </div>
         <div>
           <button
-            className="grid-items-button"
+            className="numpad__button"
             onClick={() => {
               handleEvent(0);
             }}
@@ -55,7 +63,7 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess }) => {
         </div>
         <div>
           <button
-            className="grid-items-button"
+            className="numpad__button"
             onClick={() => {
               handleClear();
             }}

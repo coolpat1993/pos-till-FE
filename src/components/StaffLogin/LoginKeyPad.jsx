@@ -3,12 +3,12 @@ import '../../App.scss';
 import { Navigate } from 'react-router-dom';
 import { StaffContext } from './LoggedInStaff';
 import Keypad from './KeyPad';
-import { Col, Container, Row } from 'react-bootstrap';
 
 function LoginKeypad({ userPasscode, selectedUser }) {
   const { setLoggedInUser } = useContext(StaffContext);
   const [passcodeGuess, setPasscodeGuess] = useState('');
   const [success, setSuccess] = useState(false);
+  const [badPass, setBadPass] = useState(false);
 
   const logIn = () => {
     if (+passcodeGuess === +userPasscode) {
@@ -17,6 +17,10 @@ function LoginKeypad({ userPasscode, selectedUser }) {
       setSuccess(true);
     } else {
     }
+    setBadPass(true);
+    setTimeout(() => {
+      setBadPass(false);
+    }, 1000);
   };
 
   if (success) {
@@ -24,23 +28,17 @@ function LoginKeypad({ userPasscode, selectedUser }) {
   }
 
   return (
-    <div className="container-fluid">
-      <Row>
-        <Col>
-          <Keypad
-            passcodeGuess={passcodeGuess}
-            setPasscodeGuess={setPasscodeGuess}
-          />
-          <Container>
-            <Row>
-              <button className="col-12 btn btn-light" onClick={logIn}>
-                log in
-              </button>
-            </Row>
-          </Container>
-        </Col>
-      </Row>
-    </div>
+    <>
+      <Keypad
+        passcodeGuess={passcodeGuess}
+        setPasscodeGuess={setPasscodeGuess}
+        badPass={badPass}
+      />
+
+      <button className="stafflogin__keypad--button" onClick={logIn}>
+        Log in
+      </button>
+    </>
   );
 }
 

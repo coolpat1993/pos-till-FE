@@ -23,48 +23,55 @@ const SignUp = () => {
   };
 
   return (
-    <div className="col-4">
-      <div className="m-3">
-        <h1>Sign up</h1>
-        {password !== confirmedPass && <p>Passwords do not match</p>}
-        <p>
-          Already have an account? <Link to="/">Sign in</Link>
-        </p>
+    <div>
+      <div className="signin">
+        <div>
+          <div className="signin__text">
+            <h2 className="heading-2">Sign up for an account</h2>
+            <p className="signin__text--p">
+              Already have an account? <Link to="/">Sign in</Link>
+            </p>
+          </div>
+          <form className="signin__form" onSubmit={handleSubmit}>
+            <label>Email Address</label>
+            <input
+              className="signin__form--box"
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+            />
+
+            <label>Password</label>
+            <input
+              className="signin__form--box"
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+            />
+
+            <label>Confirm password</label>
+            <input
+              className="signin__form--box"
+              onChange={(e) => setConfirmedPass(e.target.value)}
+              type="password"
+            />
+
+            <button
+              className="button"
+              disabled={password !== confirmedPass || password.length === 0}
+            >
+              Sign Up
+            </button>
+            {error === 'Firebase: Error (auth/email-already-in-use).' ? (
+              <p className="u-margin-top-small">
+                Email address already in use.
+              </p>
+            ) : null}
+          </form>
+        </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="m-3">
-          <label>Email Address</label>
-          <input
-            className="order-box"
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-          />
-        </div>
-        <div className="m-3">
-          <label>Password</label>
-          <input
-            className="order-box"
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-          />
-        </div>
-        <div className="m-3">
-          <label>Confirm password</label>
-          <input
-            className="order-box"
-            onChange={(e) => setConfirmedPass(e.target.value)}
-            type="password"
-          />
-        </div>
-        <div className="m-3">
-          <button
-            className="btn btn-light"
-            disabled={password !== confirmedPass || password.length === 0}
-          >
-            Sign Up
-          </button>
-        </div>
-      </form>
+      {password !== confirmedPass && (
+        <p className="signin__error">Passwords do not match</p>
+      )}
+      {console.log(error)}
     </div>
   );
 };

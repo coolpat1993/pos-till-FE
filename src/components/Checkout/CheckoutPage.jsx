@@ -1,6 +1,5 @@
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { useContext, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase-config';
 import { PopUpContext } from '../ChangePopUp/changePopUp';
@@ -50,29 +49,27 @@ const CheckoutPage = ({ userOrTable, tableName, basketTotal }) => {
   };
 
   return (
-    <div className="menu">
-      <Container>
-        <div className="total-box col-4">
-          <h4>Total to pay: £{trueTotal}</h4>
-        </div>
-      </Container>
-      <br></br>
-      <PaymentKeypad
-        setTotalAmount={setTotalAmount}
-        totalAmount={totalAmount}
-        tempTotal={tempTotal}
-        setTempTotal={setTempTotal}
-      />
-      <Container>
+    <div className="checkout__numpad">
+      <div className="">
+        <p className="checkout__numpad--text">Total to pay: £{trueTotal}</p>
+      </div>
+      <div className="checkout__numpad_keypad">
+        <PaymentKeypad
+          setTotalAmount={setTotalAmount}
+          totalAmount={totalAmount}
+          tempTotal={tempTotal}
+          setTempTotal={setTempTotal}
+        />
+
         <button
-          className="col-4 btn btn-light"
+          className="checkout__numpad--pay button"
           onClick={() => {
             calcAmountPaid();
           }}
         >
           Pay
         </button>
-      </Container>
+      </div>
     </div>
   );
 };

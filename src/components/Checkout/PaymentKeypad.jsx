@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -29,57 +28,55 @@ const PaymentKeypad = ({
   };
   return (
     <>
-      <Container>
-        <div className="">
-          <h1 className="price-box col-4">£{totalAmount}</h1>
-          <div className="grid-container col-4">
-            {numbers.map((number) => {
-              return (
-                <div key={number}>
-                  <button
-                    className="grid-items-button"
-                    onClick={() => {
-                      handleEvent(number);
-                    }}
-                  >
-                    {number}
-                  </button>
-                </div>
-              );
-            })}
-            <div>
-              <button
-                className="grid-items-button"
-                onClick={() => {
-                  handleBackSpace();
-                }}
-              >
-                &#60;
-              </button>
-            </div>
-            <div>
-              <button
-                className="grid-items-button"
-                onClick={() => {
-                  handleEvent(0);
-                }}
-              >
-                0
-              </button>
-            </div>
-            <div>
-              <button
-                className="grid-items-button"
-                onClick={() => {
-                  handleClear();
-                }}
-              >
-                C
-              </button>
-            </div>
+      <div className="passcode">
+        <h3 className="">£{totalAmount}</h3>
+        <div className="numpad">
+          {numbers.map((number) => {
+            return (
+              <div key={number}>
+                <button
+                  className="numpad__button"
+                  onClick={() => {
+                    handleEvent(number);
+                  }}
+                >
+                  {number}
+                </button>
+              </div>
+            );
+          })}
+          <div>
+            <button
+              className="numpad__button"
+              onClick={() => {
+                handleBackSpace();
+              }}
+            >
+              &#60;
+            </button>
+          </div>
+          <div>
+            <button
+              className="numpad__button"
+              onClick={() => {
+                handleEvent(0);
+              }}
+            >
+              0
+            </button>
+          </div>
+          <div>
+            <button
+              className="numpad__button"
+              onClick={() => {
+                handleClear();
+              }}
+            >
+              C
+            </button>
           </div>
         </div>
-      </Container>
+      </div>
     </>
   );
 };
