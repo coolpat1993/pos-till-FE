@@ -1,6 +1,6 @@
 import { addDoc, collection, getDocs } from 'firebase/firestore';
-import React, { useState, useRef, useEffect } from 'react';
-import Draggable from 'react-draggable';
+import React, { useState, useEffect } from 'react';
+//import Draggable from 'react-draggable';
 import { db } from '../../firebase-config';
 import { UserAuth } from '../context/AuthContext';
 import IndividualTable from './IndividualTable';
@@ -31,7 +31,7 @@ const TablePlan = () => {
 
   const [positions, setPositions] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
-  const nodeRef = useRef(null);
+  //const nodeRef = useRef(null);
 
   useEffect(() => {
     if (tempTables.length > 0) {
@@ -41,12 +41,12 @@ const TablePlan = () => {
     }
   }, [tempTables, count]);
 
-  const handleStop = async (e, data) => {
+  /* const handleStop = async (e, data) => {
     let dummyPositions = {};
     dummyPositions['x'] = data.x;
     dummyPositions['y'] = data.y;
     setPositions(dummyPositions);
-  };
+  };*/
 
   const createTable = async () => {
     setCount(count + 1);
@@ -58,41 +58,35 @@ const TablePlan = () => {
   };
 
   return (
-    <div>
-      <input
-        placeholder="Name..."
-        onChange={(event) => {
-          setTableName(event.target.value);
-        }}
-      />
-      <button
-        onClick={() => {
-          createTable();
-        }}
-      >
-        Create Table +
-      </button>
+    <div className="tables">
+      <div className="tables__add">
+        <input
+          className="tables__add--input"
+          placeholder="Name..."
+          onChange={(event) => {
+            setTableName(event.target.value);
+          }}
+        />
+        <button
+          className="button-2"
+          onClick={() => {
+            createTable();
+          }}
+        >
+          Create Table +
+        </button>
+      </div>
       {tempTables.length > 0 && hasLoaded ? (
-        <div className="dragContainer">
+        <div className="tables__tablearea">
           {tables.map((item) => {
             return (
-              <Draggable
-                defaultPosition={{ x: item.x, y: item.y }}
-                grid={[25, 25]}
-                nodeRef={nodeRef}
-                onStop={handleStop}
-                bounds={{ top: 30, left: 30, right: 800, bottom: 540 }}
-              >
-                <div ref={nodeRef}>
-                  <IndividualTable
-                    id={item.id}
-                    theName={item.name}
-                    positions={positions}
-                    setCount={setCount}
-                    count={count}
-                  />
-                </div>
-              </Draggable>
+              <IndividualTable
+                id={item.id}
+                theName={item.name}
+                positions={positions}
+                setCount={setCount}
+                count={count}
+              />
             );
           })}
         </div>
@@ -102,3 +96,29 @@ const TablePlan = () => {
 };
 
 export default TablePlan;
+
+// {tempTables.length > 0 && hasLoaded ? (
+//   <div className="dragContainer">
+//     {tables.map((item) => {
+//       return (
+//         <Draggable
+//           defaultPosition={{ x: item.x, y: item.y }}
+//           grid={[25, 25]}
+//           nodeRef={nodeRef}
+//           onStop={handleStop}
+//           bounds={{ top: 30, left: 30, right: 800, bottom: 540 }}
+//         >
+//           <div ref={nodeRef}>
+//             <IndividualTable
+//               id={item.id}
+//               theName={item.name}
+//               positions={positions}
+//               setCount={setCount}
+//               count={count}
+//             />
+//           </div>
+//         </Draggable>
+//       );
+//     })}
+//   </div>
+// ) : null}

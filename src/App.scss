@@ -235,8 +235,8 @@ $bp-small: 37.5em;    // 600px;
     line-height: 2.2;
     z-index: 1;
     background-color: #fff;
-    padding: .2rem;
     border-radius: 10px;
+    width: 10rem;
     }
 
 
@@ -244,9 +244,10 @@ $bp-small: 37.5em;    // 600px;
       color: black;
       text-decoration: none;
       display: block;
-      width: 9rem;
+      width: 100%;
       font-weight: 500;
-      margin-left: 5px;
+      padding-left: 4px;
+      
 
       @include respond(phone){
         font-weight: 400;
@@ -270,7 +271,7 @@ $bp-small: 37.5em;    // 600px;
       @include respond(phone){
         grid-column: 1;
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
       }
     }
 
@@ -769,7 +770,6 @@ $bp-small: 37.5em;    // 600px;
      
        
     &_flex {
-      align-items: flex-start;
       display: flex;
       flex-wrap: wrap;    
       flex-direction: row;
@@ -1183,6 +1183,89 @@ $bp-small: 37.5em;    // 600px;
     }
 
 
+  }
+}
+
+
+// ADD TABLES / TABLE PLAN
+.tables {
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.3fr 1fr 1fr;
+    grid-template-rows: 5rem 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    margin: 0.5rem 2rem;
+    height: 90vh;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "add add add add add add add"
+      "tables tables tables tables tables tables tables"
+      "tables tables tables tables tables tables tables"
+      "tables tables tables tables tables tables tables"
+      "tables tables tables tables tables tables tables"
+      "tables tables tables tables tables tables tables"
+      ;
+
+
+      &__add {
+        grid-area: add;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &--input{
+          width: 10rem;
+          margin: .5rem 0 .5rem 0;
+          margin-bottom: 10px;
+          font-family: inherit;
+          padding: 0.25em 0.5em;
+          background-color: #fff;
+          border: 2px solid $color-primary;
+          border-radius: 4px;
+          transition: .3s all ease-in-out;
+  
+          &:focus{
+            outline: 3px solid $color-primary-light ;
+          }
+      }
+    }
+
+      &__tablearea::-webkit-scrollbar {
+        display: none;}
+
+      &__tablearea {
+        grid-area: tables;
+        border: 2px solid $color-primary;
+        border-radius: 10px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        flex-direction: row;
+        overflow: scroll;
+        -ms-overflow-style: none;  
+        scrollbar-width: none;
+
+       
+
+        &_card {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 1rem;
+          padding: 3px;
+          width: 8rem;
+          height: 5rem;
+          background-color: $color-grey-light-1;
+          border-radius: 10px;
+          margin: .5rem;
+    
+          &--button {
+            margin-bottom: .4rem;
+          }
+
+      }
   }
 }
 

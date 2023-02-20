@@ -17,6 +17,10 @@ function LoginKeypad({ userPasscode, selectedUser }) {
       setSuccess(true);
     } else {
     }
+    setBadPass(true);
+    setTimeout(() => {
+      setBadPass(false);
+    }, 1000);
   };
 
   if (success) {
@@ -28,6 +32,7 @@ function LoginKeypad({ userPasscode, selectedUser }) {
       <Keypad
         passcodeGuess={passcodeGuess}
         setPasscodeGuess={setPasscodeGuess}
+        badPass={badPass}
       />
 
       <button className="stafflogin__keypad--button" onClick={logIn}>

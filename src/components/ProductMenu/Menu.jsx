@@ -85,7 +85,7 @@ function ProductMenu() {
         {userOrTable ? (
           <p>{staffUsername}'s basket</p>
         ) : tableName !== 'noTableSelected' ? (
-          <p>You are currently viewing {tableName}</p>
+          <p>Currently viewing {tableName}</p>
         ) : (
           <p>Please select a table</p>
         )}
@@ -122,15 +122,13 @@ function ProductMenu() {
               })
             : null}
           {currMenu === 'tables' ? (
-            <div className="">
-              <Tables
-                key="table"
-                setTableName={setTableName}
-                setNewCounter={setNewCounter}
-                counter={counter}
-                setUserOrTable={setUserOrTable}
-              />
-            </div>
+            <Tables
+              key="table"
+              setTableName={setTableName}
+              setNewCounter={setNewCounter}
+              counter={counter}
+              setUserOrTable={setUserOrTable}
+            />
           ) : null}
         </div>
       </div>
