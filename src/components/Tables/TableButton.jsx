@@ -7,7 +7,7 @@ const TableButton = ({
 }) => {
   return (
     <button
-      className="button"
+      className="menu__items_flex--button button"
       onClick={() => {
         setTableName(tableName);
         setNewCounter(counter + 1);

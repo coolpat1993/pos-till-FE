@@ -595,6 +595,7 @@ $bp-small: 37.5em;    // 600px;
 
         &:focus{
           outline: 3px solid $color-primary-light ;
+          border-radius: 4px;
         }
       }
     }
@@ -1118,6 +1119,7 @@ $bp-small: 37.5em;    // 600px;
 
         &:focus{
           outline: 3px solid $color-primary-light ;
+          border-radius: 4px;
         }
       }
 
@@ -1225,6 +1227,7 @@ $bp-small: 37.5em;    // 600px;
   
           &:focus{
             outline: 3px solid $color-primary-light ;
+            border-radius: 4px;
           }
       }
     }
