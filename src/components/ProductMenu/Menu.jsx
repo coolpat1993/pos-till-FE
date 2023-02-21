@@ -6,10 +6,11 @@ import { Link, Navigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import SingleItemButton from './SingleItemButton';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
-import { Container, Row } from 'react-bootstrap';
 import Tables from './Tables';
 import MenuBasket from './Basket';
 import CheckoutPage from '../Checkout/CheckoutPage';
+
+
 
 function ProductMenu() {
   const { loggedInUser } = useContext(StaffContext);
@@ -32,126 +33,120 @@ function ProductMenu() {
     getitems();
   }, [userName, counter]);
 
+
+
   if (!staffUsername) {
     return <Navigate to="/staffLogin" />;
   }
   return (
-    <div className="menu" key="menu">
-      <Container fluid={true}>
-        <Row>
-          <div className="col-4">
-            <button
-              className="btn-btn-light"
-              onClick={() => {
-                setCurrMenu('products');
-                if (tableName === 'noTableSelected') {
-                  setUserOrTable(true);
-                }
-              }}
-            >
-              Products
-            </button>
-            <button
-              className="btn-btn-light"
-              onClick={() => {
-                setUserOrTable(false);
-                setTableName('noTableSelected');
-                setCurrMenu('tables');
-              }}
-            >
-              Tables
-            </button>
-            <button
-              className="btn-btn-light"
-              onClick={() => {
-                setUserOrTable(true);
-                setTableName('no table');
-                setCurrMenu('products');
-              }}
-            >
-              My basket
-            </button>
-          </div>
-          <div className="col-4"></div>
-          <div className="col-4">
-            {userOrTable ? (
-              <h4>You are currently viewing {staffUsername}'s basket</h4>
-            ) : tableName !== 'noTableSelected' ? (
-              <h4>You are currently viewing {tableName}</h4>
-            ) : (
-              <h4>Please select a table</h4>
-            )}
-          </div>
-        </Row>
-      </Container>
-      <Container fluid={true}>
-        <Row>
-          <div className="menuBars">
-            {currMenu === 'checkOut' ? (
-              <div className="col-8 menu">
-                <CheckoutPage
-                  key="CheckoutPage"
-                  userOrTable={userOrTable}
+    <div className="menu">
+      <div className="menu__navigation">
+        <button
+          className={
+            currMenu === 'products'
+              ? 'button menu__navigation-button--focus'
+              : 'button menu__navigation-button'
+          }
+          onClick={() => {
+            setCurrMenu('products');
+            if (tableName === 'noTableSelected') {
+              setUserOrTable(true);
+            }
+          }}
+        >
+          Products
+        </button>
+        <button
+          className={`${currMenu === 'tables'
+            ? 'button menu__navigation-button--focus'
+            : 'button menu__navigation-button'
+            }`}
+          onClick={() => {
+            setUserOrTable(false);
+            setTableName('noTableSelected');
+            setCurrMenu('tables');
+          }}
+        >
+          Tables
+        </button>
+        <button
+          className={
+            currMenu === 'basket'
+              ? 'button menu__navigation-button--focus'
+              : 'button menu__navigation-button'
+          }
+          onClick={() => {
+            setUserOrTable(true);
+            setTableName('no table');
+            setCurrMenu('basket');
+          }}
+        >
+          My basket
+        </button>
+      </div>
+      <div className="menu__viewing">
+        {userOrTable ? (
+          <p>{staffUsername}'s basket</p>
+        ) : tableName !== 'noTableSelected' ? (
+          <p>Currently viewing {tableName}</p>
+        ) : (
+          <p>Please select a table</p>
+        )}
+      </div>
+      <div className="menu__items">
+        <div className="menu__items_flex">
+          {currMenu === 'checkOut' ? (
+            <CheckoutPage
+              key="CheckoutPage"
+              userOrTable={userOrTable}
+              tableName={tableName}
+              basketTotal={basketTotal}
+              setBasketTotal={setBasketTotal}
+            />
+          ) : null}
+          {(currMenu === 'products') & (items.length < 1) ? (
+            <Link to="/items">Add Items</Link>
+          ) : null}
+
+          {(currMenu === 'products') & (items.length > 1)
+            ? items.map((item) => {
+              return (
+                <SingleItemButton
+                  key={item.id}
                   tableName={tableName}
-                  basketTotal={basketTotal}
-                  setBasketTotal={setBasketTotal}
-                />
-              </div>
-            ) : null}
-            {currMenu === 'products' ? (
-              <div className="col-8 products">
-                <Container>
-                  {items.length < 1 ? (
-                    <Link to="/items">Add Items</Link>
-                  ) : (
-                    <Row>
-                      {items.map((item) => {
-                        return (
-                          <SingleItemButton
-                            key={item.id}
-                            tableName={tableName}
-                            name={item.name}
-                            price={item.price}
-                            id={item.id}
-                            setNewCounter={setNewCounter}
-                            counter={counter}
-                            userOrTable={userOrTable}
-                          />
-                        );
-                      })}
-                    </Row>
-                  )}
-                </Container>
-              </div>
-            ) : null}
-            {currMenu === 'tables' ? (
-              <div className="col-8 products">
-                <Tables
-                  key="table"
-                  setTableName={setTableName}
+                  name={item.name}
+                  price={item.price}
+                  id={item.id}
                   setNewCounter={setNewCounter}
                   counter={counter}
-                  setUserOrTable={setUserOrTable}
-                />
-              </div>
-            ) : null}
-            <div className="order-box col-4">
-              <Container>
-                <MenuBasket
-                  setNewCounter={setNewCounter}
-                  key="menubasket"
-                  counter={counter}
-                  tableName={tableName}
                   userOrTable={userOrTable}
-                  basketTotal={basketTotal}
-                  setBasketTotal={setBasketTotal}
-                  setCurrMenu={setCurrMenu}
                 />
-              </Container>
-            </div>
-          </div>
-        </Row>
-      </Container>
+              );
+            })
+            : null}
+          {currMenu === 'tables' ? (
+            <Tables
+              key="table"
+              setTableName={setTableName}
+              setNewCounter={setNewCounter}
+              counter={counter}
+              setUserOrTable={setUserOrTable}
+            />
+          ) : null}
+        </div>
+      </div>
+      <div className="menu__basket">
+        <MenuBasket
+          setNewCounter={setNewCounter}
+          key="menubasket"
+          counter={counter}
+          tableName={tableName}
+          userOrTable={userOrTable}
+          basketTotal={basketTotal}
+          setBasketTotal={setBasketTotal}
+          setCurrMenu={setCurrMenu}
+        />
+      </div>
     </div>
   );
 }

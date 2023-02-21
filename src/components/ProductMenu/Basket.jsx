@@ -10,9 +10,7 @@ import {
 } from 'firebase/firestore';
 import { UserAuth } from '../../components/context/AuthContext';
 import { StaffContext } from '../StaffLogin/LoggedInStaff';
-import { Link } from 'react-router-dom';
 import BasketTotals from './BasketTotals';
-import { Card, Container, Row } from 'react-bootstrap';
 
 function MenuBasket({
   setNewCounter,
@@ -47,6 +45,9 @@ function MenuBasket({
   const decreaseQuantity = async (id, quantity) => {
     const itemDoc = doc(db, docLink, id);
     const newFields = { quantity: quantity - 1 };
+    if (newFields.quantity < 1) {
+      deleteitem(id);
+    }
     setNewCounter(counter + 1);
     await updateDoc(itemDoc, newFields);
   };
@@ -67,73 +68,53 @@ function MenuBasket({
   }, [counter, userName, staffUsername, docLink]);
 
   return (
-    <div>
-      <div>
+    <div className="menu__basket_content">
+      <div className="menu__basket_items">
         {items.map((item) => {
           return (
-            <Card key={item.id}>
-              <Container>
-
-                <div className="d-flex justify-content-between" key={item.id}>
-
-                  <p className="p-2 float-start">{item.quantity}</p>
-                  <p className="p-2 float-start">{item.name} </p>
-                  <p className="p-2 float-start">{`£${item.price}`}</p>
-                  <div className="p2">
-                    <button
-                      className="quantity-button"
-                      onClick={() => {
-                        decreaseQuantity(item.id, item.quantity);
-                      }}
-                    >
-                      -
-                    </button>
-                    <button
-                      className="quantity-button"
-                      onClick={() => {
-                        updateQuantity(item.id, item.quantity);
-                      }}
-                    >
-                      +
-                    </button>
-                    <button
-                      className="quantity-button"
-                      onClick={() => {
-                        deleteitem(item.id);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </Container>
-            </Card>
+            <div className="menu__basket_items_single" key={item.id}>
+              <p className="menu__basket_items_single--text">{item.name}</p>
+              <div className="menu__basket_items_single--quantity">
+                <button
+                  className="button-2"
+                  onClick={() => {
+                    decreaseQuantity(item.id, item.quantity);
+                  }}
+                >
+                  -
+                </button>
+                <p>{item.quantity}</p>
+                <button
+                  className="button-2"
+                  onClick={() => {
+                    updateQuantity(item.id, item.quantity);
+                  }}
+                >
+                  +
+                </button>
+              </div>
+              <p className="menu__basket_items_single--price">{`£${(
+                item.price * item.quantity
+              ).toFixed(2)}`}</p>
+            </div>
           );
         })}
       </div>
 
-      <div className="d-flex justify-content-end">
-
-
-        <div className="bottom-order">
-          <Container>
-            <Row>
-              <BasketTotals
-                items={items}
-                basketTotal={basketTotal}
-                setBasketTotal={setBasketTotal}
-              />
-              <button
-                className="btn btn-light"
-                onClick={() => {
-                  setCurrMenu('checkOut');
-                }}
-              >
-                Pay
-              </button>
-            </Row>
-          </Container>
-        </div>
+      <div className="menu__basket_content_pay">
+        <BasketTotals
+          items={items}
+          basketTotal={basketTotal}
+          setBasketTotal={setBasketTotal}
+        />
+        <button
+          className="menu__basket_content_pay--button button"
+          onClick={() => {
+            setCurrMenu('checkOut');
+          }}
+        >
+          Pay
+        </button>
       </div>
     </div>
   );
