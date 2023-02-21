@@ -3,6 +3,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const Keypad = ({ passcodeGuess, setPasscodeGuess, badPass }) => {
   const handleEvent = (number) => {
     if (passcodeGuess.length >= 4) {
+      setPasscodeGuess('')
       return null;
     } else {
       setPasscodeGuess(`${passcodeGuess}${number}`);
@@ -18,7 +19,7 @@ const Keypad = ({ passcodeGuess, setPasscodeGuess, badPass }) => {
   return (
     <>
       <div className="passcode">
-        {(passcodeGuess === '') & (badPass === false) ? (
+        {(passcodeGuess === '') && (badPass === false) ? (
           <p>Enter passcode below</p>
         ) : badPass === true ? (
           <p>Wrong passcode</p>

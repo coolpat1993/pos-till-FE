@@ -9,6 +9,9 @@ import { StaffContext } from '../StaffLogin/LoggedInStaff';
 import Tables from './Tables';
 import MenuBasket from './Basket';
 import CheckoutPage from '../Checkout/CheckoutPage';
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
+
 
 function ProductMenu() {
   const { loggedInUser } = useContext(StaffContext);
@@ -30,6 +33,8 @@ function ProductMenu() {
 
     getitems();
   }, [userName, counter]);
+
+
 
   if (!staffUsername) {
     return <Navigate to="/staffLogin" />;
@@ -53,11 +58,10 @@ function ProductMenu() {
           Products
         </button>
         <button
-          className={`${
-            currMenu === 'tables'
-              ? 'button menu__navigation-button--focus'
-              : 'button menu__navigation-button'
-          }`}
+          className={`${currMenu === 'tables'
+            ? 'button menu__navigation-button--focus'
+            : 'button menu__navigation-button'
+            }`}
           onClick={() => {
             setUserOrTable(false);
             setTableName('noTableSelected');
@@ -107,19 +111,19 @@ function ProductMenu() {
 
           {(currMenu === 'products') & (items.length > 1)
             ? items.map((item) => {
-                return (
-                  <SingleItemButton
-                    key={item.id}
-                    tableName={tableName}
-                    name={item.name}
-                    price={item.price}
-                    id={item.id}
-                    setNewCounter={setNewCounter}
-                    counter={counter}
-                    userOrTable={userOrTable}
-                  />
-                );
-              })
+              return (
+                <SingleItemButton
+                  key={item.id}
+                  tableName={tableName}
+                  name={item.name}
+                  price={item.price}
+                  id={item.id}
+                  setNewCounter={setNewCounter}
+                  counter={counter}
+                  userOrTable={userOrTable}
+                />
+              );
+            })
             : null}
           {currMenu === 'tables' ? (
             <Tables
