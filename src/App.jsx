@@ -14,47 +14,56 @@ import Account from './components/AccountLogin/Account';
 import TablePlan from './components/CreateTables/TablePlan';
 import Tables from './components/ProductMenu/Tables';
 import ProductMenu from './components/ProductMenu/Menu';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Testing from './components/testingGrounds/testing';
+
+const queryClient = new QueryClient();
+
 
 function App() {
   return (
-    <AuthContextProvider>
-      <Header />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <StaffLoginPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/signup" element={<SignUp />} />
-        <Route
-          path="/account"
-          element={
-            <ProtectedRoute>
-              <Account />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/items" element={<Items />} />
-        <Route path="/CreateUsers" element={<CreateUsers />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route
-          path="/staffLogin"
-          element={
-            <ProtectedRoute>
-              <StaffLoginPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/tablePlan" element={<TablePlan />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/tables" element={<Tables />} />
-        <Route path="/menu" element={<ProductMenu />} />
-      </Routes>
-    </AuthContextProvider>
+    <QueryClientProvider client={queryClient}>
+
+      <AuthContextProvider>
+        <Header />
+        <Routes>
+          <Route path="/testing" element={<Testing />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <StaffLoginPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/items" element={<Items />} />
+          <Route path="/CreateUsers" element={<CreateUsers />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route
+            path="/staffLogin"
+            element={
+              <ProtectedRoute>
+                <StaffLoginPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/tablePlan" element={<TablePlan />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/tables" element={<Tables />} />
+          <Route path="/menu" element={<ProductMenu />} />
+        </Routes>
+      </AuthContextProvider>
+    </QueryClientProvider>
   );
 }
 

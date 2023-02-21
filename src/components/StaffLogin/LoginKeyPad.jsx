@@ -19,6 +19,7 @@ function LoginKeypad({ userPasscode, selectedUser }) {
     }
     setBadPass(true);
     setTimeout(() => {
+      setPasscodeGuess('')
       setBadPass(false);
     }, 1000);
   };

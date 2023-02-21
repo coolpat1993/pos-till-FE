@@ -9,8 +9,7 @@ import { StaffContext } from '../StaffLogin/LoggedInStaff';
 import Tables from './Tables';
 import MenuBasket from './Basket';
 import CheckoutPage from '../Checkout/CheckoutPage';
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
+
 
 
 function ProductMenu() {
